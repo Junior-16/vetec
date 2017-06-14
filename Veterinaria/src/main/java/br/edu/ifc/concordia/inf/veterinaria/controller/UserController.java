@@ -12,7 +12,7 @@ public class UserController extends AbstractController {
 	@Get(value="/login")
 	@NoCache
 	public void login() {
-		
+		System.out.println("foi");
 	}
 	
 }

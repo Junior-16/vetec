@@ -3,6 +3,6 @@
 
 <c:import url="/includes/headers.jsp" />
 
-<h1>Olá, deu certo =)</h1>
+<h1>It's working</h1>
 
 <c:import url="/includes/footer.jsp" />

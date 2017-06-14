@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Vetec</title>
+	<title>Veterinaria</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/tether.min.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/css/bootstrap.min.css" />" />
 </head>
