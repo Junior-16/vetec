@@ -13,8 +13,8 @@ public class IndexController extends AbstractController {
 	@Path(value="/", priority=Path.HIGHEST)
 	@NoCache
 	public void index() {
-		if(!this.userSession.isLogged()){
-			this.result.redirectTo(UserController.class).login();
+		if (!this.userSession.isLogged()) {
+			this.result.redirectTo(UserController.class).login(null);
 		}
 	}
 	
