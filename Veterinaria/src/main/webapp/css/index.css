@@ -21,3 +21,17 @@
 p{
     margin-top: 25px;
 }
+label{
+    font-size:medium;
+    margin-top: 15px;
+    font-weight: 400;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+.glyphicon-home{
+    color: white;
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+.texto{
+    display:-webkit-box;
+}

@@ -17,6 +17,11 @@ import br.edu.ifc.concordia.inf.veterinaria.model.User;
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
 	
+	@Get(value="/createacount")
+	@NoCache
+	public void createacount(){
+		System.out.println("Olá Mundo");
+	}
 	@Get("/login")
 	public void login(String errorMsg) {
 		if (!GeneralUtils.isEmpty(errorMsg)){
