@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-4">
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<c:if test="${not empty errorMsg}">
 				<div class="alert alert-danger" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -24,10 +24,14 @@
 			      	<input class="form-control" placeholder="User Name"  name="login" id= "username">
 			      	<input class="form-control" name="password" type="password" placeholder="Password" id= "password">
 			    </div>
-		      	<button type="submit" class="btn btn-default btn-sm" id = "submit">Login
-				</button>
-		        <a href="#">Esqueci minha senha</a></br>
-		      	<a  href="<c:url value="/createacount"/>">Criar uma conta</a>
+			    <div class="col-md-12">
+			      	<button type="submit" class="btn btn-default btn-md" id = "submit">Login
+					</button>
+				</div>
+				<div class="col-md-6">
+			        <a href="#">Esqueci minha senha</a></br>
+			      	<a  href="<c:url value="/createacount"/>">Criar uma conta</a>
+			    </div>
 		    </div>
 		</div>
 		<div class="col-md-4">
