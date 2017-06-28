@@ -12,8 +12,8 @@
 			<c:if test="${not empty errorMsg}">
 				<div class="alert alert-danger" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					Nome de Usuário ou Senha Incorretos
+					<span class="sr-only"></span>
+					${errorMsg}
 				</div>
 			</c:if>
 			<div class="login">
@@ -21,7 +21,7 @@
 		      		<h2>Login</h2>
 		      	</div>
 		      	<div class="container-fluid">
-			      	<input class="form-control" placeholder="User Name"  name="login" id= "username">
+			      	<input class="form-control" placeholder="User Name"  name="username" id= "username">
 			      	<input class="form-control" name="password" type="password" placeholder="Password" id= "password">
 			    </div>
 			    <div class="col-md-12">

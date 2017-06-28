@@ -20,8 +20,6 @@
 		var size = ($(window).height() - $("#teste").height()) - $(".footer").height() - 55.8;
 		$(".conteudo").css("min-height", size+"px");
 		});
-	
-	
 </script>
 </body>
 </html>

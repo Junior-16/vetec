@@ -1,5 +1,6 @@
 package br.edu.ifc.concordia.inf.business;
 
+
 import javax.enterprise.context.RequestScoped;
 
 import org.hibernate.Criteria;
@@ -16,7 +17,6 @@ public class UserBS extends HibernateBusiness{
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("login", login));
 		criteria.add(Restrictions.eq("senha", CryptManager.passwordHash(password)));
-		
 		return (User) criteria.uniqueResult();
 		
 	}
