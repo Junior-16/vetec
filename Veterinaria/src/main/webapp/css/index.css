@@ -21,12 +21,6 @@
 p{
     margin-top: 25px;
 }
-label{
-    font-size:medium;
-    margin-top: 15px;
-    font-weight: 400;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-}
 .glyphicon-home{
     color: white;
     font-size: 25px;
@@ -34,4 +28,33 @@ label{
 }
 .texto{
     display:-webkit-box;
+}
+#username, #password{
+	margin-top: 10%;
+}
+#submit{
+	margin-top: 10%;
+	margin-left: 75%
+}
+
+.login1{
+	background-color:#389c3a;
+	border-radius:10px;
+}
+h2{
+	color:white;
+	padding-top:6px;
+}
+.logar{
+	background-color: #eeeeee;
+}
+#alert{
+	width:208.5px;
+}
+.login{
+	background-color:#eeeeee;
+	border-radius:10px;
+}
+.navbar-default{
+    background-color: #0c691c;
 }
