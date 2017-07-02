@@ -1,7 +1,4 @@
 package br.edu.ifc.concordia.inf.veterinaria.factory;
-
-import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
@@ -9,21 +6,13 @@ import javax.ejb.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.servlet.ServletContext;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 
-import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
-import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
-import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @ApplicationScoped
@@ -38,6 +27,7 @@ public class ApplicationSetup {
 	public void initializeAtStartup(@Observes ServletContext context) {
 
 	}
+	
 
 	@Inject
 	public ApplicationSetup(SessionFactoryProducer factoryProducer) {
@@ -45,41 +35,9 @@ public class ApplicationSetup {
 		
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
-		
-		
-		Criteria criteria = dao.newCriteria(User.class);
-		criteria.add(Restrictions.eq("login", "admin"));
-		User user = (User) criteria.uniqueResult();
-		
-		if (user == null){
-			user = new User();
-			user.setNome("admin");
-			user.setEmail("admin@admin");
-			user.setCargo("admin");
-			user.setLogin("admin");
-			user.setSenha(CryptManager.passwordHash("admin12345"));
-			dao.persist(user);
-			
-			
-		}
-		
 		LOG.info("Overwriting SSL context to ignore invalid certificates...");
-		try {
-			SSLContext ctx = SSLContext.getInstance("TLS");
-			ctx.init(new KeyManager[0], new TrustManager[] { new DefaultTrustManager() }, new SecureRandom());
-			SSLContext.setDefault(ctx);
-		} catch (GeneralSecurityException ex) {
-			System.out.println("N�o consegui sobrescrever o SSLContext.");
-			ex.printStackTrace();
-		}
 
-		LOG.info("Application setup completed.");
-		mngr.closeSession();
 	}
-
 	public static class DefaultTrustManager implements X509TrustManager {
 
 		@Override

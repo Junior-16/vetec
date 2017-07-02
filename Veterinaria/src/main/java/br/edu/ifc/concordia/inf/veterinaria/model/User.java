@@ -17,39 +17,67 @@ public class User implements Serializable {
 	private Long id;
 	
 	private String nome;
+	private String profissao;
+	private String endereco;
+	private String cep;
+	private String cpf;
+	private String telefone;
+	private String referencia;
+	private String password;
+	private String username;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEmail() {
-		return email;
+	public String getProfissao() {
+		return profissao;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setProfissão(String profissao) {
+		this.profissao = profissao;
 	}
-	public String getCargo() {
-		return cargo;
+	public String getEndereco() {
+		return endereco;
 	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
-	public String getLogin() {
-		return login;
+	public String getCep() {
+		return cep;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
-	public String getSenha() {
-		return senha;
+	public String getCpf() {
+		return cpf;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-	private String email;
-	private String cargo;
-	private String login;
-	private String senha;
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public String getReferencia() {
+		return referencia;
+	}
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
 	
 }

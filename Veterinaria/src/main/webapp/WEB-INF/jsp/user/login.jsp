@@ -4,18 +4,11 @@
 <c:import url="/includes/headers.jsp"/>
 
 <form method="POST" action="<c:url value="/login" />" >
- 	<div class="container-fluid conteudo">
+ 	<div class="container conteudo">
 	<div class="row">
 		<div class="col-md-4">
 		</div>
-		<div class="col-md-3">
-			<c:if test="${not empty errorMsg}">
-				<div class="alert alert-danger" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only"></span>
-					${errorMsg}
-				</div>
-			</c:if>
+		<div class="col-md-4">
 			<div class="login">
 		      	<div class="login1">
 		      		<h2>Login</h2>
@@ -28,11 +21,18 @@
 			      	<button type="submit" class="btn btn-default btn-md" id = "submit">Login
 					</button>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8">
 			        <a href="#">Esqueci minha senha</a></br>
 			      	<a  href="<c:url value="/createacount"/>">Criar uma conta</a>
 			    </div>
 		    </div>
+		    <c:if test="${not empty errorMsg}">
+				<div class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only"></span>
+					${errorMsg}
+				</div>
+			</c:if>
 		</div>
 		<div class="col-md-4">
 		</div>

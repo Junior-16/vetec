@@ -2,36 +2,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/includes/headers.jsp"/>
-	<div class="container-fluid" id="conteudo">
+	<div class="container-fluid conteudo">
 	<!--nav navigation-->
-	<div class="row formulario">
-			<div class="col-md-4">
-				<label>Nome do Proprietário</label>
-                <input class="form-control">
+	<c:import url="/includes/navbar.jsp" />
+	<form method="POST" action="<c:url value="/createacount"/>" >
+		<div class="row formulario">
+				<div class="col-md-4">
+					<label>Nome do Proprietário</label>
+	                <input class="form-control" name = "nome">
+				</div>
+				<div class="col-md-2" >
+					<label>Cep</label>
+	                <input type="text" class="form-control" maxlength="10" id="cep" name="cep">
+				</div>
+				<div class="col-md-3">
+					<label>CPF</label>
+	                <input class="form-control" id="cpf" maxlength="14" name="cpf">
+				</div>
+				<div class="col-md-3">
+					<label>Telefone</label>
+	                <input class="form-control" id="telefone" maxlength="11" name = "telefone">
+				</div>
+				<div class="col-md-6">
+					<label>Profissão</label>
+	                <input class="form-control" name="profissao">
+	                <label>Endereço</label>
+		            <textarea class="form-control" id="exampleTextarea" rows="2" name="endereco"></textarea>
+		            <label>Nome de Usuário</label>
+	                <input class="form-control" name = "username">
+	                <label>Senha</label>
+	                <input class="form-control" name = "password" type="password">
+				</div>
+				<div class="col-md-6">
+					<label>Referências</label>
+	                <textarea class="form-control" id="exampleTextarea" rows="6" name="referencias"></textarea>
+	                <button type="submit" class="btn btn-success">Salvar</button>
+				</div>
 			</div>
-			<div class="col-md-2" >
-				<label>Cep</label>
-                <input type="text" class="form-control" maxlength="10" id="cep">
-			</div>
-			<div class="col-md-3">
-				<label>CPF</label>
-                <input class="form-control" id="cpf" maxlength="14">
-			</div>
-			<div class="col-md-3">
-				<label>Telefone</label>
-                <input class="form-control" id="telefone" placeholder="(xx) xxxxx-xxxx">
-			</div>
-			<div class="col-md-6">
-				<label>Profissão</label>
-                <input class="form-control">
-                <label>Endereço</label>
-	            <textarea class="form-control" id="exampleTextarea" rows="2"></textarea>
-			</div>
-			<div class="col-md-6">
-				<label>Referências</label>
-                <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>
-                
-			</div>
-		</div>
+		</form>
 	</div>
 <c:import url="/includes/footer.jsp"/>
