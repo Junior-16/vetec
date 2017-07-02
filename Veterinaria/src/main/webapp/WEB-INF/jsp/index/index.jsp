@@ -3,6 +3,7 @@
 
 <c:import url="/includes/headers.jsp" />
 
-<h1>It's working</h1>
-
+	<div class="container conteudo">
+		<h1>It's working</h1>
+	</div>
 <c:import url="/includes/footer.jsp" />

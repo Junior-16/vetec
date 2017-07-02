@@ -15,7 +15,8 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	private String password;
+	private String username;
 	private String nome;
 	private String profissao;
 	private String endereco;
@@ -23,8 +24,6 @@ public class User implements Serializable {
 	private String cpf;
 	private String telefone;
 	private String referencia;
-	private String password;
-	private String username;
 	public String getPassword() {
 		return password;
 	}

@@ -18,6 +18,7 @@ import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
+import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @RequestScoped
 public class UserBS extends HibernateBusiness{
@@ -35,8 +36,12 @@ public class UserBS extends HibernateBusiness{
 		//User user = this.result.redirectTo(arg0)
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
-		
+		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
+		CryptManager.updateSalt("@2o!A", "70Px$");
 		User user = new User();
+
+		user.setUsername(username);
+		user.setPassword(CryptManager.passwordHash(password));
 		user.setCep(cep);
 		user.setCpf(cpf);
 		user.setEndereco(endereco);
@@ -44,8 +49,6 @@ public class UserBS extends HibernateBusiness{
 		user.setProfissão(profissao);
 		user.setReferencia(referencias);
 		user.setTelefone(telefone);
-		user.setUsername(username);
-		user.setPassword(CryptManager.passwordHash(password));
 		dao.persist(user);
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");
