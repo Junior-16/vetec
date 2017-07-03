@@ -12,7 +12,7 @@ import javax.net.ssl.TrustManager;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
-import br.com.caelum.vraptor.boilerplate.HibernateDAO;
+//import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
@@ -22,24 +22,18 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @RequestScoped
 public class UserBS extends HibernateBusiness{
-	
-	public 	User login(String username, String password){
-		Criteria criteria = this.dao.newCriteria(User.class);
+	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
+		Criteria criteria = dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
-		return (User) criteria.uniqueResult();
-		
+		return (User) criteria.uniqueResult();	
 	}
-	
 
 	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String profissao, String cpf, String cep, String telefone, String endereco, String referencias, String password,String username){
-		//User user = this.result.redirectTo(arg0)
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		User user = new User();
-
 		user.setUsername(username);
 		user.setPassword(CryptManager.passwordHash(password));
 		user.setCep(cep);

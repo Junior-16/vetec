@@ -19,7 +19,7 @@ import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
-	
+	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 	@Get(value="/createacount")
 	@NoCache
 	public void createacount(){
@@ -36,7 +36,6 @@ public class UserController extends AbstractController {
 	@Post(value="/createacount")
 	@NoCache
 	public void cadastrar(String nome, String profissao, String cpf, String cep, String telefone, String endereco, String referencias,String password,String username){
-		SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 		this.bs.cadastrar(factoryproducer, nome, profissao, cpf,cep,telefone,endereco,referencias,password,username);
 		this.result.redirectTo(this).login(null);
 	}
@@ -47,7 +46,7 @@ public class UserController extends AbstractController {
 		if(username == null || password == null){
 			this.result.redirectTo(this).login("Campos incompletos");
 		}else{
-		User user = this.bs.login(username, password);
+		User user = this.bs.login(factoryproducer, username, password);
 		if (user == null){
 			this.result.redirectTo(this).login("Nome de usuário ou senha incorretos!");
 		}else{

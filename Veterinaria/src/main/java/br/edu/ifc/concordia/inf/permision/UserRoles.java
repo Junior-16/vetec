@@ -2,7 +2,7 @@ package br.edu.ifc.concordia.inf.permision;
 
 public enum UserRoles {
 	ADMIN(1),
-	NORMA(2);
+	NORMAL(2);
 	private int accessLevel;
 	
 	private UserRoles(int accessLevel){
