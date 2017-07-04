@@ -35,7 +35,7 @@ p{
 	margin-top: 10%;
 }
 #submit{
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-left: 75%
 }
 
@@ -48,6 +48,7 @@ h2{
 	padding-top:6px;
 }
 .login{
+	height:290px;
 	background-color:#eeeeee;
 	border-radius:10px;
 	margin-top:50px;
@@ -65,4 +66,7 @@ h2{
 .home{
 	height: 30px;
 	width:30px;
+}
+.header{
+	background-color:#eeeeee;
 }

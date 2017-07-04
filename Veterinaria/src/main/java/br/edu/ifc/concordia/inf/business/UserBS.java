@@ -11,7 +11,9 @@ import javax.net.ssl.TrustManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
+import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 //import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
@@ -23,6 +25,8 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 @RequestScoped
 public class UserBS extends HibernateBusiness{
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
+		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
@@ -31,6 +35,7 @@ public class UserBS extends HibernateBusiness{
 
 	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String profissao, String cpf, String cep, String telefone, String endereco, String referencias, String password,String username){
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		User user = new User();
