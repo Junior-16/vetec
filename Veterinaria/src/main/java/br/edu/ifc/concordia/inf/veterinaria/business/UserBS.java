@@ -1,4 +1,4 @@
-package br.edu.ifc.concordia.inf.business;
+package br.edu.ifc.concordia.inf.veterinaria.business;
 
 
 import java.security.GeneralSecurityException;
@@ -25,8 +25,6 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 @RequestScoped
 public class UserBS extends HibernateBusiness{
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));

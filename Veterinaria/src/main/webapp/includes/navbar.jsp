@@ -3,7 +3,5 @@
 
 <!-- Barra de navegação -->
 <nav class="navbar navbar-light bg-faded navigation">
-  	<a class="navbar-brand" href="#">
-		 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-  	</a>
+	<span class="glyphicon glyphicon-home" aria-hidden="true">| <h1>Cadastro</h1> </span>
 </nav>

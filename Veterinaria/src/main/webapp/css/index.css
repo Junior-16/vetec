@@ -70,3 +70,15 @@ h2{
 .header{
 	background-color:#eeeeee;
 }
+label{
+    font-size:medium;
+    margin-top: 15px;
+    font-weight: 400;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+} 
+h1{
+ font-size: 30px;
+ color:white;
+ margin-top: 10px;
+}
+    

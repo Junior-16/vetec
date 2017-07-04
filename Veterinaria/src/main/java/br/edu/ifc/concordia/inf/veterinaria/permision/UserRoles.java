@@ -1,4 +1,4 @@
-package br.edu.ifc.concordia.inf.permision;
+package br.edu.ifc.concordia.inf.veterinaria.permision;
 
 public enum UserRoles {
 	ADMIN(1),

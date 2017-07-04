@@ -1,4 +1,4 @@
-package br.edu.ifc.concordia.inf.permision;
+package br.edu.ifc.concordia.inf.veterinaria.permision;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

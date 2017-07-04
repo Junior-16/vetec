@@ -6,8 +6,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Veterinaria</title>
+	<link rel="stylesheet" href="<c:url value="/css/tether.min.css"/>"/>
 	<link rel="stylesheet" href="<c:url value="/bootstrap/css/bootstrap.min.css"/>"/>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/css/index.css"/>">
+	<link rel="stylesheet" href="<c:url value="/css/index.css"/>"/>
 </head>
 <body>
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded row header">
