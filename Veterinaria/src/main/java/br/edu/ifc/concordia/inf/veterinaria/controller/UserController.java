@@ -19,6 +19,7 @@ import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
+	
 	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 	@Get(value="/createacount")
 	@NoCache
@@ -27,6 +28,7 @@ public class UserController extends AbstractController {
 	}
 	
 	@Get("/login")
+	@NoCache
 	public void login(String errorMsg) {
 		if (!GeneralUtils.isEmpty(errorMsg)){
 			this.result.include("errorMsg",errorMsg);
@@ -55,7 +57,14 @@ public class UserController extends AbstractController {
 		}
 		}
 	}
-	
+	@Post(value="/logout")
+	@NoCache
+	public void sair(){
+		if (this.userSession.isLogged() == true){
+			this.userSession.logout();
+			this.result.redirectTo(this).login("Você Está Desconectado");
+		}
+	}
 	
 	@Get("/loggedUser")
 	@Permition(UserRoles.ADMIN)

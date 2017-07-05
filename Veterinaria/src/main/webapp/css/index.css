@@ -30,6 +30,8 @@ p{
     color: white;
     font-size: 25px;
     padding-bottom: 10px;
+    margin-left:15px;
+    margin-top:15px;
 }
 #username, #password{
 	margin-top: 10%;
@@ -80,5 +82,18 @@ h1{
  font-size: 30px;
  color:white;
  margin-top: 10px;
+ margin-left:10px;
+}
+h5{
+    margin-top:20px;
+    margin-left:8px;
+    font-size:18px;
+    color:white;
+}
+.texto{
+    display:-webkit-box;
+}
+img{
+   width:100%;
 }
     

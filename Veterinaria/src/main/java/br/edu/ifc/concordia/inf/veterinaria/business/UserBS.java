@@ -25,7 +25,7 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 @RequestScoped
 public class UserBS extends HibernateBusiness{
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
-		Criteria criteria = dao.newCriteria(User.class);
+		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
 		return (User) criteria.uniqueResult();	

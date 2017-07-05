@@ -10,9 +10,9 @@
 		</div>
 		<div class="col-md-4">
 			<div class="login" style="height:290px">
-		      	<div class="login1">
-		      		<h2>Login</h2>
-		      	</div>
+					<div>
+		      			<img src="<c:url value="/imagens/barralogin.png"/>"></img>
+		      		</div>
 		      		<div class="container-fluid">
 				      <input class="form-control" placeholder="User Name"  name="username" id= "username">
 				      <input class="form-control" name="password" type="password" placeholder="Password" id= "password">

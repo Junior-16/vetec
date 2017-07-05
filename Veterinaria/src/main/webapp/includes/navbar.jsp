@@ -3,5 +3,7 @@
 
 <!-- Barra de navegação -->
 <nav class="navbar navbar-light bg-faded navigation">
-	<span class="glyphicon glyphicon-home" aria-hidden="true">| <h1>Cadastro</h1> </span>
+<div class="texto">
+	<span class="glyphicon glyphicon-home" aria-hidden="true"></span><h1>|</h1><h5>Cadastrar</h5>	
+</div>
 </nav>

@@ -4,6 +4,10 @@
 <c:import url="/includes/headers.jsp" />
 
 	<div class="container conteudo">
-		<h1>It's working</h1>
+		<h5>Esta é a Home</h5>
+		<form method = "POST" action='<c:url value = "/logout"/>'>
+			<button >Log Out
+			</button>
+		</form>
 	</div>
 <c:import url="/includes/footer.jsp" />
