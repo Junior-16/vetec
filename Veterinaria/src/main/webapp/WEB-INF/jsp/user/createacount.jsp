@@ -7,38 +7,38 @@
 	<!--nav navigation-->
 	<c:import url="/includes/navbar.jsp" />
 	<form method="POST" action="<c:url value="/createacount"/>" >
-		<div class="row formulario">
-				<div class="col-md-3">
-					<label>Nome de Usuário</label>
-	                <input class="form-control" name = "username">
-				</div>
-				<div class="col-md-2" >
-					<label>Senha</label>
-	                <input class="form-control" name = "password" type="password" maxlength="10">
-				</div>
-				<div class="col-md-3">
-					<label>CPF</label>
-	                <input class="form-control" id="cpf" maxlength="14" name="cpf">
-	                <label>Cep</label>
-	                <input type="text" class="form-control" maxlength="10" id="cep" name="cep">
-				</div>
-				<div class="col-md-3">
-					<label>Telefone</label>
-	                <input class="form-control" id="telefone" maxlength="11" name = "telefone">
-				</div>
-				<div class="col-md-6">
-					<label>Profissão</label>
-	                <input class="form-control" name="profissao">
-	                <label>Endereço</label>
-		            <textarea class="form-control" id="exampleTextarea" rows="2" name="endereco"></textarea>
-		            <label>Nome do Proprietário</label>
-	                <input class="form-control" name = "nome">
-				</div>
-				<div class="col-md-6">
-					<label>Referências</label>
-	                <textarea class="form-control" id="exampleTextarea" rows="6" name="referencias"></textarea>
-	                <button type="submit" class="btn btn-success">Salvar</button>
-				</div>
+		<div class="row container">
+			<div class="formulario">
+					<div class="col-md-3">
+						<label>Nome </label>
+		                <input class="form-control" name = "nome">
+		                <label>Especialidade</label>
+		                <input class="form-control" name = "especialidade">
+		                <label>Estudo</label>
+		                <input class="form-control" name = "estudo">
+					</div>
+					<div class="col-md-2">
+						<label>Telefone</label>
+		                <input class="form-control"  id = "telefone" name = "telefone">
+		                <label>Endereço</label>
+		                <input class="form-control" name = "endereco">  
+						<label>CRMV</label>
+		                <input class="form-control" name = "">            
+					</div>
+					<div class="col-md-2">
+		                <label>CEP</label>
+		                <input class="form-control" name = "cep" id="cep">
+		                <label>CPF</label>
+		                <input class="form-control" name = "cpf" id="cpf">
+		                <label>Nome de Usuário</label>
+		                <input class="form-control" name = "username">    
+					</div>
+					<div class="col-md-3">
+						<label>Senha (mínimo 5 caracteres)</label>
+		                <input class="form-control" name = "cpf" id="cpf">
+		                <button type="submit" class="btn btn-success">Cadastrar</button>
+					</div>
+			</div>
 			</div>
 		</form>
 	</div>

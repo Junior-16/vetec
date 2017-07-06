@@ -11,6 +11,7 @@ import javax.net.ssl.TrustManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.jboss.logging.Logger;
 
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
 import br.com.caelum.vraptor.boilerplate.HibernateDAO;
@@ -18,13 +19,20 @@ import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
+import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @RequestScoped
 public class UserBS extends HibernateBusiness{
+	
+	Logger LOG = Logger.getLogger(ApplicationSetup.class);
+	
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
+		LOG.info(username);
+		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
+		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));

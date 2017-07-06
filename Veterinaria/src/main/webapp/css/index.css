@@ -17,7 +17,7 @@ body > .container {
 #ifc{
     height: 71px;
     width: 300px;
-    margin-left:20px;
+    margin:20px;
 }
 #input{
     margin-top:3%;
@@ -95,5 +95,11 @@ h5{
 }
 img{
    width:100%;
+}
+.formulario{
+	background-color: #eeeeee;
+}
+.btn-success{
+	
 }
     
