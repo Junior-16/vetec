@@ -3,7 +3,8 @@
 
 <c:import url="/includes/headers.jsp" />
 
-	<div class="container conteudo">
+	<div class="container-fluid conteudo">
+	<c:import url="/includes/navigation.jsp"/>
 		<h5>Esta é a Home</h5>
 		<form method = "POST" action='<c:url value = "/logout"/>'>
 			<button >Log Out

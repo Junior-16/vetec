@@ -37,8 +37,8 @@ public class UserController extends AbstractController {
 	
 	@Post(value="/createacount")
 	@NoCache
-	public void cadastrar(String nome, String profissao, String cpf, String cep, String telefone, String endereco, String referencias,String password,String username){
-		this.bs.cadastrar(factoryproducer, nome, profissao, cpf,cep,telefone,endereco,referencias,password,username);
+	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
+		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, password, username);
 		this.result.redirectTo(this).login(null);
 	}
 	

@@ -23,7 +23,7 @@
 		                <label>Endereço</label>
 		                <input class="form-control" name = "endereco">  
 						<label>CRMV</label>
-		                <input class="form-control" name = "">            
+		                <input class="form-control" name = "crmv">            
 					</div>
 					<div class="col-md-2">
 		                <label>CEP</label>
@@ -35,7 +35,7 @@
 					</div>
 					<div class="col-md-3">
 						<label>Senha (mínimo 5 caracteres)</label>
-		                <input class="form-control" name = "cpf" id="cpf">
+		                <input class="form-control" name = "password" type="password" minlength="5" maxlength="10">
 		                <button type="submit" class="btn btn-success">Cadastrar</button>
 					</div>
 			</div>

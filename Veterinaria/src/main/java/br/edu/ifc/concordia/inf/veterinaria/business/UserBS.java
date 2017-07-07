@@ -30,7 +30,6 @@ public class UserBS extends HibernateBusiness{
 	Logger LOG = Logger.getLogger(ApplicationSetup.class);
 	
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
-		LOG.info(username);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
@@ -39,7 +38,7 @@ public class UserBS extends HibernateBusiness{
 		return (User) criteria.uniqueResult();	
 	}
 
-	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String profissao, String cpf, String cep, String telefone, String endereco, String referencias, String password,String username){
+	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
@@ -47,13 +46,15 @@ public class UserBS extends HibernateBusiness{
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(CryptManager.passwordHash(password));
+		user.setEstudo(estudo);
 		user.setCep(cep);
 		user.setCpf(cpf);
+		user.setCrmv(crmv);
 		user.setEndereco(endereco);
+		user.setEspecialidade(especialidade);
 		user.setNome(nome);
-		user.setProfissão(profissao);
-		user.setReferencia(referencias);
 		user.setTelefone(telefone);
+
 		dao.persist(user);
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

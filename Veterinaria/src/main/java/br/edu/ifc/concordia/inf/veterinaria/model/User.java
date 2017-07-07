@@ -24,13 +24,8 @@ public class User implements Serializable {
 	@Column(unique=true)
 	private String username;
 	private String nome;
-	private String profissao;
-	private String endereco;
-	private String cep;
-	private String cpf;
-	private String telefone;
-	private String referencia;
-	private int acesso = UserRoles.NORMAL.getAccessLevel();
+	private String especialidade;
+	private String estudo;
 	public String getPassword() {
 		return password;
 	}
@@ -49,17 +44,35 @@ public class User implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getProfissao() {
-		return profissao;
+	public String getEspecialidade() {
+		return especialidade;
 	}
-	public void setProfissão(String profissao) {
-		this.profissao = profissao;
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
+	}
+	public String getEstudo() {
+		return estudo;
+	}
+	public void setEstudo(String estudo) {
+		this.estudo = estudo;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	public String getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public String getCrmv() {
+		return crmv;
+	}
+	public void setCrmv(String crmv) {
+		this.crmv = crmv;
 	}
 	public String getCep() {
 		return cep;
@@ -73,23 +86,18 @@ public class User implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getTelefone() {
-		return telefone;
+	public int getAcesso() {
+		return acesso;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setAcesso(int acesso) {
+		this.acesso = acesso;
 	}
-	public String getReferencia() {
-		return referencia;
-	}
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
-	}
-	public int getAccesso() {
-		return this.acesso;
-	}
-	public void setAccesso(int accesso) {
-		this.acesso = accesso;
-	}
+	private String telefone;
+	private String endereco;
+	private String crmv;
+	private String cep;
+	private String cpf;
+	private int acesso = UserRoles.NORMAL.getAccessLevel();
+	
 	
 }
