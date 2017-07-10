@@ -33,6 +33,13 @@
 					${errorMsg}
 				</div>
 			</c:if>
+			<c:if test="${not empty gotout}">
+				<div class="alert alert-success" role="alert">
+				  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					<span class="sr-only"></span>
+					${gotout}
+				</div>
+			</c:if>
 		</div>
 		<div class="col-md-4">
 		</div>

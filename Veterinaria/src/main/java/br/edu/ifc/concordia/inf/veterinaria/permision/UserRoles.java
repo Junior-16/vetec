@@ -1,8 +1,8 @@
 package br.edu.ifc.concordia.inf.veterinaria.permision;
 
 public enum UserRoles {
-	ADMIN(1),
-	NORMAL(2);
+	ADMIN(2),
+	NORMAL(1);
 	private int accessLevel;
 	
 	private UserRoles(int accessLevel){

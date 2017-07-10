@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Permition {
-	UserRoles value() default UserRoles.ADMIN;
+	UserRoles value() default UserRoles.NORMAL;
 }

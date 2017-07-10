@@ -9,33 +9,45 @@
 	<form method="POST" action="<c:url value="/createacount"/>" >
 		<div class="row container">
 			<div class="formulario">
-					<div class="col-md-3">
+					<div class=col-md-3>
 						<label>Nome </label>
 		                <input class="form-control" name = "nome">
-		                <label>Especialidade</label>
-		                <input class="form-control" name = "especialidade">
-		                <label>Estudo</label>
+					</div>
+					<div class=col-md-2>
+						<label>CEP</label>
+		                <input class="form-control" name = "cep" id="cep">
+					</div>
+					<div class=col-md-2>
+						<label>CPF</label>
+		                <input class="form-control" name = "cpf" id="cpf">
+					</div>
+					<div class=col-md-2>
+						<label>Telefone</label>
+		                <input class="form-control"  id = "telefone" name = "telefone">
+					</div>
+					<div class="col-md-4">
+						<label>Especialidade</label>
+		                <input class="form-control" name = "especialidade">  
+					</div>
+					<div class="col-md-3">
+						 <label>Endereço</label>
+		                <input class="form-control" name = "endereco">  
+					</div>
+					<div class="col-md-2">
+						<label>CRMV</label>
+		                <input class="form-control" name = "crmv"> 
+					</div>
+					<div class="col-md-4">
+						<label>Estudo</label>
 		                <input class="form-control" name = "estudo">
 					</div>
 					<div class="col-md-2">
-						<label>Telefone</label>
-		                <input class="form-control"  id = "telefone" name = "telefone">
-		                <label>Endereço</label>
-		                <input class="form-control" name = "endereco">  
-						<label>CRMV</label>
-		                <input class="form-control" name = "crmv">            
-					</div>
-					<div class="col-md-2">
-		                <label>CEP</label>
-		                <input class="form-control" name = "cep" id="cep">
-		                <label>CPF</label>
-		                <input class="form-control" name = "cpf" id="cpf">
-		                <label>Nome de Usuário</label>
-		                <input class="form-control" name = "username">    
+						<label>Nome de Usuário</label>
+		                <input class="form-control" name = "username">  
 					</div>
 					<div class="col-md-3">
 						<label>Senha (mínimo 5 caracteres)</label>
-		                <input class="form-control" name = "password" type="password" minlength="5" maxlength="10">
+		                <input class="form-control" name = "password" type="password" maxlength="10">
 		                <button type="submit" class="btn btn-success">Cadastrar</button>
 					</div>
 			</div>

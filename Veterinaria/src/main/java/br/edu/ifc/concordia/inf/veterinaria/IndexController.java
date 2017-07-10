@@ -5,19 +5,20 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.controller.UserController;
-import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
+
 
 @Controller
 public class IndexController extends AbstractController {
 	
 	
-	@Path(value="/", priority=Path.HIGHEST)
+	
 	@NoCache
-	@Permition
+	@Path(value="/", priority=Path.HIGHEST)
 	public void index() {
-		if (!this.userSession.isLogged()) {
-			this.result.redirectTo(UserController.class).login(null);
+		if(this.userSession.isLogged() == true) {
+			
+		}else {
+			this.result.redirectTo(UserController.class).login(0,null);
 		}
 	}
-	
 }

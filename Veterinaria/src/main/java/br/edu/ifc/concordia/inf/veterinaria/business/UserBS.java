@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
+import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -30,11 +31,15 @@ public class UserBS extends HibernateBusiness{
 	Logger LOG = Logger.getLogger(ApplicationSetup.class);
 	
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
+		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
+		
+		
 		return (User) criteria.uniqueResult();	
 	}
 

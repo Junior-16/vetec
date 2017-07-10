@@ -27,42 +27,50 @@ public class UserController extends AbstractController {
 		
 	}
 	
-	@Get("/login")
+	@Get(value="/login")
 	@NoCache
-	public void login(String errorMsg) {
-		if (!GeneralUtils.isEmpty(errorMsg)){
+	public void login(int state, String errorMsg) {
+		if(this.userSession.isLogged() == true) {
+			this.result.redirectTo(IndexController.class).index();
+		}
+		else if (!GeneralUtils.isEmpty(errorMsg)&& state == 1){
 			this.result.include("errorMsg",errorMsg);
+		}else if (!GeneralUtils.isEmpty(errorMsg)&& state == 2){
+			this.result.include("gotout",errorMsg);
+		}else {
+			
 		}
 	}
+	
 	
 	@Post(value="/createacount")
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
 		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, password, username);
-		this.result.redirectTo(this).login(null);
+		this.result.redirectTo(this).login(0,null);
 	}
 	
 	@Post(value="/login")
 	@NoCache
 	public void doLogin(String username, String password){
 		if(username == null || password == null){
-			this.result.redirectTo(this).login("Campos incompletos");
+			this.result.redirectTo(this).login(1,"Campos incompletos");
 		}else{
 		User user = this.bs.login(factoryproducer, username, password);
 		if (user == null){
-			this.result.redirectTo(this).login("Nome de usuário ou senha incorretos!");
+			this.result.redirectTo(this).login(1,"Nome de usuário ou senha incorretos!");
 		}else{
 			this.userSession.login(user);
 			this.result.redirectTo(IndexController.class).index();
 		}
 		}
 	}
-	@Post(value="/logout")
+	@Get(value="/logout")
 	@NoCache
 	public void sair(){
 		if (this.userSession.isLogged() == true){
 			this.userSession.logout();
-			this.result.redirectTo(this).login("Você Está Desconectado");
+			this.result.redirectTo(this).login(2,"Você Está Desconectado");
 		}
 	}
 	
