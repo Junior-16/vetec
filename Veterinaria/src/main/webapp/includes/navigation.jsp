@@ -10,12 +10,12 @@
        	<span class= "glyphicon glyphicon-home" aria-hidden="true"></span>
       </a>
       <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;">
+      <a class="navbar-brand" href="#" style="color:white;" id="proprietario">
        	Cadastrar 
       	<span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
        <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;">
+      <a class="navbar-brand" href="#" style="color:white;" id="prontuario">
       	Prontuário 
       	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </a>
@@ -25,7 +25,7 @@
       <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
       </a>
       <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;">
+      <a class="navbar-brand" href="#" style="color:white;" id="buscar">
        	Buscar
       <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>

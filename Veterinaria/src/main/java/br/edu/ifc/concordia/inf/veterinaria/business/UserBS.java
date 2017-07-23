@@ -8,7 +8,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
-import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -22,6 +21,7 @@ import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
+import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
@@ -38,11 +38,23 @@ public class UserBS extends HibernateBusiness{
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
-		
-		
 		return (User) criteria.uniqueResult();	
 	}
-
+	
+	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
+		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
+		Proprietario dono = new Proprietario();
+		dono.setNome(nome);
+		dono.setCpf(cpf);
+		dono.setCep(cep);
+		dono.setTelefone(telefone);
+		dono.setProfissao(profissao);
+		dono.setEndereco(endereco);
+		dono.setReferencias(referencias);
+		dao.persist(dono);
+		this.validate(mngr);
+	}
 	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
@@ -61,6 +73,10 @@ public class UserBS extends HibernateBusiness{
 		user.setTelefone(telefone);
 
 		dao.persist(user);
+		this.validate(mngr);
+	}
+	
+	public void validate(SessionManager mngr) {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");
 			ctx.init(new KeyManager[0], new TrustManager[] { new DefaultTrustManager() }, new SecureRandom());

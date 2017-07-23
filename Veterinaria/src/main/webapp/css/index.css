@@ -35,7 +35,7 @@ p{
 }
 #submit{
 	margin-top: 5%;
-	margin-left: 75%
+	margin-left: 80%
 }
 
 .login1{
@@ -91,10 +91,24 @@ h5{
 img{
    width:100%;
 }
-.formulario{
-	background-color: #eeeeee;
-}
+
 .btn-success{
-	
+	margin-top:40px;
 }
-    
+#logo{
+	margin-top:13px;
+	margin-left:90px;
+	height:65px;
+	width:200px;
+}
+.icons{
+	margin-left:180px;
+	margin-top:50px;
+}
+.icons-link{
+	color:black;
+	background-color:rgba(179, 201, 204, 0.33);
+	border-radius:5px;
+	margin:5px;
+	margin-bottom:5px;
+}

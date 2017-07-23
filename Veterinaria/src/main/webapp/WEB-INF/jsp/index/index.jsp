@@ -5,5 +5,7 @@
 
 	<div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp"/>
+		<div id="content">
+		</div>
 	</div>
 <c:import url="/includes/footer.jsp" />

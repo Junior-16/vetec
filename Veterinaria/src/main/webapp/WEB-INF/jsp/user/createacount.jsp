@@ -7,7 +7,7 @@
 	<!--nav navigation-->
 	<c:import url="/includes/navbar.jsp" />
 	<form method="POST" action="<c:url value="/createacount"/>" >
-		<div class="row container">
+		<div class="row container-fluid">
 			<div class="formulario">
 					<div class=col-md-3>
 						<label>Nome </label>
@@ -48,8 +48,10 @@
 					<div class="col-md-3">
 						<label>Senha (mínimo 5 caracteres)</label>
 		                <input class="form-control" name = "password" type="password" maxlength="10">
-		                <button type="submit" class="btn btn-success">Cadastrar</button>
 					</div>
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-success">Cadastrar</button>
 			</div>
 			</div>
 		</form>

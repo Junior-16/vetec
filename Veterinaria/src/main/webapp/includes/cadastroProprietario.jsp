@@ -25,7 +25,6 @@
 			</div>
 			<div class="col-md-6">
 				<label>Referências</label>
-                <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>
-                
+                <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>     
 			</div>
 </div>

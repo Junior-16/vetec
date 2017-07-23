@@ -50,6 +50,12 @@ public class UserController extends AbstractController {
 		this.result.redirectTo(this).login(0,null);
 	}
 	
+	@Post(value = "/cadastrarProprietario")
+	@NoCache
+	public void cadastrarProprietario(String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
+		this.bs.cadastrarProprietario(factoryproducer, nome, cpf, cep, telefone, profissao, endereco, referencias);
+	}
+	
 	@Post(value="/login")
 	@NoCache
 	public void doLogin(String username, String password){
