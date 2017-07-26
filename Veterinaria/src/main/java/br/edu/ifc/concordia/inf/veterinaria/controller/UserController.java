@@ -12,6 +12,7 @@ import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
+import br.edu.ifc.concordia.inf.veterinaria.permision.PermissionInterceptor;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
@@ -59,16 +60,20 @@ public class UserController extends AbstractController {
 	}
 	@Post(value="/logout")
 	@NoCache
+	@Permition(UserRoles.ADMIN)
 	public void sair(){
-		if (this.userSession.isLogged() == true){
+		if (this.userSession.isLogged() == true && this.userSession.isPermitir() == true ){
 			this.userSession.logout();
 			this.result.redirectTo(this).login("Você Está Desconectado");
+		}else{
+			this.result.redirectTo(IndexController.class).index();
 		}
 	}
 	
 	@Get("/loggedUser")
 	@Permition(UserRoles.ADMIN)
 	public void getLoggeduser(){
+		
 		
 	}
 }

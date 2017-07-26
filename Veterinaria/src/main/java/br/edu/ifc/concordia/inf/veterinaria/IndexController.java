@@ -15,9 +15,6 @@ public class IndexController extends AbstractController {
 	@NoCache
 	@Permition
 	public void index() {
-		if (!this.userSession.isLogged()) {
-			this.result.redirectTo(UserController.class).login(null);
-		}
+		
 	}
-	
 }
