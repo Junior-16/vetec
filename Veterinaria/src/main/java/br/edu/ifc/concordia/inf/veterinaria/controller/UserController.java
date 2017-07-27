@@ -62,11 +62,11 @@ public class UserController extends AbstractController {
 	@NoCache
 	@Permition(UserRoles.ADMIN)
 	public void sair(){
-		if (this.userSession.isLogged() == true && this.userSession.isPermitir() == true ){
+		if (this.userSession.isLogged() == true){
 			this.userSession.logout();
 			this.result.redirectTo(this).login("Você Está Desconectado");
 		}else{
-			this.result.redirectTo(IndexController.class).index();
+			
 		}
 	}
 	

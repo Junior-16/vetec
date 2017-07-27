@@ -29,6 +29,7 @@ p{
 .glyphicon-home{
     color: white;
     font-size: 25px;
+	margin-left:10px;    
 }
 #username, #password{
 	margin-top: 10%;
@@ -94,7 +95,9 @@ img{
 .formulario{
 	background-color: #eeeeee;
 }
-.btn-success{
-	
+#icon-link{
+	color:#ffffff;
+	margin-left:10px;
 }
+ 
     

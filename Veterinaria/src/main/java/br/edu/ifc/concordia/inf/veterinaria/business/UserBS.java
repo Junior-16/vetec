@@ -54,7 +54,6 @@ public class UserBS extends HibernateBusiness{
 		user.setEspecialidade(especialidade);
 		user.setNome(nome);
 		user.setTelefone(telefone);
-
 		dao.persist(user);
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

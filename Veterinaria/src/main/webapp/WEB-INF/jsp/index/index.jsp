@@ -5,10 +5,6 @@
 
 	<div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp"/>
-		<h5>Esta é a Home</h5>
-		<form method = "POST" action='<c:url value = "/logout"/>'>
-			<button >Log Out
-			</button>
-		</form>
+		<h5>Aqui vai a parte do mattes</h5>	
 	</div>
 <c:import url="/includes/footer.jsp" />
