@@ -15,15 +15,15 @@
 					</div>
 					<div class=col-md-2>
 						<label>CEP</label>
-		                <input class="form-control" name = "cep" id="cep">
+		                <input class="form-control" name = "cep" id="cep" placeholder="xxxxx-xxx">
 					</div>
 					<div class=col-md-2>
 						<label>CPF</label>
-		                <input class="form-control" name = "cpf" id="cpf">
+		                <input class="form-control" name = "cpf" id="cpf" placeholder="xxx.xxx.xxx-xx">
 					</div>
 					<div class=col-md-2>
 						<label>Telefone</label>
-		                <input class="form-control"  id = "telefone" name = "telefone">
+		                <input class="form-control"  id = "telefone" name = "telefone" placeholder="(xx) x xxxx-xxxx">
 					</div>
 					<div class="col-md-4">
 						<label>Especialidade</label>
@@ -47,7 +47,7 @@
 					</div>
 					<div class="col-md-3">
 						<label>Senha (mínimo 5 caracteres)</label>
-		                <input class="form-control" name = "password" type="password" maxlength="10">
+		                <input class="form-control" name = "password" type="password" minlength="5" maxlength="10">
 					</div>
 			</div>
 			<div class="col-md-4">

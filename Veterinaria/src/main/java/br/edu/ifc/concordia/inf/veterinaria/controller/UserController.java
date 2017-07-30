@@ -12,6 +12,7 @@ import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
+import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
@@ -19,8 +20,8 @@ import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
-	
 	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
+	
 	@Get(value="/createacount")
 	@NoCache
 	public void createacount(){
@@ -77,12 +78,51 @@ public class UserController extends AbstractController {
 		if (this.userSession.isLogged() == true){
 			this.userSession.logout();
 			this.result.redirectTo(this).login(2,"Você Está Desconectado");
+		}else{
+			
 		}
+	}
+	
+	@Get(value="/cadastrarProprietario")
+	@NoCache
+	public void cadastrarProprietario() {
+		if(this.userSession.isLogged() == true) {
+			
+		}else {
+			this.result.redirectTo(this).login(0,null);
+		}
+	}
+	
+	@Post(value="/cadastrarproprietario")
+	@NoCache
+	public void cadastrar(String nome, String cep, String profissao, String cpf, String telefone, String endereco, String referencias) {
+		this.bs.cadastrarProprietario(factoryproducer,  nome,  cpf,  cep,  telefone,  profissao,  endereco,  referencias);
+		this.result.redirectTo(this).cadastrarProprietario();
+	}
+	
+	@Get(value="/buscar")
+	@NoCache
+	public void buscar() {
+		
+	}
+	
+	@Post("/search")
+	@NoCache
+	public void buscar(String proprietario) {
+		Proprietario proprietario1 = this.bs.busca(factoryproducer, proprietario);
+		if(proprietario1 == null) {
+			this.result.include("notfound","Proprietario não encontrado");
+		}else {
+			this.result.include("found",proprietario1);
+			this.result.include("found1",proprietario1);
+		}
+		
 	}
 	
 	@Get("/loggedUser")
 	@Permition(UserRoles.ADMIN)
 	public void getLoggeduser(){
+		
 		
 	}
 }

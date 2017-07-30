@@ -41,6 +41,12 @@ public class UserBS extends HibernateBusiness{
 		return (User) criteria.uniqueResult();	
 	}
 	
+	public Proprietario busca(SessionFactoryProducer factoryProducer, String proprietario) {
+		Criteria criteria = this.dao.newCriteria(Proprietario.class);
+		criteria.add(Restrictions.eq("nome", proprietario));
+		return (Proprietario) criteria.uniqueResult();
+	}
+	
 	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
@@ -71,7 +77,6 @@ public class UserBS extends HibernateBusiness{
 		user.setEspecialidade(especialidade);
 		user.setNome(nome);
 		user.setTelefone(telefone);
-
 		dao.persist(user);
 		this.validate(mngr);
 	}
