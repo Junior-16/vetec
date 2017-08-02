@@ -25,11 +25,13 @@
 	                        </form>
 	                    </li>
 	                    <c:if test="${not empty found}">
-	                    	<li>
-	                    		<a class = "proprietario" href="#">${found.nome}</a>
-	                    		<a href="#" class="animais1">Nome do Cachorro</a>
-			                    <a href="#" class="animais1">Mintsie</a>
-	                    	</li>
+		                    <c:forEach items="${found}" var="found">
+		                    	<li>
+		                    		<a class = "proprietario" href="#">${found.nome}</a>
+		                    		<a href="#" class="<c:url value="${found.id}"/>">Nome do Cachorro</a>
+				                    <a href="#" class="<c:url value="${found.id}"/>">Mintsie</a>
+		                    	</li>
+							</c:forEach>
 						</c:if>			
 	                    <li class="nav-divider"></li>
 	                </ul>
@@ -37,7 +39,7 @@
 	        </div>		
 	        <div class="col-md-9 dadosProp" style="display:none;">
 	        	<div class="jumbotron row" style="padding-left:0px; padding-right:0px; padding:0px;">
-	        	<c:if test="${not empty found1}">
+	        	<c:forEach items="${found1}" var="found1">
 				  	<div class="col-md-3">
 				  		<label>Nome</label>
 				  		<div class="well well-sm">
@@ -80,7 +82,7 @@
 						    ${found1.referencias}
 						</div>
 				  	</div>
-				</c:if>
+				</c:forEach>
 				</div>
 				<button type="button" class="btn btn-info">Modificar <span class="glyphicon glyphicon-edit"></span>
 				</button>
