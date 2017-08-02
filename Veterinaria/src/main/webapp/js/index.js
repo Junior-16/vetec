@@ -11,6 +11,7 @@ $(document).ready(function(){
 		
 	}
 	$(".proprietario").click(function(){
+		$(".dadosProp").show("fast");
 		var x = "."+$(this)[0].nextElementSibling.className;
 		$(x).toggle("slow");
 	});

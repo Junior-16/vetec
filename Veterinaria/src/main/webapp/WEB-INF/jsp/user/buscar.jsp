@@ -26,7 +26,7 @@
 	                    </li>
 	                    <c:if test="${not empty found}">
 	                    	<li>
-	                    		<a class = "proprietario" href="#" onclick="mostrar($found);">${found.nome}</a>
+	                    		<a class = "proprietario" href="#">${found.nome}</a>
 	                    		<a href="#" class="animais1">Nome do Cachorro</a>
 			                    <a href="#" class="animais1">Mintsie</a>
 	                    	</li>
@@ -35,61 +35,57 @@
 	                </ul>
 	            </nav>
 	        </div>		
-	        <div class="col-md-9">
+	        <div class="col-md-9 dadosProp" style="display:none;">
 	        	<div class="jumbotron row" style="padding-left:0px; padding-right:0px; padding:0px;">
 	        	<c:if test="${not empty found1}">
 				  	<div class="col-md-3">
 				  		<label>Nome</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
+				  		<div class="well well-sm">
 						    ${found1.nome}
-						  </div>
-						</div>
-						<label>CEP</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
-						    ${found1.cep}
-						  </div>
 						</div>
 				  	</div>
-				  	<div class="col-md-3">
+				  	<div class="col-md-2">
 				  		<label>CPF</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
+				  		<div class="well well-sm">
 						    ${found1.cpf}
-						  </div>
 						</div>
-						<label>Telefone</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
+				  	</div>
+				  	<div class="col-md-2">
+				  		<label>CEP</label>
+				  		<div class="well well-sm">
+						    ${found1.cep}
+						</div>
+				  	</div>
+				  	<div class="col-md-2">
+				  	<label>Telefone</label>
+				  		<div class="well well-sm">
 						    ${found1.telefone}
-						  </div>
 						</div>
-				  	</div>
-				  	<div class="col-md-3">
-				  		<label>CPF</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
+					</div>
+				  	<div class="col-md-4">
+				  		<label>Profissão</label>
+				  		<div class="well well-sm">
 						    ${found1.profissao}
-						  </div>
-						</div>
-						<label>Telefone</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
-						    ${found1.endereco}
-						  </div>
 						</div>
 				  	</div>
 				  	<div class="col-md-3">
-				  		<label>Referências</label>
-				  		<div class="panel panel-sm">
-						  <div class="panel-body">
+				  		<label>Endereço</label>
+				  		<div class="well well-sm">
+						    ${found1.endereco}
+						</div>
+				  	</div>
+				  	<div class="col-md-4">
+				  	<label>Referências</label>
+				  		<div class="well well-sm">
 						    ${found1.referencias}
-						  </div>
 						</div>
 				  	</div>
 				</c:if>
 				</div>
+				<button type="button" class="btn btn-info">Modificar <span class="glyphicon glyphicon-edit"></span>
+				</button>
+				<button type="button" class="btn btn-warning">Cadastrar Animal <span class="glyphicon glyphicon-plus"></span>
+				</button>
 	        </div>    
 		</div>
 	</div>
