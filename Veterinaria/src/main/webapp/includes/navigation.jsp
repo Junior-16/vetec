@@ -34,11 +34,6 @@
        	Buscar
       <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>
-       <a class="navbar-brand"></a>
-       <a class="navbar-brand" href="<c:url value = "/logout"/>" style="color:white;">
-       	Sair
-       	<span class= "glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </a>
     </div>
   </div>
  </form>

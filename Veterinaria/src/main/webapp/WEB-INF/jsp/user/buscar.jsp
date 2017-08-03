@@ -25,11 +25,13 @@
 	                        </form>
 	                    </li>
 	                    <c:if test="${not empty found}">
-	                    	<li>
-	                    		<a class = "proprietario" href="#">${found.nome}</a>
-	                    		<a href="#" class="animais1">Nome do Cachorro</a>
-			                    <a href="#" class="animais1">Mintsie</a>
-	                    	</li>
+		                    <c:forEach items="${found}" var="found">
+		                    	<li>
+		                    		<a class = "proprietario" href="#">${found.nome}</a>
+		                    		<a href="#" class="<c:url value="${found.id}"/>">Nome do Cachorro</a>
+				                    <a href="#" class="<c:url value="${found.id}"/>">Mintsie</a>
+		                    	</li>
+		                    </c:forEach>
 						</c:if>			
 	                    <li class="nav-divider"></li>
 	                </ul>

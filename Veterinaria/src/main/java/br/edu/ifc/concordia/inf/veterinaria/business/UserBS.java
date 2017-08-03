@@ -3,6 +3,7 @@ package br.edu.ifc.concordia.inf.veterinaria.business;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.net.ssl.KeyManager;
@@ -10,6 +11,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 
@@ -19,6 +21,7 @@ import br.com.caelum.vraptor.boilerplate.HibernateDAO;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
+import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
@@ -28,8 +31,7 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 @RequestScoped
 public class UserBS extends HibernateBusiness{
 	
-	Logger LOG = Logger.getLogger(ApplicationSetup.class);
-	
+	Logger LOG = Logger.getLogger(ApplicationSetup.class); 
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
@@ -41,12 +43,14 @@ public class UserBS extends HibernateBusiness{
 		return (User) criteria.uniqueResult();	
 	}
 	
-	public Proprietario busca(SessionFactoryProducer factoryProducer, String proprietario) {
+	public List<Proprietario> busca(SessionFactoryProducer factoryProducer, String filter) {
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
-		criteria.add(Restrictions.eq("nome", proprietario));
-		return (Proprietario) criteria.uniqueResult();
+		if (!GeneralUtils.isEmpty(filter)) {
+			criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
+		}
+		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
-	
+		
 	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);

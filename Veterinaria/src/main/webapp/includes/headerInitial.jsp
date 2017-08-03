@@ -16,19 +16,4 @@
 		<div class = "col-md-6">
 	  		<img id = "ifc" src="http://concordia.ifc.edu.br/wp-content/themes/ifc-v2/assets/images/logo-ifc.png">
 	  	</div>
-	  	<div class="col-md-3">
-	  	</div>
-	  	<div class="col-md-3">
-	  	<form method="GET">
-	  		<div class="dropdown">
-		  		<a class="navbar-brand dropdown-toggle icons-link" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		  			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-		  		</a>
-		  		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-				    <li><a href="<c:url value="/perfil"/>"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-				    <li><a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-remove"></span>  Sair</a></li>
-				  </ul>
-		  	</div>
-		  </form>
-	  	</div>
 	</nav>

@@ -1,5 +1,8 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -11,8 +14,8 @@ import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
-import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
+import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
@@ -109,20 +112,24 @@ public class UserController extends AbstractController {
 	@Post("/search")
 	@NoCache
 	public void buscar(String proprietario) {
-		Proprietario proprietario1 = this.bs.busca(factoryproducer, proprietario);
-		if(proprietario1 == null) {
+		List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
+		if(GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			this.result.include("found",proprietario1);
-			this.result.include("found1",proprietario1);
+			this.result.include("found",busca);
 		}
 		
+	}
+	
+	@Get(value="/perfil")
+	@NoCache
+	public void perfil() {
+		this.result.include("perfil", this.userSession.getLoggedUser());
 	}
 	
 	@Get("/loggedUser")
 	@Permition(UserRoles.ADMIN)
 	public void getLoggeduser(){
-		
-		
+				
 	}
 }
