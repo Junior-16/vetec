@@ -15,7 +15,7 @@
       	<span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
        <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;" id="prontuario">
+      <a class="navbar-brand" href="<c:url value = "/prontuario"/>" style="color:white;" id="prontuario">
       	Prontuário 
       	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </a>
