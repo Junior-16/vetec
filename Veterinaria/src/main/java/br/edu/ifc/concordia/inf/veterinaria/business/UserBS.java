@@ -33,8 +33,6 @@ public class UserBS extends HibernateBusiness{
 	
 	Logger LOG = Logger.getLogger(ApplicationSetup.class); 
 	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
@@ -65,7 +63,27 @@ public class UserBS extends HibernateBusiness{
 		dao.persist(dono);
 		this.validate(mngr);
 	}
-	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
+	public User update(SessionFactoryProducer factoryProducer,String nameUserlogged, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email) {
+		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
+		Criteria criteria = this.dao.newCriteria(User.class);
+		criteria.add(Restrictions.eq("nome", nameUserlogged));
+		User userUpdate = (User) criteria.uniqueResult();	
+		userUpdate.setNome(nome);
+		userUpdate.setEspecialidade(especialidade);
+		userUpdate.setEstudo(estudo);
+		userUpdate.setTelefone(telefone);
+		userUpdate.setEndereco(endereco);
+		userUpdate.setCrmv(crmv);
+		userUpdate.setCep(cep);
+		userUpdate.setCpf(cpf);
+		userUpdate.setEmail(email);
+		dao.update(userUpdate);
+		this.validate(mngr);
+		return userUpdate;
+	}
+	
+	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
@@ -79,6 +97,7 @@ public class UserBS extends HibernateBusiness{
 		user.setCrmv(crmv);
 		user.setEndereco(endereco);
 		user.setEspecialidade(especialidade);
+		user.setEmail(email);
 		user.setNome(nome);
 		user.setTelefone(telefone);
 		dao.persist(user);

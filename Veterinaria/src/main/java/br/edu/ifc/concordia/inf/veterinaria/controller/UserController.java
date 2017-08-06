@@ -1,6 +1,4 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,8 +47,8 @@ public class UserController extends AbstractController {
 	
 	@Post(value="/createacount")
 	@NoCache
-	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
-		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, password, username);
+	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
+		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username);
 		this.result.redirectTo(this).login(0,null);
 	}
 	
@@ -125,6 +123,20 @@ public class UserController extends AbstractController {
 	@NoCache
 	public void perfil() {
 		this.result.include("perfil", this.userSession.getLoggedUser());
+	}
+	
+	@Get(value="/modificarPerfil")
+	@NoCache
+	public void modificarPerfil() {
+		this.result.include("modificarperfil",this.userSession.getLoggedUser());
+	}
+	
+	@Post(value="/modificarPerfil")
+	@NoCache
+	public void update(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email) {
+		User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email);
+		this.userSession.login(user); 
+		this.result.redirectTo(IndexController.class).index();
 	}
 	
 	@Get("/loggedUser")
