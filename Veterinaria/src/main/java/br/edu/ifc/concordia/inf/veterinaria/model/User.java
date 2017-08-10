@@ -19,6 +19,12 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@Column(unique=true)
 	private String password;
 	@Column(unique=true)
@@ -26,6 +32,13 @@ public class User implements Serializable {
 	private String nome;
 	private String especialidade;
 	private String estudo;
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getPassword() {
 		return password;
 	}

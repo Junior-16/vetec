@@ -1,4 +1,5 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
+import java.util.List;
 
 import java.util.List;
 
@@ -48,16 +49,11 @@ public class UserController extends AbstractController {
 	
 	@Post(value="/createacount")
 	@NoCache
-	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String password, String username){
-		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, password, username);
+	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
+		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username);
 		this.result.redirectTo(this).login(0,null);
 	}
 	
-	@Post(value = "/cadastrarProprietario")
-	@NoCache
-	public void cadastrarProprietario(String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
-		this.bs.cadastrarProprietario(factoryproducer, nome, cpf, cep, telefone, profissao, endereco, referencias);
-	}
 	
 	@Post(value="/login")
 	@NoCache
@@ -111,20 +107,47 @@ public class UserController extends AbstractController {
 	@Post("/search")
 	@NoCache
 	public void buscar(String proprietario) {
-		List<Proprietario> proprietario1 =  this.bs.busca(factoryproducer, proprietario);
-		if(proprietario1 == null) {
+		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			this.result.include("found",proprietario1);
-			//this.result.include("found1",proprietario1);
-		}
-		
+			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario);
+			if (proprietario1 == null) {
+				this.result.include("notfound", "Proprietario não encontrado");
+			} else {
+				this.result.include("found", proprietario1);
+				List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
+				if (GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
+					this.result.include("notfound", "Proprietario não encontrado");
+				} else {
+					this.result.include("found", busca);
+				}
+			}
+	}
+	}
+	
+	@Get(value="/perfil")
+	@NoCache
+	public void perfil() {
+		this.result.include("perfil", this.userSession.getLoggedUser());
+	}
+	
+	@Get(value="/modificarPerfil")
+	@NoCache
+	public void modificarPerfil() {
+		this.result.include("modificarperfil",this.userSession.getLoggedUser());
+	}
+	
+	@Post(value="/modificarPerfil")
+	@NoCache
+	public void update(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email) {
+		User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email);
+		this.userSession.login(user); 
+		this.result.redirectTo(IndexController.class).index();
 	}
 	
 	@Get("/loggedUser")
 	@Permition(UserRoles.ADMIN)
 	public void getLoggeduser(){
-		
-		
+				
 	}
 }

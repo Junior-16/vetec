@@ -1,7 +1,5 @@
 package br.edu.ifc.concordia.inf.veterinaria.permision;
 
-import java.security.acl.Permission;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
