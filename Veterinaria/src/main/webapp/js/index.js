@@ -5,6 +5,10 @@ $(document).ready(function(){
 	$("#cpf").mask("000.000.000-00");
 	$("#telefone").mask("(00) 0 0000-0000");
 	$('#save').tooltip();
+	$(".saveAnimal").tooltip();
+	$(".saveAnimal").click(function(){
+		$("#cadastroAnimal").submit();
+	});
 	if(document.URL == "http://localhost:8080/Veterinaria/"){
 		$.toaster({ message : 'Seja Bem-Vindo', timeOut:15000, title : 'Você está logado', priority : 'info'});
 	}else{
@@ -16,7 +20,4 @@ $(document).ready(function(){
 		$(x).toggle("slow");
 	});
 	
-	function mostrar(found){
-		console.log(found);
-	}
 });

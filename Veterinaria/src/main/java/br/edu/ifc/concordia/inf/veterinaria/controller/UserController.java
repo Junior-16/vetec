@@ -52,11 +52,6 @@ public class UserController extends AbstractController {
 		this.result.redirectTo(this).login(0,null);
 	}
 	
-	@Post(value = "/cadastrarProprietario")
-	@NoCache
-	public void cadastrarProprietario(String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
-		this.bs.cadastrarProprietario(factoryproducer, nome, cpf, cep, telefone, profissao, endereco, referencias);
-	}
 	
 	@Post(value="/login")
 	@NoCache
@@ -110,13 +105,22 @@ public class UserController extends AbstractController {
 	@Post("/search")
 	@NoCache
 	public void buscar(String proprietario) {
-		List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
-		if(GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
+		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			this.result.include("found",busca);
-		}
-		
+			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario);
+			if (proprietario1 == null) {
+				this.result.include("notfound", "Proprietario não encontrado");
+			} else {
+				this.result.include("found", proprietario1);
+				List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
+				if (GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
+					this.result.include("notfound", "Proprietario não encontrado");
+				} else {
+					this.result.include("found", busca);
+				}
+			}
+	}
 	}
 	
 	@Get(value="/perfil")

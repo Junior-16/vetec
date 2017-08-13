@@ -143,13 +143,24 @@ img{
 	height:60px;
 	border-radius:100%;
 	background-color:#b94a48;
-	box-shadow: 0 5px 18px #444242;
 }
-#save:active{
-	background-color:rgba(185, 74, 72, 0.8);
+.saveAnimal{
+	margin:10px;
+	float:left;
+	width:60px;
+	height:60px;
+	border-radius:100%;
+	background-color:#b94a48;
 }
-.glyphicon-ok{
+#save:hover, .saveAnimal:hover{
+	background-color:rgb(185, 74, 72);
+	box-shadow: 0 5px 18px #1b1a1a;
+}
+#icon-save{
 	font-size:25px;
 	padding:30%;
 	color:white;
+}
+#prontuario{
+	color:#ffffff;
 }
