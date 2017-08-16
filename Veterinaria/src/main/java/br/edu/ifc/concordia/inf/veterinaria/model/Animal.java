@@ -6,10 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-
 
 @Entity(name = "animal")
 @Table(name = "animal")
@@ -19,12 +17,14 @@ public class Animal implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long id_proprietario;
-	public Long getId_proprietario() {
-		return id_proprietario;
+	@ManyToOne
+	private Proprietario proprietario;
+	
+	public Proprietario getProprietario() {
+		return proprietario;
 	}
-	public void setId_proprietario(Long id_proprietario) {
-		this.id_proprietario = id_proprietario;
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
 	}
 	private String nome;
 	public String getNome() {

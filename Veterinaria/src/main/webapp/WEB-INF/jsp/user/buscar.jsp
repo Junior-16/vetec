@@ -27,13 +27,15 @@
 							</button>
 						</form>
 					</li>
-					<c:if test="${not empty found}">
-						<c:forEach items="${found}" var="found">
-							<li>
-								<a class="proprietario" href="#">${found.nome}</a>
-								<a href="<c:url value="prontuario/cadastrarAnimal"/>" class="${found.id}"><span class="glyphicon glyphicon-plus"></span> Cadastrar Animal</a>
-							</li>
-						</c:forEach>
+					<c:if test="${not empty animais}">
+						<li>
+							<a class="proprietario1" href="#">${proprietario.nome}</a>
+							<c:if test="${not empty animais}">
+								<c:forEach items="${animais}" var="animais">
+									<a href="#">${animais.nome}</a>
+								</c:forEach>
+							</c:if>
+						</li>
 					</c:if>
 					<li class="nav-divider"></li>
 				</ul>

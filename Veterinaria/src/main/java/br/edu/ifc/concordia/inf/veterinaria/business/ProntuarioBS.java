@@ -34,7 +34,7 @@ public class ProntuarioBS extends HibernateBusiness{
 		animal.setSexo(sexo);
 		animal.setRaca(raca);
 		animal.setInfoAdd(info);
-		animal.setId_proprietario(proprietario.getId());
+		animal.setProprietario(proprietario);
 		dao.persist(animal);
 		this.validate(mngr);
 	}

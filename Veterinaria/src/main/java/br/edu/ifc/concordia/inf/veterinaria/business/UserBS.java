@@ -24,6 +24,7 @@ import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
+import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
@@ -48,7 +49,11 @@ public class UserBS extends HibernateBusiness{
 		}
 		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
-		
+	public  List<Animal> buscarAnimal(SessionFactoryProducer factoryProducer, Long id){
+		Criteria criteria = this.dao.newCriteria(Animal.class);
+		criteria.add(Restrictions.eq("proprietario_id", id));
+		return this.dao.findByCriteria(criteria, Animal.class);
+	}
 	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);

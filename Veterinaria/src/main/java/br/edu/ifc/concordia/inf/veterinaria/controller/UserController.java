@@ -1,4 +1,5 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
+import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
@@ -108,18 +110,14 @@ public class UserController extends AbstractController {
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario);
-			if (proprietario1 == null) {
+			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario); 
+			if (GeneralUtils.isEmpty(proprietario1) == true) {
 				this.result.include("notfound", "Proprietario não encontrado");
-			} else {
-				this.result.include("found", proprietario1);
-				List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
-				if (GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
-					this.result.include("notfound", "Proprietario não encontrado");
-				} else {
-					this.result.include("found", busca);
-				}
+			}else {
+				List<Animal> animal = this.bs.buscarAnimal(factoryproducer, proprietario1.get(0).getId());
+				this.result.include("animais", animal);
 			}
+			
 	}
 	}
 	
