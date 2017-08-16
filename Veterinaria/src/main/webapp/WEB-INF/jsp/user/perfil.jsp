@@ -53,6 +53,7 @@
 				</div>
 			</div>
 		</div>
+		<div id ="editar" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil" id = "edit"></span></div>
 	</form>
 </div>
 <c:import url="/includes/footer.jsp" />

@@ -78,7 +78,7 @@
 						<h5>Ainda não decidi o que vou por aqui</h5>
 					</div>
 				</div>
-				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span class="glyphicon glyphicon-ok"></span></div>
+				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span class="glyphicon glyphicon-ok" id = "check"></span></div>
 		</div>
 	</div>
 
