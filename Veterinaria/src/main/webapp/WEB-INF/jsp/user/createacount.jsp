@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/includes/headerInitial.jsp"/>
+<c:import url="/includes/headers.jsp"/>
 
 	<div class="container-fluid conteudo">
 	<!--nav navigation-->
-	<c:import url="/includes/navbar.jsp" />
+	<c:import url="/includes/navigation.jsp" />
 	<form method="POST" action="<c:url value="/createacount"/>">
 		<div class="row container-fluid">
 			<div class="formulario">

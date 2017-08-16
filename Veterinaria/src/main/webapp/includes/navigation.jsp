@@ -11,7 +11,7 @@
       </a>
       <a class="navbar-brand"></a>
       <a class="navbar-brand" href="<c:url value = "/cadastrarProprietario"/>" style="color:white;" id="proprietario">
-       	Cadastrar 
+       	Cadastrar Proprietario
       	<span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
        <a class="navbar-brand"></a>
@@ -20,7 +20,7 @@
       	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </a>
        <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;">
+      <a class="navbar-brand" href="<c:url value = "/ficha_internacao"/>" style="color:white;">
        	Cirurgia
       <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
       </a>
@@ -28,6 +28,10 @@
       <a class="navbar-brand" href="#" style="color:white;">
       Agenda
       <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+      </a>
+      <a class="navbar-brand" href="<c:url value="/createacount"/>" style="color:white;">
+      Cadastrar novo Usuário
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
       </a>
       <a class="navbar-brand"></a>
       <a class="navbar-brand" href="<c:url value = "/buscar"/>" style="color:white;" id="buscar">

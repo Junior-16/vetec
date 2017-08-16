@@ -1,4 +1,5 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,14 +9,17 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
+import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
+import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
+import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @Controller
 
@@ -49,14 +53,9 @@ public class UserController extends AbstractController {
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
 		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username);
-		this.result.redirectTo(this).login(0,null);
+		this.result.redirectTo(IndexController.class).index();
 	}
 	
-	@Post(value = "/cadastrarProprietario")
-	@NoCache
-	public void cadastrarProprietario(String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
-		this.bs.cadastrarProprietario(factoryproducer, nome, cpf, cep, telefone, profissao, endereco, referencias);
-	}
 	
 	@Post(value="/login")
 	@NoCache
@@ -110,13 +109,18 @@ public class UserController extends AbstractController {
 	@Post("/search")
 	@NoCache
 	public void buscar(String proprietario) {
-		List<Proprietario> busca = this.bs.busca(factoryproducer, proprietario);
-		if(GeneralUtils.isEmpty(busca) == true || GeneralUtils.isEmpty(proprietario) == true) {
+		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			this.result.include("found",busca);
-		}
-		
+			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario); 
+			if (GeneralUtils.isEmpty(proprietario1) == true) {
+				this.result.include("notfound", "Proprietario não encontrado");
+			}else {
+				List<Animal> animal = this.bs.buscarAnimal(factoryproducer, proprietario1.get(0).getId());
+				this.result.include("animais", animal);
+			}
+			
+	}
 	}
 	
 	@Get(value="/perfil")
@@ -133,10 +137,18 @@ public class UserController extends AbstractController {
 	
 	@Post(value="/modificarPerfil")
 	@NoCache
-	public void update(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email) {
-		User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email);
-		this.userSession.login(user); 
-		this.result.redirectTo(IndexController.class).index();
+	public void update(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email,String old,String senha) {
+		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
+		CryptManager.updateSalt("@2o!A", "70Px$");
+		if(this.userSession.getLoggedUser().getPassword().equals(CryptManager.passwordHash(old)) == false) {
+			this.result.include("mudar", "Senha incorreta");
+			this.result.redirectTo(this).modificarPerfil();
+		}
+		else {
+			User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
+			this.userSession.login(user); 
+			this.result.redirectTo(IndexController.class).index();
+		}
 	}
 	
 	@Get("/loggedUser")

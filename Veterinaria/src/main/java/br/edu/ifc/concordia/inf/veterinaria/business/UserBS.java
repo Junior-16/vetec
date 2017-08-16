@@ -24,6 +24,7 @@ import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
+import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
@@ -48,7 +49,11 @@ public class UserBS extends HibernateBusiness{
 		}
 		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
-		
+	public  List<Animal> buscarAnimal(SessionFactoryProducer factoryProducer, Long id){
+		Criteria criteria = this.dao.newCriteria(Animal.class);
+		criteria.add(Restrictions.eq("proprietario_id", id));
+		return this.dao.findByCriteria(criteria, Animal.class);
+	}
 	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
@@ -63,12 +68,15 @@ public class UserBS extends HibernateBusiness{
 		dao.persist(dono);
 		this.validate(mngr);
 	}
-	public User update(SessionFactoryProducer factoryProducer,String nameUserlogged, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email) {
+	public User update(SessionFactoryProducer factoryProducer,String nameUserlogged, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email,String senha) {
+		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
+		CryptManager.updateSalt("@2o!A", "70Px$");
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("nome", nameUserlogged));
-		User userUpdate = (User) criteria.uniqueResult();	
+		User userUpdate = (User) criteria.uniqueResult();
+		userUpdate.setPassword(CryptManager.passwordHash(senha));
 		userUpdate.setNome(nome);
 		userUpdate.setEspecialidade(especialidade);
 		userUpdate.setEstudo(estudo);

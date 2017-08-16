@@ -18,12 +18,10 @@
 				      <input class="form-control" name="password" type="password" placeholder="Password" id= "password">
 				     </div>
 			    <div class="col-md-12">
-			      	<button type="submit" class="btn btn-default btn-md" id = "submit">Login
-					</button>
+			    	<button type="submit" class="btn btn-success" type="button" id = "submit">Entrar</button>
 				</div>
 				<div class="col-md-8">
 			        <a href="#">Esqueci minha senha</a></br>
-			      	<a  href="<c:url value="/createacount"/>">Criar uma conta</a>
 			    </div>
 		    </div>
 		    <c:if test="${not empty errorMsg}">

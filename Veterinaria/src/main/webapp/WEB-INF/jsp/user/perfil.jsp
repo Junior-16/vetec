@@ -5,7 +5,7 @@
 
 <div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp" />
-	<form method="GET" action="<c:url value="/modificarPerfil"/>">
+	<form id="cadastroAnimal" method="GET" action="<c:url value="/modificarPerfil"/>">
 		<div class="jumbotron profile">
 			<div class="row">
 				<c:if test="${not empty perfil}">
@@ -53,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		<div id ="editar" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil" id = "edit"></span></div>
+		<div class ="changePerfil" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
 	</form>
 </div>
 <c:import url="/includes/footer.jsp" />
