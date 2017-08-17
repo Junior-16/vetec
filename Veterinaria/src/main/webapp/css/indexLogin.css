@@ -1,3 +1,9 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #eeeeee;
+}
 body, html{
      height: 100%;
  	background-repeat: no-repeat;
@@ -126,12 +132,6 @@ input::-webkit-input-placeholder {
 	font-size: 11px;
 	text-align: center;
 }
-.footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    background-color: #eeeeee;
-}
 #ifc{
     height: 71px;
     width: 300px;
@@ -149,4 +149,8 @@ p{
 .container{
 	padding-left:20%;
 	padding-bottom: 10%;
+}
+.alert{
+	font-size:15px;
+	margin-top:10px;
 }

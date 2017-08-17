@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
+import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 
 @Controller
 public class ProntuarioController extends AbstractController{
@@ -22,6 +23,7 @@ public class ProntuarioController extends AbstractController{
 		
 	}
 	
+	@Permition
 	@Get(value="prontuario/cadastrarAnimal")
 	@NoCache
 	public void cadastrarAnimal() {

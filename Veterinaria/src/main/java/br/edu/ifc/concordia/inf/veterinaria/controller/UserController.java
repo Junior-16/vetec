@@ -83,6 +83,7 @@ public class UserController extends AbstractController {
 		}
 	}
 	
+	@Permition
 	@Get(value="/cadastrarProprietario")
 	@NoCache
 	public void cadastrarProprietario() {
@@ -100,6 +101,7 @@ public class UserController extends AbstractController {
 		this.result.redirectTo(this).cadastrarProprietario();
 	}
 	
+	@Permition
 	@Get(value="/buscar")
 	@NoCache
 	public void buscar() {
@@ -122,13 +124,14 @@ public class UserController extends AbstractController {
 			
 	}
 	}
-	
+	@Permition
 	@Get(value="/perfil")
 	@NoCache
 	public void perfil() {
 		this.result.include("perfil", this.userSession.getLoggedUser());
 	}
 	
+	@Permition
 	@Get(value="/modificarPerfil")
 	@NoCache
 	public void modificarPerfil() {
@@ -140,19 +143,22 @@ public class UserController extends AbstractController {
 	public void update(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email,String old,String senha) {
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-		if(this.userSession.getLoggedUser().getPassword().equals(CryptManager.passwordHash(old)) == false) {
-			this.result.include("mudar", "Senha incorreta");
-			this.result.redirectTo(this).modificarPerfil();
-		}
-		else {
+		if(GeneralUtils.isEmpty(old) == false) {
+			if(this.userSession.getLoggedUser().getPassword().equals(CryptManager.passwordHash(old)) == false) {
+				this.result.include("mudar", "Senha incorreta");
+				this.result.redirectTo(this).modificarPerfil();
+			}
+			else {
+				User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
+				this.userSession.login(user); 
+				this.result.redirectTo(IndexController.class).index();
+			}
+		}else {
 			User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
 			this.userSession.login(user); 
 			this.result.redirectTo(IndexController.class).index();
 		}
+		
 	}
 	
-	@Get("/loggedUser")
-	public void getLoggeduser(){
-				
-	}
 }

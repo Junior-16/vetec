@@ -45,11 +45,9 @@
 					<label>Email</label><input class="form-control" name="email"
 						value="<c:url value="${modificarperfil.email}"/>">
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<label>Senha Antiga</label>
 		            <input class="form-control" name="old" type="password" minlength="5" maxlength="10">
-		            <label>Nova Senha</label>
-		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
 		            <c:if test="${not empty mudar}">
 			            <div class="alert alert-danger" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -58,7 +56,11 @@
 						</div>
 		            </c:if>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
+					<label>Nova Senha</label>
+		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
+				</div>
+				<div class="col-md-2">
 					<button type="submit" class="btn btn-success">Modificar</button>
 				</div>
 			</div>

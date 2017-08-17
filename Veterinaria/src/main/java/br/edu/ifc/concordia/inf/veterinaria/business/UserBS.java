@@ -76,7 +76,11 @@ public class UserBS extends HibernateBusiness{
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("nome", nameUserlogged));
 		User userUpdate = (User) criteria.uniqueResult();
-		userUpdate.setPassword(CryptManager.passwordHash(senha));
+		if (GeneralUtils.isEmpty(senha) == false) {
+			userUpdate.setPassword(CryptManager.passwordHash(senha));
+		}else {
+			
+		}
 		userUpdate.setNome(nome);
 		userUpdate.setEspecialidade(especialidade);
 		userUpdate.setEstudo(estudo);
