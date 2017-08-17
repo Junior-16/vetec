@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$("#cpf").mask("000.000.000-00");
 	$("#telefone").mask("(00) 0 0000-0000");
 	$('#save').tooltip();
-	$("#editar").tooltip();
+	$(".change").tooltip();
 	$(".saveAnimal").tooltip();
 	$(".saveAnimal").click(function(){
 		$("#cadastroAnimal").submit();

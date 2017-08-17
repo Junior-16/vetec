@@ -136,7 +136,7 @@ img{
 .nav-tabs{
 	font-size:12px;
 }
-#save, #editar, .changePerfil{
+#save, #editar, .change{
 	margin:10px;
 	float:right;
 	width:60px;
@@ -167,5 +167,9 @@ img{
 
 #prontuario{
 	color:#ffffff;
+}
+.alert{
+	margin-top: 5px;
+	font-size:15px;
 }
 

@@ -53,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		<div class ="changePerfil" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
+		<div class ="change" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></div>
 	</form>
 </div>
 <c:import url="/includes/footer.jsp" />

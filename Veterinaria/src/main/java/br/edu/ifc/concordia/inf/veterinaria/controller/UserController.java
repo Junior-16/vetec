@@ -1,5 +1,4 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +26,7 @@ public class UserController extends AbstractController {
 	@Inject private UserBS bs;
 	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 	
+	@Permition(UserRoles.ADMIN)
 	@Get(value="/createacount")
 	@NoCache
 	public void createacount(){
@@ -152,7 +152,6 @@ public class UserController extends AbstractController {
 	}
 	
 	@Get("/loggedUser")
-	@Permition(UserRoles.ADMIN)
 	public void getLoggeduser(){
 				
 	}

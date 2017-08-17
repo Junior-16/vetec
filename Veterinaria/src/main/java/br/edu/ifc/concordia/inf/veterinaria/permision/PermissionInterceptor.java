@@ -24,20 +24,19 @@ public class PermissionInterceptor {
 	@Inject private Result result;
 	
 	@AroundCall
-	public void intercept(SimpleInterceptorStack Stack) {
-		if(!this.userSession.isLogged()) {
+	public void intercept(SimpleInterceptorStack stack) {
+		if (!this.userSession.isLogged()) {
 			this.result.redirectTo(UserController.class).login(0,null);
-		}else if (this.userSession.getLoggedUser().getAcesso() >= UserRoles.ADMIN.getAccessLevel()){
-			Stack.next();
-		}else {
+		} else if (this.userSession.getUser().getAcesso() >= UserRoles.ADMIN.getAccessLevel()) {
+			stack.next();
+		} else {
 			Permition perm = this.method.getMethod().getAnnotation(Permition.class);
-			if (this.userSession.getLoggedUser().getAcesso() > perm.value().getAccessLevel()) {
-				this.userSession.setPermitir(true);
-				Stack.next();
+			if (this.userSession.getUser().getAcesso() >= perm.value().getAccessLevel()) {
+				stack.next();
 			} else {
-				this.userSession.setPermitir(false);
 				this.httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				this.result.nothing();
+				//this.result.redirectTo(UserController.class).login("Você não tem permissão para acessar esta página.", "", "");
 			}
 		}
 	}
