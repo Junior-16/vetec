@@ -24,9 +24,9 @@ public class ProntuarioBS extends HibernateBusiness{
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
+		Animal animal = new Animal();
 		criteria.add(Restrictions.eq("nome", nomeProprietario));
 		Proprietario proprietario = (Proprietario) criteria.uniqueResult();
-		Animal animal = new Animal();
 		animal.setNome(nome);
 		animal.setEspecie(especie);
 		animal.setIdade(idade);

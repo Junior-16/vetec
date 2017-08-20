@@ -61,7 +61,7 @@
 		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
 				</div>
 				<div class="col-md-2">
-					<button type="submit" class="btn btn-success">Modificar</button>
+					<button type="submit" class="btn btn-success">Concluir</button>
 				</div>
 			</div>
 		</c:if>

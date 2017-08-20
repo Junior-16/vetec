@@ -118,7 +118,7 @@ public class UserController extends AbstractController {
 			if (GeneralUtils.isEmpty(proprietario1) == true) {
 				this.result.include("notfound", "Proprietario não encontrado");
 			}else {
-				List<Animal> animal = this.bs.buscarAnimal(factoryproducer, proprietario1.get(0).getId());
+				List<Animal> animal = this.bs.buscarAnimal(factoryproducer, proprietario1.get(0));
 				this.result.include("animais", animal);
 			}
 			
@@ -159,6 +159,13 @@ public class UserController extends AbstractController {
 			this.result.redirectTo(IndexController.class).index();
 		}
 		
+	}
+	@Get("/listUsers")
+	@NoCache
+	@Permition
+	public void listarUsuarios() {
+		List<User> user = this.bs.listUser(this.userSession.getLoggedUser().getNome());
+		this.result.include("userList", user);
 	}
 	
 }

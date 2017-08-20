@@ -24,7 +24,7 @@ public class ProntuarioController extends AbstractController{
 	}
 	
 	@Permition
-	@Get(value="prontuario/cadastrarAnimal")
+	@Get(value="/cadastrarAnimal")
 	@NoCache
 	public void cadastrarAnimal() {
 

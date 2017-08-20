@@ -27,6 +27,11 @@
 							</button>
 						</form>
 					</li>
+					<li>
+						<a href="<c:url value="/cadastrarAnimal"/>" class="btn btn-default btn-md"> <span class="glyphicon glyphicon-plus"></span>Cadastrar
+							Animal
+						</a>
+					</li>
 					<c:if test="${not empty animais}">
 						<li>
 							<a class="proprietario1" href="#">${proprietario.nome}</a>

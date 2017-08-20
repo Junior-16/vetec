@@ -3,6 +3,7 @@ package br.edu.ifc.concordia.inf.veterinaria.business;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -49,9 +50,29 @@ public class UserBS extends HibernateBusiness{
 		}
 		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
-	public  List<Animal> buscarAnimal(SessionFactoryProducer factoryProducer, Long id){
+	public List<User> listUser(String user){
+		List <User> users;
+		users = new ArrayList<User>();
+		List <User> found;
+		Criteria criteria = this.dao.newCriteria(User.class);
+		criteria.add(Restrictions.ilike("nome", "", MatchMode.ANYWHERE));
+		found = this.dao.findByCriteria(criteria, User.class);
+		int index = 0;
+		while(index < found.size()) {
+			if(found.get(index).getNome().equals(user) == true) {
+				index++;
+			}else{
+				users.add(found.get(index));
+				index++;
+			}
+		}
+		return users;
+		
+	}
+	
+	public  List<Animal> buscarAnimal(SessionFactoryProducer factoryProducer, Proprietario id){
 		Criteria criteria = this.dao.newCriteria(Animal.class);
-		criteria.add(Restrictions.eq("proprietario_id", id));
+		criteria.add(Restrictions.eq("proprietario", id.getId()));
 		return this.dao.findByCriteria(criteria, Animal.class);
 	}
 	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {

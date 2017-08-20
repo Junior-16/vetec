@@ -63,7 +63,7 @@ public class ApplicationSetup {
 			user.setCrmv("default");
 			user.setPassword(CryptManager.passwordHash("admin"));
 			user.setUsername("admin");
-			user.setTelefone("default");
+			user.setTelefone("00 0 00000000");
 			user.setEstudo("default");
 			user.setEndereco("default");
 			user.setCpf("000.000.000-00");
