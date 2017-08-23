@@ -4,9 +4,9 @@
 	<session-factory>
   		<property name="org.hibernate">true</property>
 		
-		<property name="connection.url">jdbc:mysql://localhost/veterinaria?autoReconnect=true&amp;useSSL=false</property>		
-		<property name="connection.username">root</property>
-		<property name="connection.password"></property>
+		<property name="connection.url">jdbc:mysql://localhost/${db.name}?autoReconnect=true&amp;useSSL=false</property>		
+		<property name="connection.username">${db.username}</property>
+		<property name="connection.password">${db.password}</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
