@@ -126,8 +126,12 @@ public class UserController extends AbstractController {
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario);
-			this.result.include("found", proprietario1.get(0));
+			List<Proprietario> proprietarioList = this.bs.busca(factoryproducer, proprietario);
+			if(proprietarioList.size() == 0) {
+				this.result.include("notfound","Proprietario não encontrado");
+			}else {
+				this.result.include("found", proprietarioList);
+			}
 		}
 	}
 	

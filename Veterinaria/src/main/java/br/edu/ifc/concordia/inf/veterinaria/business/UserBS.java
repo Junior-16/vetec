@@ -45,9 +45,7 @@ public class UserBS extends HibernateBusiness{
 	
 	public List<Proprietario> busca(SessionFactoryProducer factoryProducer, String filter) {
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
-		if (!GeneralUtils.isEmpty(filter)) {
-			criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
-		}
+		criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
 		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
 	public List<User> listUser(String user){

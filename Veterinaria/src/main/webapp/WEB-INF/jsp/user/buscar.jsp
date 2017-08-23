@@ -28,12 +28,16 @@
 						</form>
 					</li>
 						<c:if test="${not empty found}">
+							<c:forEach items="${found}" var="found">
 								<li>
 									<a href="#">${found.nome}</a>
-									<c:forEach items="${found.animais}" var="animais">
-										<a href="#">${animais.nome}</a>
-									</c:forEach>
+									<c:if test="${not empty found.animais}">
+										<c:forEach items="${found.animais}" var="animais">
+											<a href="#">${animais.nome}</a>
+										</c:forEach>
+									</c:if>
 								</li>
+							</c:forEach>
 						</c:if>
 					<li>
 						<a href="<c:url value="/cadastrarAnimal"/>"> <span class="glyphicon glyphicon-plus"></span>Cadastrar
