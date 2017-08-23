@@ -5,7 +5,7 @@
     height: 100%;
     background-color: #eeeeee;
 }
-body > .container {
+body > .container{
     padding: 60px 15px 0;
 }
 #teste{
@@ -172,4 +172,5 @@ img{
 .alert{
 	margin-top: 5px;
 	font-size:15px;
+	padding:5px;
 }

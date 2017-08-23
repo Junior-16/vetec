@@ -2,6 +2,7 @@ package br.edu.ifc.concordia.inf.veterinaria.business;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.net.ssl.KeyManager;
@@ -38,6 +39,7 @@ public class ProntuarioBS extends HibernateBusiness{
 		dao.persist(animal);
 		this.validate(mngr);
 	}
+	
 	public void validate(SessionManager mngr) {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

@@ -50,6 +50,13 @@
 						<label>Senha (mínimo 5 caracteres)</label> <input
 							class="form-control" name="password" type="password"
 							minlength="5" maxlength="10">
+						<c:if test="${not empty samePassword}">
+							<div class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="sr-only"></span>
+								${samePassword}
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

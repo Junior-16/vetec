@@ -18,8 +18,7 @@ public class Animal implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
-    @JoinColumn(name="proprietario_id") 
+	@ManyToOne 
 	private Proprietario proprietario;
 	
 	public Proprietario getProprietario() {

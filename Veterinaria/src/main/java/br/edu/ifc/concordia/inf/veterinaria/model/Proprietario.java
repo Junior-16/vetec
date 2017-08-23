@@ -22,6 +22,7 @@ public class Proprietario implements Serializable{
 	
 	@OneToMany(targetEntity=Animal.class, mappedBy="proprietario", fetch=FetchType.LAZY)
 	private List<Animal> animais;
+	
 	private String cep;
 	private String cpf;
 	private String endereco;

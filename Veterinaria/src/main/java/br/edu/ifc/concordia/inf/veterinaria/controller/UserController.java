@@ -1,4 +1,5 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
+import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
@@ -24,13 +26,18 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
+	@Inject private ProntuarioBS prontbs;
 	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 	
 	@Permition(UserRoles.ADMIN)
 	@Get(value="/createacount")
 	@NoCache
-	public void createacount(){
-		
+	public void createacount(int x){
+		if (x == 1) {
+			this.result.include("samePassword", "Senha já existente");
+		}else {
+			
+		}
 	}
 	
 	@Get(value="/login")
@@ -48,14 +55,17 @@ public class UserController extends AbstractController {
 		}
 	}
 	
-	
 	@Post(value="/createacount")
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
-		this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username);
-		this.result.redirectTo(IndexController.class).index();
+		if(this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
+			this.result.redirectTo(UserController.class).createacount(1);
+		}
+		else {
+			this.result.redirectTo(IndexController.class).index();
+		}
+		
 	}
-	
 	
 	@Post(value="/login")
 	@NoCache
@@ -72,6 +82,7 @@ public class UserController extends AbstractController {
 		}
 		}
 	}
+	
 	@Get(value="/logout")
 	@NoCache
 	public void sair(){
@@ -110,20 +121,16 @@ public class UserController extends AbstractController {
 	
 	@Post("/search")
 	@NoCache
+	@Permition
 	public void buscar(String proprietario) {
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario); 
-			if (GeneralUtils.isEmpty(proprietario1) == true) {
-				this.result.include("notfound", "Proprietario não encontrado");
-			}else {
-				List<Animal> animal = this.bs.buscarAnimal(factoryproducer, proprietario1.get(0));
-				this.result.include("animais", animal);
-			}
-			
+			List<Proprietario> proprietario1 = this.bs.busca(factoryproducer, proprietario);
+			this.result.include("found", proprietario1.get(0));
+		}
 	}
-	}
+	
 	@Permition
 	@Get(value="/perfil")
 	@NoCache
@@ -160,6 +167,7 @@ public class UserController extends AbstractController {
 		}
 		
 	}
+	
 	@Get("/listUsers")
 	@NoCache
 	@Permition

@@ -20,28 +20,26 @@
 					<li class="active">
 						<form method="post" action="<c:url value="/search"/>">
 							<input class="form-control" name="proprietario"
-								placeholder="Pesquisar proprietario/animal"
+								placeholder="Pesquisar proprietario"
 								style="display: inline; width: 85%;">
 							<button type="submit" class="btn btn-default btn-md" id="buscar">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</form>
 					</li>
+						<c:if test="${not empty found}">
+								<li>
+									<a href="#">${found.nome}</a>
+									<c:forEach items="${found.animais}" var="animais">
+										<a href="#">${animais.nome}</a>
+									</c:forEach>
+								</li>
+						</c:if>
 					<li>
-						<a href="<c:url value="/cadastrarAnimal"/>" class="btn btn-default btn-md"> <span class="glyphicon glyphicon-plus"></span>Cadastrar
+						<a href="<c:url value="/cadastrarAnimal"/>"> <span class="glyphicon glyphicon-plus"></span>Cadastrar
 							Animal
 						</a>
 					</li>
-					<c:if test="${not empty animais}">
-						<li>
-							<a class="proprietario1" href="#">${proprietario.nome}</a>
-							<c:if test="${not empty animais}">
-								<c:forEach items="${animais}" var="animais">
-									<a href="#">${animais.nome}</a>
-								</c:forEach>
-							</c:if>
-						</li>
-					</c:if>
 					<li class="nav-divider"></li>
 				</ul>
 			</nav>

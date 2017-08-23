@@ -69,13 +69,8 @@ public class UserBS extends HibernateBusiness{
 		return users;
 		
 	}
-	
-	public  List<Animal> buscarAnimal(SessionFactoryProducer factoryProducer, Proprietario id){
-		Criteria criteria = this.dao.newCriteria(Animal.class);
-		criteria.add(Restrictions.eq("proprietario", id.getId()));
-		return this.dao.findByCriteria(criteria, Animal.class);
-	}
-	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {
+
+	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {		
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		Proprietario dono = new Proprietario();
@@ -116,25 +111,34 @@ public class UserBS extends HibernateBusiness{
 		return userUpdate;
 	}
 	
-	public void cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
+	public boolean cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(CryptManager.passwordHash(password));
-		user.setEstudo(estudo);
-		user.setCep(cep);
-		user.setCpf(cpf);
-		user.setCrmv(crmv);
-		user.setEndereco(endereco);
-		user.setEspecialidade(especialidade);
-		user.setEmail(email);
-		user.setNome(nome);
-		user.setTelefone(telefone);
-		dao.persist(user);
-		this.validate(mngr);
+		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
+		HibernateDAO dao = new HibernateDAO(mngr);
+		Criteria criteria = this.dao.newCriteria(User.class);
+		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
+		User user = (User) criteria.uniqueResult();
+		if (user != null) {
+			return true;
+		}
+		else {
+			user = new User();
+			user.setUsername(username);
+			user.setPassword(CryptManager.passwordHash(password));
+			user.setEstudo(estudo);
+			user.setCep(cep);
+			user.setCpf(cpf);
+			user.setCrmv(crmv);
+			user.setEndereco(endereco);
+			user.setEspecialidade(especialidade);
+			user.setEmail(email);
+			user.setNome(nome);
+			user.setTelefone(telefone);
+			dao.persist(user);
+			this.validate(mngr);
+			return false;
+		}
 	}
 	
 	public void validate(SessionManager mngr) {

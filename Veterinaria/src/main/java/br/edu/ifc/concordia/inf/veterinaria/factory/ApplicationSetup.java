@@ -52,7 +52,6 @@ public class ApplicationSetup {
 		Criteria criteria = dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", "admin"));
 		User user = (User) criteria.uniqueResult();
-		
 		if (user == null){
 			user = new User();
 			user.setAcesso(UserRoles.ADMIN.getAccessLevel());

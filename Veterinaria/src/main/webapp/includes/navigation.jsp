@@ -11,7 +11,7 @@
       </a>
       <a class="navbar-brand" href="<c:url value = "/cadastrarProprietario"/>" style="color:white;" id="proprietario">
        <span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
-       	Cadastrar Proprietario
+       	Cadastrar Proprietário
       </a>
       <a class="navbar-brand" href="<c:url value = "/prontuario"/>" style="color:white;" id="prontuario">
       	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>  Prontuário 
@@ -26,7 +26,7 @@
       </a>
       <a class="navbar-brand" href="<c:url value="/createacount"/>" style="color:white;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
-      Cadastrar novo Usuário
+      Cadastrar Novo Usuário
       </a>
       <a class="navbar-brand" href="<c:url value="/listUsers"/>" style="color:white;">
 		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
