@@ -26,11 +26,11 @@ $(document).ready(function(){
 		var y = "#"+$(".proprietario")[0].firstElementChild.id;
 		$(x).toggle("slow");
 		if( classe == "glyphicon glyphicon-chevron-right"){
-			$("y").removeClass();
-			$("y").addClass("glyphicon glyphicon-chevron-down");
+			$(y).removeClass();
+			$(y).addClass("glyphicon glyphicon-chevron-down");
 		}else{
-			$("y").removeClass();
-			$("y").addClass("glyphicon glyphicon-chevron-right");
+			$(y).removeClass();
+			$(y).addClass("glyphicon glyphicon-chevron-right");
 		}
 	});
 	

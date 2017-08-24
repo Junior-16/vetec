@@ -31,7 +31,7 @@
 							<c:forEach items="${found}" var="found">
 								<li>
 									<a class = "proprietario" href="#">
-									<span class = "glyphicon glyphicon-chevron-right" id="${found.id}"></span>${found.nome}</a>
+									<span class = "glyphicon glyphicon-chevron-down" id="${found.id}"></span> ${found.nome}</a>
 									<c:if test="${not empty found.animais}">
 										<c:forEach items="${found.animais}" var="animais">
 											<a class = "${found.id}" href="<c:url value="/prontuario/${animais.nome}"/>" style="margin-left: 10px;">${animais.nome}</a>
