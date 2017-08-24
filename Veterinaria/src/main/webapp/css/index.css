@@ -137,7 +137,7 @@ img{
 .nav-tabs{
 	font-size:12px;
 }
-#save, #editar, .change{
+#save, #editar, .change, .saveAnimal{
 	margin-top:40px;
 	float:right;
 	width:60px;

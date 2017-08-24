@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-md-2">
 						<label>Sexo</label> <select class="form-control" name = "sexo">
-							<option>feminino</option>
+							<option>Feminino</option>
 							<option>Masculino</option>
 						</select>
 					</div>

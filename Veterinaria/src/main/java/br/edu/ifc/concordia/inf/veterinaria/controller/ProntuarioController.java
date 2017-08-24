@@ -17,9 +17,10 @@ public class ProntuarioController extends AbstractController{
 	@Inject private ProntuarioBS Prontuariobs;
 	SessionFactoryProducer factoryProducer = new SessionFactoryProducer();
 	Animal animal = new Animal();
-	@Get(value="/prontuario")
+	
+	@Get(value="/prontuario/{name}")
 	@NoCache
-	public void prontuario() {
+	public void prontuario(String name) {
 		
 	}
 	
