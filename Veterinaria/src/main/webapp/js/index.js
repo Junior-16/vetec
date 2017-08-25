@@ -22,8 +22,8 @@ $(document).ready(function(){
 		
 		$(".dadosProp").show("fast");
 		var x = "."+$(this)[0].nextElementSibling.className;
-		var classe = $(".proprietario")[0].firstElementChild.className;
-		var y = "#"+$(".proprietario")[0].firstElementChild.id;
+		var classe = $(this)[0].firstElementChild.className;
+		var y = "#"+$(this)[0].firstElementChild.id;
 		$(x).toggle("slow");
 		if( classe == "glyphicon glyphicon-chevron-right"){
 			$(y).removeClass();

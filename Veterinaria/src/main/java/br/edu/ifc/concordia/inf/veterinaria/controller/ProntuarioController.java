@@ -18,10 +18,10 @@ public class ProntuarioController extends AbstractController{
 	SessionFactoryProducer factoryProducer = new SessionFactoryProducer();
 	Animal animal = new Animal();
 	
-	@Get(value="/prontuario/{name}")
+	@Get(value="/prontuario/{nome}")
 	@NoCache
-	public void prontuario(String name) {
-		
+	public void prontuario(String nome) {
+		this.result.include("name", nome);
 	}
 	
 	@Permition

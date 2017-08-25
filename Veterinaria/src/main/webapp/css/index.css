@@ -138,7 +138,7 @@ img{
 	font-size:12px;
 }
 #save, #editar, .change, .saveAnimal{
-	margin-top:40px;
+	margin:20px;
 	float:right;
 	width:60px;
 	height:60px;
@@ -156,9 +156,9 @@ img{
 	border-radius:100%;
 	background-color:#b94a48;
 }
-#save:hover, .saveAnimal:hover{
+.saveAnimal:hover{
 	background-color:rgb(185, 74, 72);
-	box-shadow: 0 5px 18px #1b1a1a;
+	box-shadow: 0 5px 18px rgba(0,0,0,.5);
 }
 #icon-save{
 	font-size:25px;
