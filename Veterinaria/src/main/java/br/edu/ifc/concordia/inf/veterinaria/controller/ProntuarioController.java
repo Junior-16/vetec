@@ -1,5 +1,7 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -9,12 +11,15 @@ import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
+import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
+import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 
 @Controller
 public class ProntuarioController extends AbstractController{
 	@Inject private ProntuarioBS Prontuariobs;
+	@Inject private UserBS bs;
 	SessionFactoryProducer factoryProducer = new SessionFactoryProducer();
 	Animal animal = new Animal();
 	
@@ -37,4 +42,13 @@ public class ProntuarioController extends AbstractController{
 		this.Prontuariobs.cadastrarAnimal(factoryProducer, nome, especie, idade, peso, sexo, raca, info, nomeProprietario);
 		this.result.redirectTo(UserController.class).buscar();
 	}
+	
+	@Permition
+	@Get("/proprietario/{nome}")
+	@NoCache
+	public void proprietario(String nome) {
+		List<Proprietario> proprietario = this.bs.busca(factoryProducer, nome);
+		this.result.include("proprietarioInfo", proprietario.get(0));
+	}
+	
 }

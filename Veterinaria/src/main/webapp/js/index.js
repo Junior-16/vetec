@@ -18,12 +18,11 @@ $(document).ready(function(){
 	}else{
 		
 	}
-	$(".proprietario").click(function(){
+	$(".glyphicon-chevron-down").click(function(){
 		
-		$(".dadosProp").show("fast");
-		var x = "."+$(this)[0].nextElementSibling.className;
-		var classe = $(this)[0].firstElementChild.className;
-		var y = "#"+$(this)[0].firstElementChild.id;
+		var x = "."+$(this)[0].parentElement.nextElementSibling.className;
+		var classe = $(this)[0].className;
+		var y = "#"+$(this)[0].id;
 		$(x).toggle("slow");
 		if( classe == "glyphicon glyphicon-chevron-right"){
 			$(y).removeClass();

@@ -24,7 +24,7 @@
 		</li>
 		<c:if test="${not empty found}">
 			<c:forEach items="${found}" var="found">
-				<li><a class="proprietario" href="#"> <span
+				<li><a class="proprietario" href="<c:url value="proprietario/${found.nome}"/>"> <span
 						class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
 						${found.nome}
 				</a> <c:if test="${not empty found.animais}">
@@ -33,7 +33,8 @@
 								href="<c:url value="/prontuario/${animais.nome}"/>"
 								style="margin-left: 10px;">${animais.nome}</a>
 						</c:forEach>
-					</c:if></li>
+					</c:if>
+					</li>
 			</c:forEach>
 		</c:if>
 		<li><a href="<c:url value="/cadastrarAnimal"/>"> <span
