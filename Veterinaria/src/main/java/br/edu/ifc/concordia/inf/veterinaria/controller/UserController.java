@@ -26,8 +26,6 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 public class UserController extends AbstractController {
 	@Inject private UserBS bs;
-	@Inject private ProntuarioBS prontbs;
-	SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 	
 	@Permition(UserRoles.ADMIN)
 	@Get(value="/createacount")
@@ -58,7 +56,7 @@ public class UserController extends AbstractController {
 	@Post(value="/createacount")
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
-		if(this.bs.cadastrar(factoryproducer, nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
+		if(this.bs.cadastrar(nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
 			this.result.redirectTo(UserController.class).createacount(1);
 		}
 		else {
@@ -73,7 +71,7 @@ public class UserController extends AbstractController {
 		if(username == null || password == null){
 			this.result.redirectTo(this).login(1,"Campos incompletos");
 		}else{
-		User user = this.bs.login(factoryproducer, username, password);
+		User user = this.bs.login( username, password);
 		if (user == null){
 			this.result.redirectTo(this).login(1,"Nome de usuário ou senha incorretos!");
 		}else{
@@ -108,7 +106,7 @@ public class UserController extends AbstractController {
 	@Post(value="/cadastrarproprietario")
 	@NoCache
 	public void cadastrar(String nome, String cep, String profissao, String cpf, String telefone, String endereco, String referencias) {
-		this.bs.cadastrarProprietario(factoryproducer,  nome,  cpf,  cep,  telefone,  profissao,  endereco,  referencias);
+		this.bs.cadastrarProprietario( nome,  cpf,  cep,  telefone,  profissao,  endereco,  referencias);
 		this.result.redirectTo(this).cadastrarProprietario();
 	}
 	
@@ -126,7 +124,7 @@ public class UserController extends AbstractController {
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
-			List<Proprietario> proprietarioList = this.bs.busca(factoryproducer, proprietario);
+			List<Proprietario> proprietarioList = this.bs.busca(proprietario);
 			if(proprietarioList.size() == 0) {
 				this.result.include("notfound","Proprietario não encontrado");
 			}else {
@@ -160,12 +158,12 @@ public class UserController extends AbstractController {
 				this.result.redirectTo(this).modificarPerfil();
 			}
 			else {
-				User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
+				User user = this.bs.update(this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
 				this.userSession.login(user); 
 				this.result.redirectTo(IndexController.class).index();
 			}
 		}else {
-			User user = this.bs.update(factoryproducer, this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
+			User user = this.bs.update( this.userSession.getLoggedUser().getNome(), nome, especialidade,estudo,telefone,endereco,crmv,cep,cpf,email,senha);
 			this.userSession.login(user); 
 			this.result.redirectTo(IndexController.class).index();
 		}

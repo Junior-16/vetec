@@ -45,7 +45,7 @@ public class ApplicationSetup {
 		factoryProducer.initialize("hibernate.cfg.xml");
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-
+		SessionFactoryProducer factoryproducer = new SessionFactoryProducer();
 		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
 		HibernateDAO dao = new HibernateDAO(mngr);
 		

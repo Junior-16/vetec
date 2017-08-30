@@ -32,9 +32,8 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 
 @RequestScoped
 public class UserBS extends HibernateBusiness{
-	
 	Logger LOG = Logger.getLogger(ApplicationSetup.class); 
-	public 	User login(SessionFactoryProducer factoryProducer,String username, String password){
+	public 	User login(String username, String password){
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
@@ -43,7 +42,7 @@ public class UserBS extends HibernateBusiness{
 		return (User) criteria.uniqueResult();	
 	}
 	
-	public List<Proprietario> busca(SessionFactoryProducer factoryProducer, String filter) {
+	public List<Proprietario> busca( String filter) {
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
 		criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
 		return this.dao.findByCriteria(criteria, Proprietario.class);
@@ -68,9 +67,7 @@ public class UserBS extends HibernateBusiness{
 		
 	}
 
-	public void cadastrarProprietario(SessionFactoryProducer factoryProducer, String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {		
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
+	public void cadastrarProprietario( String nome, String cpf, String cep, String telefone, String profissao, String endereco, String referencias) {		
 		Proprietario dono = new Proprietario();
 		dono.setNome(nome);
 		dono.setCpf(cpf);
@@ -80,13 +77,11 @@ public class UserBS extends HibernateBusiness{
 		dono.setEndereco(endereco);
 		dono.setReferencias(referencias);
 		dao.persist(dono);
-		this.validate(mngr);
+		this.validate();
 	}
-	public User update(SessionFactoryProducer factoryProducer,String nameUserlogged, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email,String senha) {
+	public User update(String nameUserlogged, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email,String senha) {
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("nome", nameUserlogged));
 		User userUpdate = (User) criteria.uniqueResult();
@@ -105,15 +100,13 @@ public class UserBS extends HibernateBusiness{
 		userUpdate.setCpf(cpf);
 		userUpdate.setEmail(email);
 		dao.update(userUpdate);
-		this.validate(mngr);
+		this.validate();
 		return userUpdate;
 	}
 	
-	public boolean cadastrar(SessionFactoryProducer factoryProducer, String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
+	public boolean cadastrar( String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
-		SessionManager mngr = new SessionManager(factoryProducer.getInstance());
-		HibernateDAO dao = new HibernateDAO(mngr);
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("password", CryptManager.passwordHash(password)));
 		User user = (User) criteria.uniqueResult();
@@ -133,13 +126,25 @@ public class UserBS extends HibernateBusiness{
 			user.setEmail(email);
 			user.setNome(nome);
 			user.setTelefone(telefone);
-			dao.persist(user);
-			this.validate(mngr);
+			this.dao.persist(user);
+			this.validate();
 			return false;
 		}
 	}
+	public void proprietarioUpdate(String nome, String cpf, String telefone, String profissao, String endereco, String cep, String referencias) {
+		Proprietario proprietario = this.busca(nome).get(0);
+		proprietario.setNome(nome);
+		proprietario.setCpf(cpf);
+		proprietario.setTelefone(telefone);
+		proprietario.setProfissao(profissao);
+		proprietario.setEndereco(endereco);
+		proprietario.setCep(cep);
+		proprietario.setReferencias(referencias);
+		this.dao.update(proprietario);
+		this.validate();
+	}
 	
-	public void validate(SessionManager mngr) {
+	public void validate() {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");
 			ctx.init(new KeyManager[0], new TrustManager[] { new DefaultTrustManager() }, new SecureRandom());
@@ -149,6 +154,5 @@ public class UserBS extends HibernateBusiness{
 			ex.printStackTrace();
 		}
 
-		mngr.closeSession();
 	}
 }
