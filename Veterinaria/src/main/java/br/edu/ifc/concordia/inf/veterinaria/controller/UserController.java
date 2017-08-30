@@ -129,7 +129,7 @@ public class UserController extends AbstractController {
 				this.result.include("notfound","Proprietario não encontrado");
 			}else {
 				this.result.include("found", proprietarioList);
-			}
+			} 
 		}
 	}
 	
@@ -178,4 +178,10 @@ public class UserController extends AbstractController {
 		this.result.include("userList", user);
 	}
 	
+	@Get("/removerUser/{id}")
+	@NoCache
+	@Permition
+	public void remove(Long id){
+		
+	}
 }

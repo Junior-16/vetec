@@ -18,6 +18,7 @@
 					<th>CRMV</th>
 					<th>Especialidade</th>
 					<th>Estudo</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,6 +35,11 @@
 							<td>${userList.crmv}</td>
 							<td>${userList.especialidade}</td>
 							<td>${userList.estudo}</td>
+							<td>
+								<a href="<c:url value="removerUser/${userList.id}"/>">
+									<span class="glyphicon glyphicon-remove"></span>
+								</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>

@@ -21,7 +21,7 @@
 						<form method="post" action="<c:url value="/search"/>">
 							<input class="form-control" name="proprietario"
 								placeholder="Pesquisar proprietario"
-								style="display: inline; width: 85%;">
+								style="display: inline; width: 85%; margin-bottom: 10px;">
 							<button type="submit" class="btn btn-default btn-md" id="buscar">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
@@ -30,15 +30,15 @@
 						<c:if test="${not empty found}">
 							<c:forEach items="${found}" var="found">
 								<li>
-										<span class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
-										<span id = "item">
+									<span class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
+									<span id = "item">
 										<a href = "<c:url value="proprietario/${found.nome}"/>" style="text-decoration:none;">
 										${found.nome}
 										</a>
-										</span>
+									</span>
 									<c:if test="${not empty found.animais}">
 										<c:forEach items="${found.animais}" var="animais">
-											<a class = "${found.id}" href="<c:url value="/prontuario/${animais.nome}"/>" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
+											<a class = "${found.id}" href="<c:url value="/prontuario/${found.nome}/${animais.nome}"/>" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
 										</c:forEach>
 									</c:if>
 								</li>

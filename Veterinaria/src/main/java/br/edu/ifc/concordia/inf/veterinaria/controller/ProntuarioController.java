@@ -8,7 +8,6 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
-import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
@@ -23,10 +22,19 @@ public class ProntuarioController extends AbstractController{
 	@Inject private UserBS bs;
 	Animal animal = new Animal();
 	
-	@Get(value="/prontuario/{nome}")
+	@Permition
+	@Get(value="/prontuario/{proprietario}/{animal}")
 	@NoCache
-	public void prontuario(String nome) {
-		this.result.include("name", nome);
+	public void prontuario(String proprietario, String animal) {
+		Proprietario proprietarioList = this.bs.busca(proprietario).get(0);
+		List<Animal> animais = proprietarioList.getAnimais();
+		int index = 0;
+		while(index < animais.size()) {
+			if(animais.get(index).getNome().equals(animal) == true) {
+				this.result.include("animal",animais.get(index));
+			}
+			index++;
+		}
 	}
 	
 	@Permition

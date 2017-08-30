@@ -7,14 +7,8 @@
 	
 	<div class="container-fluid row">
 		<!-- Barra de Pesquisa-->
-			<div class="col-md-3">
-				<c:if test="${not empty name }">
-					<div>${name}</div>
-				</c:if>
-	            <c:import url="/includes/buscar.jsp" />
-	        </div>
 	        <!-- Tabs -->
-	        <div class="col-md-9 col-sm-9">
+	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">Informações
 							Gerais</a></li>

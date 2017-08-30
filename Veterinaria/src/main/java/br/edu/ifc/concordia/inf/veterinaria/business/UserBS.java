@@ -33,6 +33,7 @@ import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
 @RequestScoped
 public class UserBS extends HibernateBusiness{
 	Logger LOG = Logger.getLogger(ApplicationSetup.class); 
+	
 	public 	User login(String username, String password){
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
@@ -47,6 +48,7 @@ public class UserBS extends HibernateBusiness{
 		criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
 		return this.dao.findByCriteria(criteria, Proprietario.class);
 	}
+	
 	public List<User> listUser(String user){
 		List <User> users;
 		users = new ArrayList<User>();
