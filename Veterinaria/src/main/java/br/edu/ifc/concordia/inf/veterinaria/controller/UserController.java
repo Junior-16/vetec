@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -178,10 +179,24 @@ public class UserController extends AbstractController {
 		this.result.include("userList", user);
 	}
 	
-	@Get("/removerUser/{id}")
+	@Get("removerUser/{id}")
 	@NoCache
-	@Permition
+	@Permition(UserRoles.ADMIN)
 	public void remove(Long id){
+		this.bs.removeUser(id);
+		this.result.redirectTo(IndexController.class).index();
+	}
+	
+	@Get(value = "/recuperarSenha")
+	@NoCache
+	public void recuperarSenha(){
 		
+	}
+	
+	@Post(value = "/recuperarSenha")
+	@NoCache
+	public void mudarSenha(String email) throws MessagingException {
+		this.bs.recoverPassword(email);
+		this.result.redirectTo(this).login(1, email);
 	}
 }

@@ -5,8 +5,14 @@ import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.enterprise.context.RequestScoped;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -15,17 +21,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
-import br.com.caelum.vraptor.boilerplate.HibernateDAO;
-//import br.com.caelum.vraptor.boilerplate.HibernateDAO;
-import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
-import br.com.caelum.vraptor.boilerplate.factory.SessionManager;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
-import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.properties.SystemConfigs;
@@ -47,6 +50,13 @@ public class UserBS extends HibernateBusiness{
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
 		criteria.add(Restrictions.ilike("nome", filter, MatchMode.ANYWHERE));
 		return this.dao.findByCriteria(criteria, Proprietario.class);
+	}
+	
+	public void removeUser(Long id) {
+		Criteria criteria = this.dao.newCriteria(User.class);
+		criteria.add(Restrictions.eq("id",id));
+		User usuario = (User) criteria.uniqueResult();
+		dao.delete(usuario);
 	}
 	
 	public List<User> listUser(String user){
@@ -157,4 +167,48 @@ public class UserBS extends HibernateBusiness{
 		}
 
 	}
+	
+	public void recoverPassword(String email) throws MessagingException {
+	      // Recipient's email ID needs to be mentioned.
+	      String to = email;
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "junior.ramisch@gmail.com";
+
+	      // Assuming you are sending email from localhost
+	      String host = "junior ramisch";
+
+	      // Get system properties
+	      Properties properties = System.getProperties();
+
+	      // Setup mail server
+	      properties.setProperty("mail.smtp.port", "25");
+	      properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+
+	      // Get the default Session object.
+	      Session session = Session.getDefaultInstance(properties);
+	      try {
+	         // Create a default MimeMessage object.
+	         MimeMessage message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+	         // Set Subject: header field
+	         message.setSubject("Nova Senha");
+
+	         // Now set the actual message
+	         message.setText("sua nova senha é: 12342");
+
+	         // Send message
+	         Transport.send(message);
+	         System.out.println("Sent message successfully....");
+	      }catch (AddressException mex) {
+	         mex.printStackTrace();
+	      }
+	   }
+	
 }

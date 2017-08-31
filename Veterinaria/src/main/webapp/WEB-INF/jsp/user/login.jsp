@@ -36,7 +36,7 @@
 								<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
 							</div>
 							<div class="login-register">
-				            	<a href="#">Esqueci minha senha</a>
+				            	<a href="<c:url value="/recuperarSenha"/>">Esqueci minha senha</a>
 				         	</div>
 				         	<c:if test="${not empty errorMsg}">
 								<div class="alert alert-danger" role="alert">
