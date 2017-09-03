@@ -6,7 +6,7 @@
 	<div class="container-fluid conteudo">
 	<!--nav navigation-->
 	<c:import url="/includes/navigation.jsp" />
-	<form method="POST" action="<c:url value="/createacount"/>">
+	<form id = "cadastrarUser" method="POST" action="<c:url value="/createacount"/>">
 		<div class="row container-fluid">
 			<div class="formulario">
 				<div class="formulario">
@@ -60,10 +60,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-success">Cadastrar</button>
-			</div>
 		</div>
+		<div class="cadastrarUser" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cadastar"><span id="icon-save" class="glyphicon glyphicon-ok"></span></div>
 	</form>
 </div>
 <c:import url="/includes/footer.jsp"/>

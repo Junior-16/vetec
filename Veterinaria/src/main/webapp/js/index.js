@@ -11,7 +11,8 @@ $(document).ready(function(){
 	$(".change").tooltip();
 	$(".changeOwner").tooltip();
 	$(".saveAnimal").tooltip();
-	
+	$(".cadastrarUser").tooltip();
+	$(".cadastrarProprietario").tooltip();
 	$(".change").click(function(){
 		$("#changeProfile").submit();
 	});
@@ -24,6 +25,12 @@ $(document).ready(function(){
 	$(".salvarProprietario").click(function(){
 		$("#salvarProprietario").submit()
 	});
+	$(".cadastrarProprietario").click(function(){
+		$("#cadastrarProprietario").submit();
+	});
+	$(".cadastrarUser").click(function(){
+		$("#cadastrarUser").submit();
+	});
 	
 	/*if(document.URL == "http://localhost:8080/Veterinaria/"){
 		$.toaster({ message : 'Seja Bem-Vindo', timeOut:15000, title : 'Você está logado', priority : 'info'});
@@ -33,7 +40,6 @@ $(document).ready(function(){
 	
 	//Efeito da barra de busca
 	$(".glyphicon-chevron-down").click(function(){
-		
 		var x = $(this)[0].nextElementSibling.nextElementSibling.className;
 		var classe = $(this)[0].className;
 		var y = "#"+$(this)[0].id;

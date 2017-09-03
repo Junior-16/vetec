@@ -3,7 +3,7 @@
 
 <c:import url="/includes/headerInitial.jsp"/>
 	<div class="container">
-			<div class="row main">
+			<div class="row">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
 	               		<h1 class="title">Clínica Veterinaria IFC - Concórdia</h1>

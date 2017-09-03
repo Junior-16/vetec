@@ -195,8 +195,8 @@ public class UserController extends AbstractController {
 	
 	@Post(value = "/recuperarSenha")
 	@NoCache
-	public void mudarSenha(String email) throws MessagingException {
-		this.bs.recoverPassword(email);
-		this.result.redirectTo(this).login(1, email);
+	public void mudarSenha(String username, String email) throws MessagingException {
+		this.bs.recoverPassword(username, email);
+		this.result.redirectTo(this).login(10, null);
 	}
 }
