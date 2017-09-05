@@ -75,6 +75,7 @@ public class ProntuarioBS extends HibernateBusiness{
 		info.setSetor(setor);
 		info.setAptidao(aptidao);
 		info.setCidade(cidade);	
+		dao.update(animalFicha);
 		dao.update(info);
 		this.validate();
 	}
