@@ -23,20 +23,17 @@ public class ProntuarioController extends AbstractController{
 	Animal animal = new Animal();
 	
 	@Permition
-	@Get(value="/prontuario/{proprietario}/{animal}")
+	@Get(value="/prontuario/{id}")
 	@NoCache
-	public void prontuario(String proprietario, String animal) {
-		Proprietario proprietarioList = this.bs.busca(proprietario).get(0);
-		List<Animal> animais = proprietarioList.getAnimais();
-		int index = 0;
-		while(index < animais.size()) {
-			if(animais.get(index).getNome().equals(animal) == true) {
-				this.result.include("animal",animais.get(index));
-			}
-			index++;
-		}
+	public void prontuario(Long id) {
+		this.result.include("ficha",this.Prontuariobs.infoGerais(id));
 	}
-	
+	@Permition
+	@Post("/infoGerais")
+	public void infoGerais(String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
+		this.Prontuariobs.updateInfoGerais(ficha, data, setor, animal, aptidao, cidade, proprietario, especie, raca, sexo, idade, peso);
+		this.result.redirectTo(UserController.class).buscar();
+	}
 	@Permition
 	@Get(value="/cadastrarAnimal")
 	@NoCache

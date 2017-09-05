@@ -6,8 +6,11 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.enterprise.context.RequestScoped;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -21,8 +24,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
 
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
@@ -168,48 +169,55 @@ public class UserBS extends HibernateBusiness{
 
 	}
 	
-	public void recoverPassword(String email) throws MessagingException {
-	      // Recipient's email ID needs to be mentioned.
-	      String to = email;
+	public void recoverPassword(String username, String email) throws MessagingException {
+		// Recupera o usuário que esqueceu a senha
+		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
+		CryptManager.updateSalt("@2o!A", "70Px$");
+		Criteria criteria = this.dao.newCriteria(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		User usuario = (User) criteria.uniqueResult();
+		String to = email;
+		try {
+			Properties properties = System.getProperties();
+			properties.put("mail.smtp.starttls.enable", "true");
+			properties.put("mail.smtp.host", "smtp.gmail.com");
+			properties.put("mail.smtp.user", "veterinaria Concordia");
+			properties.put("mail.smtp.password", "veterinariaIFC");
+			properties.put("mail.smtp.port", "587");
+			properties.put("mail.smtp.auth", "true");
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "junior.ramisch@gmail.com";
+			// Get the default Session object.
+			Session session = Session.getDefaultInstance(properties);
+			// Create a default MimeMessage object.
+			MimeMessage message = new MimeMessage(session);
 
-	      // Assuming you are sending email from localhost
-	      String host = "junior ramisch";
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress("veterinaria.ifc@gmail.com"));
 
-	      // Get system properties
-	      Properties properties = System.getProperties();
+			// Set To: header field of the header.
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.port", "25");
-	      properties.setProperty("mail.smtp.host", "smtp.gmail.com");
-	      properties.put("mail.smtp.user", "junior.ramisch@gmail.com");
-		  properties.put("mail.smtp.password", "1512801538");
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
-	      try {
-	         // Create a default MimeMessage object.
-	         MimeMessage message = new MimeMessage(session);
+			// Set Subject: header field
+			message.setSubject("Nova Senha");
 
-	         // Set From: header field of the header.
-	         message.setFrom(new InternetAddress(from));
+			Random aleatorio = new Random();
+			String senha = "";
+			while (senha.length() <= 5) {
+				senha += aleatorio.nextInt(10);
+			}
+			// Define a nova senha e atualiza o banco de dados
+			usuario.setPassword(CryptManager.passwordHash(senha));
+			this.dao.update(usuario);
+			message.setText(
+					"Sistema Gerenciador - Clícica Veterinaria IFC Concórdia notifica: Sua nova senha é -->" + senha);
 
-	         // Set To: header field of the header.
-	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			Transport t = session.getTransport("smtp");
+			t.connect("smtp.gmail.com", "veterinaria.ifc@gmail.com", "veterinariaIFC");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		} catch (AddressException mex) {
+			mex.printStackTrace();
+		}
 
-	         // Set Subject: header field
-	         message.setSubject("Nova Senha");
-
-	         // Now set the actual message
-	         message.setText("sua nova senha é: 12342");
-
-	         // Send message
-	         Transport.send(message);
-	         System.out.println("Sent message successfully....");
-	      }catch (AddressException mex) {
-	         mex.printStackTrace();
-	      }
-	   }
-	
+	}
 }

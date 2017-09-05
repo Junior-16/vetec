@@ -38,7 +38,7 @@
 									</span>
 									<c:if test="${not empty found.animais}">
 										<c:forEach items="${found.animais}" var="animais">
-											<a class = "${found.id}" href="<c:url value="/prontuario/${found.nome}/${animais.nome}"/>" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
+											<a class = "${found.id}" href="<c:url value="/prontuario/${animais.id}"/>" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
 										</c:forEach>
 									</c:if>
 								</li>

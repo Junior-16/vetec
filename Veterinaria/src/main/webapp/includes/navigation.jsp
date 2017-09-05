@@ -6,15 +6,9 @@
 <form method="get">
   <div class="container-fluid navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-       	<span class= "glyphicon glyphicon-home" aria-hidden="true"></span>
-      </a>
       <a class="navbar-brand" href="<c:url value = "/cadastrarProprietario"/>" style="color:white;" id="proprietario">
        <span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
        	Cadastrar Proprietário
-      </a>
-      <a class="navbar-brand" href="<c:url value = "/prontuario"/>" style="color:white;" id="prontuario">
-      	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>  Prontuário 
       </a>
       <a class="navbar-brand" href="<c:url value = "/ficha_internacao"/>" style="color:white;">
       <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>

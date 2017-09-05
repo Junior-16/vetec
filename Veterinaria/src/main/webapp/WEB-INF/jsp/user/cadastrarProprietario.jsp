@@ -5,7 +5,8 @@
 <c:import url="/includes/headers.jsp" />
 	<div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp"/>
-	<form method="post" action="<c:url value="/cadastrarproprietario"/>">
+	<form id = "cadastrarProprietario" method="post" action="<c:url value="/cadastrarproprietario"/>">
+		<div class="row">
 			<div class="col-md-4">
 				<label>Nome do Proprietário</label>
                 <input class="form-control" name="nome">
@@ -32,9 +33,8 @@
 				<label>Referências</label>
                 <textarea class="form-control" name="referencias" id="exampleTextarea" rows="6"></textarea>   
 			</div>
-			<div class="col-md-4">
-				<button type="submit" class="btn btn-success">Cadastrar</button>
-			</div>
+		</div>
+		<div class="cadastrarProprietario" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cadastar"><span id="icon-save" class="glyphicon glyphicon-ok"></span></div>
 	</form>
 	</div>
 <c:import url="/includes/footer.jsp" />
