@@ -17,5 +17,5 @@
 				</div>
 			</div>
 		</form>
-	</div>
+	</div> 
 <c:import url="/includes/footer.jsp" />

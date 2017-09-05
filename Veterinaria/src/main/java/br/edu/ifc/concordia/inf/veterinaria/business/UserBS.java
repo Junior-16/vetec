@@ -184,7 +184,8 @@ public class UserBS extends HibernateBusiness{
 	      // Setup mail server
 	      properties.setProperty("mail.smtp.port", "25");
 	      properties.setProperty("mail.smtp.host", "smtp.gmail.com");
-
+	      properties.put("mail.smtp.user", "junior.ramisch@gmail.com");
+		  properties.put("mail.smtp.password", "1512801538");
 	      // Get the default Session object.
 	      Session session = Session.getDefaultInstance(properties);
 	      try {
