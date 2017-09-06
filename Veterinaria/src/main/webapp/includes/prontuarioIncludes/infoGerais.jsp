@@ -7,7 +7,8 @@
 				<label>Ficha Clínica</label> <input class="form-control" name="ficha" value = "${ficha.ficha_clinica}">
 			</div>
 			<div class="col-md-4">
-				<label>Data</label> <input class="form-control" name="data" value="${ficha.data}">
+				<label for="example-date-input">Data</label> 
+				<input class="form-control" type="date" value="${ficha.data}" id="example-date-input" name="data">
 			</div>
 			<div class="col-md-4">
 				<label>Setor</label> <input class="form-control" name="setor" value="${ficha.setor}">

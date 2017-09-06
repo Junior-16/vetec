@@ -35,6 +35,13 @@
 					<div class="col-md-3">
 						<label>Raça</label><input class="form-control" name="raca">
 						<label>Nome do Proprietario</label><input class="form-control" name="nomeProprietario">
+						<c:if test="${not empty NotFoundOwner}">
+							<div class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="sr-only"></span>
+								${NotFoundOwner}
+							</div>
+						</c:if>
 					</div>
 					<div class="col-md-4">
 						<label>Informações Complementares</label>

@@ -21,24 +21,29 @@ import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 @RequestScoped
 public class ProntuarioBS extends HibernateBusiness{
 	@Inject UserBS bs;
-	public void cadastrarAnimal(String nome, String especie, String idade, String peso, String sexo, String raca, String info,String nomeProprietario) {
+	public boolean cadastrarAnimal(String nome, String especie, String idade, String peso, String sexo, String raca, String info,String nomeProprietario) {
 		Criteria criteria = this.dao.newCriteria(Proprietario.class);
 		Animal animal = new Animal();
 		criteria.add(Restrictions.eq("nome", nomeProprietario));
 		Proprietario proprietario = (Proprietario) criteria.uniqueResult();
-		InfoGerais infogerais = new InfoGerais();
-		animal.setNome(nome);
-		animal.setEspecie(especie);
-		animal.setIdade(idade);
-		animal.setPeso(peso);
-		animal.setSexo(sexo);
-		animal.setRaca(raca);
-		animal.setInfoAdd(info);
-		animal.setProprietario(proprietario);
-		infogerais.setAnimal(animal);
-		this.dao.persist(animal);
-		this.dao.persist(infogerais);
-		this.validate();
+		if (proprietario == null) {
+			return false;
+		}else {
+			InfoGerais infogerais = new InfoGerais();
+			animal.setNome(nome);
+			animal.setEspecie(especie);
+			animal.setIdade(idade);
+			animal.setPeso(peso);
+			animal.setSexo(sexo);
+			animal.setRaca(raca);
+			animal.setInfoAdd(info);
+			animal.setProprietario(proprietario);
+			infogerais.setAnimal(animal);
+			this.dao.persist(animal);
+			this.dao.persist(infogerais);
+			this.validate();
+			return true;
+		}
 	}
 	
 	public InfoGerais infoGerais(Long  id) {
