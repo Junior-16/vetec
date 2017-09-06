@@ -60,7 +60,7 @@ public class ProntuarioBS extends HibernateBusiness{
 		Criteria criteria = this.dao.newCriteria(InfoGerais.class);
 		criteria.add(Restrictions.eq("animal.id", id));
 		InfoGerais info = (InfoGerais) criteria.uniqueResult();
-		Animal animalFicha = info.getAnimal();	
+		Animal animalFicha = info.getAnimal();
 		//Informações do Animal
 		animalFicha.setIdade(idade);
 		animalFicha.setSexo(sexo);
