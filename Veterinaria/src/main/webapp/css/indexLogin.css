@@ -154,3 +154,6 @@ p{
 	font-size:15px;
 	margin-top:10px;
 }
+.panel-heading{
+	padding-top:10%; 
+}

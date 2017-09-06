@@ -10,24 +10,24 @@
 	<div class="col-md-3">
 		<div class="form-group">
 			<label for="example-date-input">Tratamento Domiciliar</label> <input
-				class="form-control" type="date" value="2011-08-19"
+				class="form-control" type="date" value="xxxx-xx-xx"
 				id="example-date-input">
 		</div>
 		<div class="form-group">
 			<label for="example-date-input">Retorno</label> <input
-				class="form-control" type="date" value="2011-08-19"
+				class="form-control" type="date" value="xxxx-xx-xx"
 				id="example-date-input">
 		</div>
 		<div class="form-group">
 			<label for="example-date-input">Internado</label> <input
-				class="form-control" type="date" value="2011-08-19"
+				class="form-control" type="date" value="xxxx-xx-xx"
 				id="example-date-input">
 		</div>
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
 			<label for="example-date-input">Alta</label> <input
-				class="form-control" type="date" value="2011-08-19"
+				class="form-control" type="date" value="xxxx-xx-xx"
 				id="example-date-input">
 		</div>
 		<div class="form-group">

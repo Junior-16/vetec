@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
+import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
@@ -37,15 +38,23 @@ public class ProntuarioController extends AbstractController{
 	@Permition
 	@Get(value="/cadastrarAnimal")
 	@NoCache
-	public void cadastrarAnimal() {
-
+	public void cadastrarAnimal(String error) {
+		if(GeneralUtils.isEmpty(error) == false) {
+			this.result.include("NotFoundOwner",error);
+		}else {
+			
+		}
 	}
 	
 	@Post(value="/cadastrarAnimal")
 	@NoCache
 	public void cadastrar(String nome, String especie, String idade, String peso, String sexo, String raca, String info,String nomeProprietario) {
-		this.Prontuariobs.cadastrarAnimal(nome, especie, idade, peso, sexo, raca, info, nomeProprietario);
-		this.result.redirectTo(UserController.class).buscar();
+		if (this.Prontuariobs.cadastrarAnimal(nome, especie, idade, peso, sexo, raca, info, nomeProprietario) == true) {
+			this.result.redirectTo(UserController.class).buscar();
+		}else {
+			this.result.redirectTo(this).cadastrarAnimal("Proprietario não encontrado");
+		}
+
 	}
 	
 	@Permition

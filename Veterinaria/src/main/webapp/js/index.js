@@ -2,6 +2,8 @@ $(document).ready(function(){
 	//Adapta o footer
 	var size = ($(window).height() - $(".footer").height() - $(".header").height());
 	$(".conteudo").css("min-height", size+"px");
+	var loginSize = $(window).height() - $(".footer").height();
+	$(".loginContent").css("min-height", loginSize+"px");
 	//Aplica as máscaras
 	$("#cep").mask("00000-000");
 	$("#cpf").mask("000.000.000-00");
