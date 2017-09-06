@@ -24,9 +24,9 @@
 		</li>
 		<c:if test="${not empty found}">
 			<c:forEach items="${found}" var="found">
-				<li><a class="proprietario" href="<c:url value="proprietario/${found.nome}"/>"> <span
+				<li><a class="proprietario"> <span
 						class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
-						${found.nome}
+						<h6  href="<c:url value="proprietario/${found.nome}"/>" >${found.nome}</h6>
 				</a> <c:if test="${not empty found.animais}">
 						<c:forEach items="${found.animais}" var="animais">
 							<a class="${found.id}"

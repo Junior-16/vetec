@@ -3,7 +3,7 @@
 
 <c:import url="/includes/headerInitial.jsp"/>
 	<div class="container">
-			<div class="row main">
+			<div class="row">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
 	               		<h1 class="title">Clínica Veterinaria IFC - Concórdia</h1>
@@ -36,7 +36,7 @@
 								<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
 							</div>
 							<div class="login-register">
-				            	<a href="#">Esqueci minha senha</a>
+				            	<a href="<c:url value="/recuperarSenha"/>">Esqueci minha senha</a>
 				         	</div>
 				         	<c:if test="${not empty errorMsg}">
 								<div class="alert alert-danger" role="alert">
