@@ -140,11 +140,13 @@ input::-webkit-input-placeholder {
 #logo{
 	margin-top:13px;
 	margin-left:90px;
-	height:70px;
-	width:200px;
+	height:60px;
+	width:180px;
 }
 p{
+    font-size:17px;
     margin-top: 25px;
+    font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 .container{
 	padding-left:20%;
