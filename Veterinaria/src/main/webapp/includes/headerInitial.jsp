@@ -6,15 +6,16 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Veterinaria</title>
-	<link rel="stylesheet" href="<c:url value="/css/tether.min.css"/>"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Website CSS style -->
-	<link rel="stylesheet" type="text/css" href="<c:url value="bootstrap/assets/css/main.css"/>">
+
 	
 	<!-- Website Font style -->
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="<c:url value="bootstrap/css/bootstrap.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/aui/aui-css/css/bootstrap.min.css"/>">
+	<link rel="stylesheet" href="<c:url value="/css/tether.min.css"/>"/>
+	
+	
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Passion+One'
 		rel='stylesheet' type='text/css'>
