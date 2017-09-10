@@ -2,7 +2,6 @@ package br.edu.ifc.concordia.inf.veterinaria.business;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
+import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
@@ -52,19 +52,15 @@ public class ProntuarioBS extends HibernateBusiness{
 		return (InfoGerais) criteria.uniqueResult();
 		
 	}
-	
-	public void updateInfoGerais(String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
-		Proprietario  proprietarioRetorno = (this.bs.busca(proprietario).get(0));
-		List<Animal> animalRetorno = proprietarioRetorno.getAnimais();
-		Long id = null;
-		for (Animal e : animalRetorno) {
-			if (e.getNome().equals(animal) == true) {
-				id = e.getId();
-			}
-		}
-		Criteria criteria = this.dao.newCriteria(InfoGerais.class);
+	public AnamneseGeral anamneseGeral(Long  id) {
+		Criteria criteria = this.dao.newCriteria(AnamneseGeral.class);
 		criteria.add(Restrictions.eq("animal.id", id));
-		InfoGerais info = (InfoGerais) criteria.uniqueResult();
+		return (AnamneseGeral) criteria.uniqueResult();
+		
+	}
+	
+	public void updateInfoGerais(Long id, String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
+		InfoGerais info = this.infoGerais(id);
 		Animal animalFicha = info.getAnimal();
 		//Informações do Animal
 		animalFicha.setIdade(idade);
@@ -84,7 +80,26 @@ public class ProntuarioBS extends HibernateBusiness{
 		dao.update(info);
 		this.validate();
 	}
-	
+	public void anamneseGeral(Long id, String motivoConsulta, String antecedentesMorbidos, String medidasSanitarias) {
+		AnamneseGeral anamnese = this.anamneseGeral(id);
+		if(anamnese == null) {
+			Criteria criteria = this.dao.newCriteria(Animal.class);
+			criteria.add(Restrictions.eq("id", id));
+			Animal animal = (Animal) criteria.uniqueResult();
+			anamnese = new AnamneseGeral();
+			anamnese.setAnimal(animal);
+			anamnese.setAntecedentesMorbidos(antecedentesMorbidos);
+			anamnese.setMedidasSanitarias(medidasSanitarias);
+			anamnese.setMotivoConsulta(motivoConsulta);
+			dao.persist(anamnese);
+		}else {
+			anamnese.setAntecedentesMorbidos(antecedentesMorbidos);
+			anamnese.setMedidasSanitarias(medidasSanitarias);
+			anamnese.setMotivoConsulta(motivoConsulta);
+			this.dao.update(anamnese);
+		}		
+		this.validate();
+	}
 	public void validate() {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

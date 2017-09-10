@@ -4,36 +4,42 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.jboss.logging.Logger;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSerializer;
+
+import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
+import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
+import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
+import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
+import br.com.caelum.vraptor.view.*;
 
 @Controller
 public class ProntuarioController extends AbstractController{
 	@Inject private ProntuarioBS Prontuariobs;
 	@Inject private UserBS bs;
 	Animal animal = new Animal();
-	
+	private static final Logger LOG = Logger.getLogger(ApplicationSetup.class);
 	@Permition
 	@Get(value="/prontuario/{id}")
 	@NoCache
 	public void prontuario(Long id) {
 		this.result.include("ficha",this.Prontuariobs.infoGerais(id));
-	}
-	@Permition
-	@Post("/infoGerais")
-	public void infoGerais(String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
-		this.Prontuariobs.updateInfoGerais(ficha, data, setor, animal, aptidao, cidade, proprietario, especie, raca, sexo, idade, peso);
-		this.result.redirectTo(UserController.class).buscar();
+		this.result.include("AnamneseGeral", this.Prontuariobs.anamneseGeral(id));
 	}
 	@Permition
 	@Get(value="/cadastrarAnimal")
@@ -79,6 +85,32 @@ public class ProntuarioController extends AbstractController{
 	public void salvarProprietario(String nome, String cpf, String telefone, String profissao, String endereco, String cep, String referencias) {
 		this.bs.proprietarioUpdate( nome, cpf, telefone, profissao, endereco, cep, referencias);
 		this.result.redirectTo(IndexController.class).index();
+	}
+	//Controllers das informações do prontuario
+	@Permition
+	@Post("/infoGerais/{id}")
+	public void infoGerais(Long id, String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
+		this.Prontuariobs.updateInfoGerais(id, ficha, data, setor, animal, aptidao, cidade, proprietario, especie, raca, sexo, idade, peso);
+		this.result.redirectTo(UserController.class).buscar();
+	}
+	
+	@Permition
+	@Post("/anamneseGeral/{id}")
+	public void anamneseGeral(Long id, String motivoConsulta, String antecedentesMorbidos, String medidasSanitarias) {
+		this.Prontuariobs.anamneseGeral(id, motivoConsulta, antecedentesMorbidos, medidasSanitarias);
+		this.result.redirectTo(UserController.class).buscar();
+	}
+	
+	@Post(value="/infoGerais")
+	@Consumes(value= {"application/json"})
+	public void prontuario(String ficha) {
+		Gson gson = new GsonBuilder().create();
+		InfoGerais infogerais = gson.fromJson(ficha, InfoGerais.class);
+		if (infogerais != null) {
+			this.response.setStatus(200);
+		}else {
+			
+		}
 	}
 	
 }

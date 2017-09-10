@@ -32,9 +32,12 @@
 								<li>
 									<span class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
 									<span id = "item">
-										<a href = "<c:url value="proprietario/${found.nome}"/>" style="text-decoration:none;">
+										<a href = "<c:url value="proprietario/${found.nome}"/>" style="text-decoration:none; padding-right: 40%;">
 										${found.nome}
 										</a>
+										<a href="<c:url value="proprietarioRemover/${found.id}"/>">
+        									<span class="glyphicon glyphicon-remove"></span>
+   										</a>
 									</span>
 									<c:if test="${not empty found.animais}">
 										<c:forEach items="${found.animais}" var="animais">

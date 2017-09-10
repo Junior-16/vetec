@@ -34,7 +34,32 @@ $(document).ready(function(){
 		$("#cadastrarUser").submit();
 	});
 	$("#save").click(function(){
-		$("#infogerais").submit();
+		var prontuario = {
+    			"infogerais":{
+    				"ficha_clinica":$("#fichaClinica").val(),
+    				"data": $("#data").val(),
+    				"setor":$("#setor").val(),
+    				"aptidao":$("#aptidao").val(),
+    				"cidade":$("#cidade").val(),
+    				"animal":{
+    					"idade":$("#idade").val(),
+    					"sexo":$("#sexo").val(),
+    					"peso":$("#peso").val(),
+    					"especie":$("#especie").val(),
+    					"raca":$("#raca").val(),
+    					"nome":$("#nome").val()
+    				}
+    			}
+    		};
+			$.ajax({
+				url: '/Veterinaria/infoGerais',
+	            data: JSON.stringify(prontuario),
+	            method: "post",
+	            dataType: "json",
+	            contentType: "application/json",
+	            success: function(e){ alert("deu"); },
+	            failure: function(e){ alert("não deu"); }
+		});
 	});
 	
 	/*if(document.URL == "http://localhost:8080/Veterinaria/"){

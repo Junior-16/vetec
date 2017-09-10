@@ -22,30 +22,30 @@
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">
-					<div class="tab-pane active in" id="tab1">
-						<c:import url="/includes/prontuarioIncludes/infoGerais.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab2">
-						<c:import url="/includes/prontuarioIncludes/anamneseGeral.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab3">
-						<c:import url="/includes/prontuarioIncludes/anamneseEspecial.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab4">
-						<c:import url="/includes/prontuarioIncludes/exameFisico.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab5">
-						<c:import url="/includes/prontuarioIncludes/examesComplementares.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab6">
-						<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab7">
-						<c:import url="/includes/prontuarioIncludes/tratamento.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab8">
-						<h5>Ainda não decidi o que vou por aqui</h5>
-					</div>
+						<div class="tab-pane active in" id="tab1">
+							<c:import url="/includes/prontuarioIncludes/infoGerais.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab2">
+							<c:import url="/includes/prontuarioIncludes/anamneseGeral.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab3">
+							<c:import url="/includes/prontuarioIncludes/anamneseEspecial.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab4">
+							<c:import url="/includes/prontuarioIncludes/exameFisico.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab5">
+							<c:import url="/includes/prontuarioIncludes/examesComplementares.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab6">
+							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab7">
+							<c:import url="/includes/prontuarioIncludes/tratamento.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab8">
+							<h5>Ainda não decidi o que vou por aqui</h5>
+						</div>
 				</div>
 				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
 		</div>
