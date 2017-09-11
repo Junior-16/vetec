@@ -52,54 +52,38 @@ public class ProntuarioBS extends HibernateBusiness{
 		return (InfoGerais) criteria.uniqueResult();
 		
 	}
-	public AnamneseGeral anamneseGeral(Long  id) {
+	public AnamneseGeral anamneseGeral( Long id ) {
 		Criteria criteria = this.dao.newCriteria(AnamneseGeral.class);
 		criteria.add(Restrictions.eq("animal.id", id));
 		return (AnamneseGeral) criteria.uniqueResult();
 		
 	}
 	
-	public void updateInfoGerais(Long id, String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
-		InfoGerais info = this.infoGerais(id);
-		Animal animalFicha = info.getAnimal();
-		//Informações do Animal
-		animalFicha.setIdade(idade);
-		animalFicha.setSexo(sexo);
-		animalFicha.setPeso(peso);
-		animalFicha.setEspecie(especie);
-		animalFicha.setRaca(raca);
-		animalFicha.setNome(animal);
-		//Informações da Ficha
-		info.setAnimal(animalFicha);
-		info.setFicha_clinica(ficha);
-		info.setData(data);
-		info.setSetor(setor);
-		info.setAptidao(aptidao);
-		info.setCidade(cidade);	
-		dao.update(animalFicha);
+	public Animal buscaAnimal(Long id) {
+		Criteria criteria = dao.newCriteria(Animal.class);
+		criteria.add(Restrictions.eq("id", id));
+		return (Animal) criteria.uniqueResult();
+	}
+	
+	public void updateInfoGerais( InfoGerais ficha ) {
+		InfoGerais info = this.infoGerais(ficha.getAnimal().getId());
+		Animal animal = this.buscaAnimal(ficha.getAnimal().getId());
+		animal.setEspecie(ficha.getAnimal().getEspecie());
+		animal.setIdade(ficha.getAnimal().getIdade());
+		animal.setNome(ficha.getAnimal().getNome());
+		animal.setPeso(ficha.getAnimal().getPeso());
+		animal.setRaca(ficha.getAnimal().getRaca());
+		animal.setSexo(ficha.getAnimal().getSexo());
+		info.setAptidao(ficha.getAptidao());
+		info.setCidade(ficha.getCidade());
+		info.setData(ficha.getData());
+		info.setSetor(ficha.getSetor());
+		info.setFicha_clinica(ficha.getFicha_clinica());
+		dao.update(animal);
 		dao.update(info);
 		this.validate();
 	}
-	public void anamneseGeral(Long id, String motivoConsulta, String antecedentesMorbidos, String medidasSanitarias) {
-		AnamneseGeral anamnese = this.anamneseGeral(id);
-		if(anamnese == null) {
-			Criteria criteria = this.dao.newCriteria(Animal.class);
-			criteria.add(Restrictions.eq("id", id));
-			Animal animal = (Animal) criteria.uniqueResult();
-			anamnese = new AnamneseGeral();
-			anamnese.setAnimal(animal);
-			anamnese.setAntecedentesMorbidos(antecedentesMorbidos);
-			anamnese.setMedidasSanitarias(medidasSanitarias);
-			anamnese.setMotivoConsulta(motivoConsulta);
-			dao.persist(anamnese);
-		}else {
-			anamnese.setAntecedentesMorbidos(antecedentesMorbidos);
-			anamnese.setMedidasSanitarias(medidasSanitarias);
-			anamnese.setMotivoConsulta(motivoConsulta);
-			this.dao.update(anamnese);
-		}		
-		this.validate();
-	}
+
 	public void validate() {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

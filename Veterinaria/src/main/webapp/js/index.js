@@ -1,20 +1,5 @@
 $(document).ready(function(){
-	//Adapta o footer
-	var size = ($(window).height() - $(".footer").height() - $(".header").height());
-	$(".conteudo").css("min-height", size+"px");
-	var loginSize = $(window).height() - $(".footer").height();
-	$(".loginContent").css("min-height", loginSize+"px");
-	//Aplica as máscaras
-	$("#cep").mask("00000-000");
-	$("#cpf").mask("000.000.000-00");
-	$("#telefone").mask("(00) 0 0000-0000");
-
-	$('#save').tooltip();
-	$(".change").tooltip();
-	$(".changeOwner").tooltip();
-	$(".saveAnimal").tooltip();
-	$(".cadastrarUser").tooltip();
-	$(".cadastrarProprietario").tooltip();
+	//Envia os formularios
 	$(".change").click(function(){
 		$("#changeProfile").submit();
 	});
@@ -33,54 +18,58 @@ $(document).ready(function(){
 	$(".cadastrarUser").click(function(){
 		$("#cadastrarUser").submit();
 	});
+	//Enviar informações gerais
 	$("#save").click(function(){
 		var prontuario = {
-    			"infogerais":{
-    				"ficha_clinica":$("#fichaClinica").val(),
-    				"data": $("#data").val(),
-    				"setor":$("#setor").val(),
-    				"aptidao":$("#aptidao").val(),
-    				"cidade":$("#cidade").val(),
-    				"animal":{
-    					"idade":$("#idade").val(),
-    					"sexo":$("#sexo").val(),
-    					"peso":$("#peso").val(),
-    					"especie":$("#especie").val(),
-    					"raca":$("#raca").val(),
-    					"nome":$("#nome").val()
-    				}
+				ficha_clinica:$("#fichaClinica").val(),
+    			data: $("#data").val(),
+    			setor:$("#setor").val(),
+    			aptidao:$("#aptidao").val(),
+    			cidade:$("#cidade").val(),
+    			animal:{
+    				id:$("#animalId").val(),
+    				idade:$("#idade").val(),
+    				sexo:$("#sexo").val(),
+    				peso:$("#peso").val(),
+    				especie:$("#especie").val(),
+    				raca:$("#raca").val(),
+    				nome:$("#nome").val()
     			}
     		};
 			$.ajax({
-				url: '/Veterinaria/infoGerais',
+				url: 'http://localhost:8080/Veterinaria/infoGerais',
 	            data: JSON.stringify(prontuario),
-	            method: "post",
+	            method: "POST",
 	            dataType: "json",
 	            contentType: "application/json",
-	            success: function(e){ alert("deu"); },
-	            failure: function(e){ alert("não deu"); }
+	            success(e){ 
+	            	console.log(e); 
+	            },
+	            error(e){ console.log
+	            	(e);
+	            }
+	           
 		});
 	});
-	
-	/*if(document.URL == "http://localhost:8080/Veterinaria/"){
-		$.toaster({ message : 'Seja Bem-Vindo', timeOut:15000, title : 'Você está logado', priority : 'info'});
-	}else{
-		
-	}*/
-	
-	//Efeito da barra de busca
-	$(".glyphicon-chevron-down").click(function(){
-		var x = $(this)[0].nextElementSibling.nextElementSibling.className;
-		var classe = $(this)[0].className;
-		var y = "#"+$(this)[0].id;
-		$("."+x).toggle("slow");
-		if( classe == "glyphicon glyphicon-chevron-right"){
-			$(y).removeClass();
-			$(y).addClass("glyphicon glyphicon-chevron-down");
-		}else{
-			$(y).removeClass();
-			$(y).addClass("glyphicon glyphicon-chevron-right");
+
+	//Enviar informações da Anamnese 
+	$("#anamneseGeral").click(function(){
+		var anamneseGeral = {
+				motivoConsulta:$("#motivoConsulta").val(),
+				antecedentesMorbidos:("#antecedentesMorbidos").val(),
+				medidasSanitarias:("#medidasSanitarias").val()
 		}
+		$.ajax({
+			method:"POST",
+			url:'htt://localhost:8080/Veterinaria/anamneseGeral',
+			data:JSON.stringify(anamneseGeral),
+			contentType:"application/json",
+			success(e){
+				console.log(e);
+			},
+			error(e){
+				console.log(e);
+			}
+		});
 	});
-	
 });

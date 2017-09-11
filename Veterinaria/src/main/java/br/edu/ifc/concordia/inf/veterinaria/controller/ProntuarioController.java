@@ -87,29 +87,14 @@ public class ProntuarioController extends AbstractController{
 		this.result.redirectTo(IndexController.class).index();
 	}
 	//Controllers das informações do prontuario
-	@Permition
-	@Post("/infoGerais/{id}")
-	public void infoGerais(Long id, String ficha, String data, String setor, String animal, String aptidao, String cidade, String proprietario, String especie, String raca, String sexo, String idade, String peso) {
-		this.Prontuariobs.updateInfoGerais(id, ficha, data, setor, animal, aptidao, cidade, proprietario, especie, raca, sexo, idade, peso);
-		this.result.redirectTo(UserController.class).buscar();
-	}
-	
-	@Permition
-	@Post("/anamneseGeral/{id}")
-	public void anamneseGeral(Long id, String motivoConsulta, String antecedentesMorbidos, String medidasSanitarias) {
-		this.Prontuariobs.anamneseGeral(id, motivoConsulta, antecedentesMorbidos, medidasSanitarias);
-		this.result.redirectTo(UserController.class).buscar();
-	}
 	
 	@Post(value="/infoGerais")
-	@Consumes(value= {"application/json"})
-	public void prontuario(String ficha) {
-		Gson gson = new GsonBuilder().create();
-		InfoGerais infogerais = gson.fromJson(ficha, InfoGerais.class);
-		if (infogerais != null) {
-			this.response.setStatus(200);
+	@Consumes({"application/json"})
+	public void prontuario(InfoGerais ficha) {
+		if (ficha != null) {
+			this.Prontuariobs.updateInfoGerais(ficha);
 		}else {
-			
+			this.fail("teste");
 		}
 	}
 	

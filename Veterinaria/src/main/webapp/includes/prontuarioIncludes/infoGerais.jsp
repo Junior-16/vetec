@@ -49,6 +49,11 @@
 			<div class="col-md-3">
 				<label>Telefones</label> <input class="form-control" name="telefone" value="<c:url value="${ficha.animal.proprietario.telefone}"/>">
 			</div>
+			<input type="hidden" value="${ficha.animal.id}" id="animalId" />
 		</c:if>
 	</form>
+		<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
+		<a href = "#infoGerais" id ="ver" data-toggle="tab" data-placement="top" title="Editar Informações"><span id = "icon-save" class="glyphicon glyphicon-eye-open"></span></a>
+		
+
 </div>

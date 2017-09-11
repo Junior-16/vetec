@@ -22,5 +22,10 @@
 	<script src="<c:url value="/js/jquery.toaster.js"/>"></script>
 	<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script src="<c:url value="/js/index.js" />"></script>
+	<script src="<c:url value="/js/style.js" />"></script>
+<!--
+
+//-->
+
 </body>
 </html>

@@ -10,8 +10,7 @@
 	        <!-- Tabs -->
 	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">Informações
-							Gerais</a></li>
+					<li class = "active"><a href="infoGerais" data-toggle="tab" >Informações Gerais</a></li>
 					<li><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
 					<li><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
 					<li><a href="#tab4" data-toggle="tab">Exame Físico</a></li>
@@ -46,8 +45,10 @@
 						<div class="tab-pane fade" id="tab8">
 							<h5>Ainda não decidi o que vou por aqui</h5>
 						</div>
+						<div class="tab-pane fade" id="infoGerais">
+							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>
+						</div>
 				</div>
-				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
 		</div>
 	</div>
 
