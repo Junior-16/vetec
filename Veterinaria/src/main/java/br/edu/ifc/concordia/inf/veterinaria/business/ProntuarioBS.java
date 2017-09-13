@@ -14,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.boilerplate.HibernateBusiness;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup.DefaultTrustManager;
+import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial;
 import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
@@ -46,19 +47,6 @@ public class ProntuarioBS extends HibernateBusiness{
 		}
 	}
 	
-	public InfoGerais infoGerais(Long  id) {
-		Criteria criteria = this.dao.newCriteria(InfoGerais.class);
-		criteria.add(Restrictions.eq("animal.id", id));
-		return (InfoGerais) criteria.uniqueResult();
-		
-	}
-	public AnamneseGeral anamneseGeral( Long id ) {
-		Criteria criteria = this.dao.newCriteria(AnamneseGeral.class);
-		criteria.add(Restrictions.eq("animal.id", id));
-		return (AnamneseGeral) criteria.uniqueResult();
-		
-	}
-	
 	public Animal buscaAnimal(Long id) {
 		Criteria criteria = dao.newCriteria(Animal.class);
 		criteria.add(Restrictions.eq("id", id));
@@ -83,7 +71,39 @@ public class ProntuarioBS extends HibernateBusiness{
 		dao.update(info);
 		this.validate();
 	}
-
+	
+	public InfoGerais infoGerais(Long  id) {
+		Criteria criteria = this.dao.newCriteria(InfoGerais.class);
+		criteria.add(Restrictions.eq("animal.id", id));
+		return (InfoGerais) criteria.uniqueResult();
+		
+	}
+	public AnamneseGeral anamneseGeral( Long id ) {
+		Criteria criteria = this.dao.newCriteria(AnamneseGeral.class);
+		criteria.add(Restrictions.eq("animal.id", id));
+		return (AnamneseGeral) criteria.uniqueResult();
+		
+	}
+	public AnamneseEspecial anamneseEspecial(Long id) {
+		Criteria criteria = this.dao.newCriteria(AnamneseEspecial.class);
+		criteria.add(Restrictions.eq("animal.id", id));
+		return (AnamneseEspecial)criteria.uniqueResult();
+	}
+	
+	public void anamneseGeral(AnamneseGeral anamnese) {
+		this.dao.persist(anamnese);
+		this.validate();
+	}
+	
+	public void anamneseEspecial(AnamneseEspecial anamnese) {
+		if(this.anamneseEspecial(anamnese.getAnimal().getId()) == null) {
+			this.dao.persist(anamnese);
+		}else {
+			this.dao.update(anamnese);
+		}
+		this.validate();
+	}
+	
 	public void validate() {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

@@ -41,10 +41,10 @@
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
 
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.User"/>
-  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Proprietario"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Animal"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais"/>
-  		
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial"/>
 	</session-factory>
 </hibernate-configuration>

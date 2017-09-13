@@ -18,6 +18,8 @@ $(document).ready(function(){
 	$(".cadastrarUser").tooltip();
 	$(".cadastrarProprietario").tooltip();
 	$("#ver").tooltip();
+	$("#anamneseGeral").tooltip();
+	$("#anamneseEspecial").tooltip();
 
 	//Efeito da barra de pesquisa
 	$(".glyphicon-chevron-down").click(function(){

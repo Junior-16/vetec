@@ -45,24 +45,67 @@ $(document).ready(function(){
 	            success(e){ 
 	            	console.log(e); 
 	            },
-	            error(e){ console.log
-	            	(e);
+	            error(e){ 
+	            	console.log(e);
 	            }
 	           
 		});
 	});
 
-	//Enviar informações da Anamnese 
+	//Enviar informações da Anamnese Geral
 	$("#anamneseGeral").click(function(){
 		var anamneseGeral = {
 				motivoConsulta:$("#motivoConsulta").val(),
-				antecedentesMorbidos:("#antecedentesMorbidos").val(),
-				medidasSanitarias:("#medidasSanitarias").val()
-		}
+				antecedentesMorbidos:$("#antecedentesMorbidos").val(),
+				medidasSanitarias:$("#medidasSanitarias").val(),
+				animal:{
+						id:$("#animalId").val(),
+						idade:$("#idade").val(),
+						sexo:$("#sexo").val(),
+						peso:$("#peso").val(),
+						especie:$("#especie").val(),
+						raca:$("#raca").val(),
+						nome:$("#nome").val()
+					}
+		};
 		$.ajax({
 			method:"POST",
-			url:'htt://localhost:8080/Veterinaria/anamneseGeral',
+			url:'http://localhost:8080/Veterinaria/anamneseGeral',
 			data:JSON.stringify(anamneseGeral),
+			contentType:"application/json",
+			success(e){
+				console.log(e);
+			},
+			error(e){
+				console.log(e);
+			}
+		});
+	});
+	//Post dos campos da Anamnese Especial
+	$("#anamneseEspecial").click(function(){
+		var anamneseEspecial = {
+				sistemaVisual:$("#sistemaVisual").val(),
+				sistemaDigestivo:$("#sistemaDigestivo").val(),
+				sistemaUrinario:$("#sistemaUrinario").val(),
+				sistemaLocomotor:$("#sistemaLocomotor").val(),
+				sistemaRespiratorio:$("#sistemaRespiratorio").val(),
+				sistemaReprodutivo:$("#sistemaReprodutivo").val(),
+				sistemaNervoso:$("#sistemaNervoso").val(),
+				peleAnexos:$("#peleAnexos").val(),
+				animal:{
+    				id:$("#animalId").val(),
+    				idade:$("#idade").val(),
+    				sexo:$("#sexo").val(),
+    				peso:$("#peso").val(),
+    				especie:$("#especie").val(),
+    				raca:$("#raca").val(),
+    				nome:$("#nome").val()
+    			}
+		};
+		$.ajax({
+			method:"POST",
+			url:'http://localhost:8080/Veterinaria/anamneseEspecial',
+			data:JSON.stringify(anamneseEspecial),
 			contentType:"application/json",
 			success(e){
 				console.log(e);

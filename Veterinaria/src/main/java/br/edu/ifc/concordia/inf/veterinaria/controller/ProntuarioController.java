@@ -6,27 +6,23 @@ import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSerializer;
-
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
-import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
 import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
+import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial;
+import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
-import br.com.caelum.vraptor.view.*;
 
 @Controller
 public class ProntuarioController extends AbstractController{
@@ -93,8 +89,31 @@ public class ProntuarioController extends AbstractController{
 	public void prontuario(InfoGerais ficha) {
 		if (ficha != null) {
 			this.Prontuariobs.updateInfoGerais(ficha);
+			this.success("Os dados foram salvos");
 		}else {
-			this.fail("teste");
+			this.fail("Deu pau");
+		}
+	}
+	
+	@Post(value = "/anamneseGeral")
+	@Consumes({"application/json"})
+	public void anamneseGeral(AnamneseGeral anamnese) {
+		if (anamnese != null) {
+			this.Prontuariobs.anamneseGeral(anamnese);
+			this.success("Os dados foram salvos");
+		}else {
+			this.fail("Deu pau");
+		}
+	}
+	
+	@Post(value="/anamneseEspecial")
+	@Consumes({"application/json"})
+	public void anamneseEspecial(AnamneseEspecial anamnese) {
+		if(anamnese != null) {
+			this.Prontuariobs.anamneseEspecial(anamnese);
+			this.success("Os dados foram salvos");
+		}else {
+			this.fail("Deu pau");
 		}
 	}
 	
