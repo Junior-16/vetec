@@ -99,7 +99,16 @@ public class ProntuarioBS extends HibernateBusiness{
 		if(this.anamneseEspecial(anamnese.getAnimal().getId()) == null) {
 			this.dao.persist(anamnese);
 		}else {
-			this.dao.update(anamnese);
+			AnamneseEspecial anamneseEspecial = this.anamneseEspecial(anamnese.getAnimal().getId());
+			anamneseEspecial.setPeleAnexos(anamnese.getPeleAnexos());
+			anamneseEspecial.setSistemaDigestivo(anamnese.getSistemaDigestivo());
+			anamneseEspecial.setSistemaLocomotor(anamnese.getSistemaLocomotor());
+			anamneseEspecial.setSistemaNervoso(anamnese.getSistemaNervoso());
+			anamneseEspecial.setSistemaReprodutivo(anamnese.getSistemaReprodutivo());
+			anamneseEspecial.setSistemaRespiratorio(anamnese.getSistemaRespiratorio());
+			anamneseEspecial.setSistemaUrinario(anamnese.getSistemaUrinario());
+			anamneseEspecial.setSistemaVisual(anamnese.getSistemaVisual());
+			this.dao.update(anamneseEspecial);
 		}
 		this.validate();
 	}

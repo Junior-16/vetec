@@ -4,7 +4,7 @@
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp" />
-	<form method="POST" action="<c:url value="/modificarPerfil"/>">
+	<form id = "changeProfile" method="POST" action="<c:url value="/modificarPerfil"/>">
 		<c:if test="${not empty modificarperfil}">
 			<div class="row container-fluid">
 				<div class=col-md-3>
@@ -60,10 +60,8 @@
 					<label>Nova Senha</label>
 		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
 				</div>
-				<div class="col-md-2">
-					<button type="submit" class="btn btn-success">Concluir</button>
-				</div>
 			</div>
+			<div class ="change" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
 		</c:if>
 	</form>
 </div>

@@ -135,7 +135,7 @@ img{
 	padding-right: 40px;
 	padding-bottom: 40px;
 }
-#save, #editar, .change, .saveAnimal, .changeOwner, .salvarProprietario, .cadastrarProprietario, .cadastrarUser, #ver, #anamneseGeral, #anamneseEspecial{
+#save, #editar, #change, .saveAnimal, .changeOwner, .salvarProprietario, .cadastrarProprietario, .cadastrarUser, #ver, #anamneseGeral, #anamneseEspecial{
 	margin:20px;
 	float:right;
 	width:60px;

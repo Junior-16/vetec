@@ -34,8 +34,9 @@ public class ProntuarioController extends AbstractController{
 	@Get(value="/prontuario/{id}")
 	@NoCache
 	public void prontuario(Long id) {
-		this.result.include("ficha",this.Prontuariobs.infoGerais(id));
+		this.result.include("InfoGerais",this.Prontuariobs.infoGerais(id));
 		this.result.include("AnamneseGeral", this.Prontuariobs.anamneseGeral(id));
+		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
 	}
 	@Permition
 	@Get(value="/cadastrarAnimal")
