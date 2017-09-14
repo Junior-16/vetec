@@ -20,12 +20,16 @@ $(document).ready(function(){
 	});
 	//Enviar informações gerais
 	$("#save").click(function(){
+		ArrayId = ['#fichaClinica',"#data","#setor","#nome","#aptidao","#cidade","#idade","#sexo","#peso","#raca"];
+		ArrayClass = [".fichaClinica",".data",".setor",".nome",".aptidao",".cidade",".idade",".sexo",".peso",".raca"];
+		inserir(ArrayId, ArrayClass);
 		var prontuario = {
 				ficha_clinica:$("#fichaClinica").val(),
     			data: $("#data").val(),
     			setor:$("#setor").val(),
     			aptidao:$("#aptidao").val(),
     			cidade:$("#cidade").val(),
+    			
     			animal:{
     				id:$("#animalId").val(),
     				idade:$("#idade").val(),
@@ -115,4 +119,13 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	//Inserir informações atualizadas na tab de infogerais
+	function inserir(ArrayId, ArrayClass){
+		var index = 0;
+		while (index <ArrayId.length){
+			$(ArrayClass[index]).html($(ArrayId[index]).val());
+			index++;
+		}
+	}
 });
