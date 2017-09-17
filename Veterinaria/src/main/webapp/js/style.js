@@ -12,15 +12,27 @@ $(document).ready(function(){
 
 	//Aplica o tooltip
 	$('#save').tooltip();
-	$(".change").tooltip();
+	$('.change').tooltip();
+	$(".salvarProprietario").tooltip();
 	$(".changeOwner").tooltip();
 	$(".saveAnimal").tooltip();
 	$(".cadastrarUser").tooltip();
 	$(".cadastrarProprietario").tooltip();
-	$("#ver").tooltip();
-	$("#anamneseGeral").tooltip();
-	$("#anamneseEspecial").tooltip();
-
+	$("#edit").tooltip();
+	$("#ok").tooltip();
+	$("#see").tooltip();
+	$("#edit1").tooltip();
+	$("#see1").tooltip();
+	$("#ok1").tooltip();
+	$("#edit2").tooltip();
+	$("#see2").tooltip();
+	$("#ok2").tooltip();
+	$("#ok3").tooltip();
+	$("#see3").tooltip();
+	$("#edit3").tooltip();
+	$("#ok4").tooltip();
+	$("#ok5").tooltip();
+	$("#see5").tooltip();
 	//Efeito da barra de pesquisa
 	$(".glyphicon-chevron-down").click(function(){
 		var x = $(this)[0].nextElementSibling.nextElementSibling.className;

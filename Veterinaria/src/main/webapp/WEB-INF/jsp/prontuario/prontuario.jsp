@@ -10,18 +10,17 @@
 	        <!-- Tabs -->
 	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
-					<li class = "active"><a href="#infoGerais" data-toggle="tab" >Informações Gerais</a></li>
+					<li class = "active"><a href="#tab1" data-toggle="tab" >Informações Gerais</a></li>
 					<li><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
 					<li><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
-					<li><a href="#tab4" data-toggle="tab">Exame Físico</a></li>
-					<li><a href="#tab5" data-toggle="tab">Exames Complementares</a></li>
+					<li><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
+					<li><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
 					<li><a href="#tab6" data-toggle="tab">Resultados</a></li>
-					<li><a href="#tab7" data-toggle="tab">Tratamento</a></li>
 					<li><a href="#tab8" data-toggle="tab">Retorno</a></li>
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">
-						<div class="tab-pane fade" id="tab1">
+						<div class="tab-pane fade active in" id="tab1">
 							<c:import url="/includes/prontuarioIncludes/infoGerais.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="tab2">
@@ -39,14 +38,20 @@
 						<div class="tab-pane fade" id="tab6">
 							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
 						</div>
-						<div class="tab-pane fade" id="tab7">
-							<c:import url="/includes/prontuarioIncludes/tratamento.jsp"/>
-						</div>
 						<div class="tab-pane fade" id="tab8">
 							<h5>Ainda não decidi o que vou por aqui</h5>
 						</div>
-						<div class="tab-pane fade  active in" id="infoGerais">
+						<div class="tab-pane fade" id="infoGerais">
 							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="anamneseGeral">
+							<c:import url="/includes/prontuarioIncludes/anamneseGeralShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="anamneseEspecial">
+							<c:import url="/includes/prontuarioIncludes/anamneseEspecialShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="exameFisico">
+							<c:import url="/includes/prontuarioIncludes/ExameFisicoShow.jsp"/>
 						</div>
 				</div>
 		</div>

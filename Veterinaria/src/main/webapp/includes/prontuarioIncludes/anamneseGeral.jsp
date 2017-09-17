@@ -18,8 +18,9 @@
 			name="medidasSanitarias">${AnamneseGeral.medidasSanitarias}</textarea>
 	</div>
 </c:if>
-<div id="anamneseGeral" data-toggle="tooltip" data-placement="top"
+<div id="ok1" data-toggle="tooltip" data-placement="top"
 	title="Salvar">
 	<span id="icon-save" class="glyphicon glyphicon-ok"></span>
 </div>
+<a href = "#anamneseGeral" id ="see1" data-toggle="tab" data-placement="top" title="Ver Informações"><span id = "icon-save" class="glyphicon glyphicon-eye-open"></span></a>
 

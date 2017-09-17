@@ -20,8 +20,11 @@ import br.edu.ifc.concordia.inf.veterinaria.factory.ApplicationSetup;
 import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial;
 import br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral;
 import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
+import br.edu.ifc.concordia.inf.veterinaria.model.ExameFisico;
+import br.edu.ifc.concordia.inf.veterinaria.model.ExamesComplementares;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
+import br.edu.ifc.concordia.inf.veterinaria.model.Resultados;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 
 @Controller
@@ -37,6 +40,7 @@ public class ProntuarioController extends AbstractController{
 		this.result.include("InfoGerais",this.Prontuariobs.infoGerais(id));
 		this.result.include("AnamneseGeral", this.Prontuariobs.anamneseGeral(id));
 		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
+		this.result.include("ExameFisico",this.Prontuariobs.exameFisico(id));
 	}
 	@Permition
 	@Get(value="/cadastrarAnimal")
@@ -116,6 +120,52 @@ public class ProntuarioController extends AbstractController{
 		}else {
 			this.fail("Deu pau");
 		}
+	}
+	
+	@Post("/exameFisico")
+	@Consumes({"application/json"})
+	public void exameFisico(ExameFisico exame) {
+		if (exame != null) {
+			this.Prontuariobs.exameFisico(exame);
+			this.success("Os dados foram salvos");
+		}else {
+			this.fail("Deu pau");
+		}
+	}
+	
+	@Post("/examesComplementares")
+	@Consumes({"application/json"})
+	public void examesComplementares(ExamesComplementares exames) {
+		if (exames != null) {
+			this.Prontuariobs.examesComplementares(exames);
+			this.success("Os dados foram salvos");
+		}else {
+			this.fail("Deu pau");
+		}
+	}
+	
+	@Post("/resultados")
+	@Consumes({"application/json"})
+	public void resultados(Resultados resultados) {
+		if(resultados != null) {
+			this.Prontuariobs.resultados(resultados);
+			this.success("Os dados foram salvos");
+		}else {
+			this.fail("Deu pau");
+		}
+	}
+	
+	@Get("/examescomplementares")
+	@NoCache
+	public void ExamesComplementares(Long id) {
+		try {
+			ExamesComplementares exames = this.Prontuariobs.examesComplementares(id);
+			this.success(exames.getAnimal());
+		}
+		catch(Throwable e) {
+			this.fail(e.getMessage());
+		}
+		
 	}
 	
 }
