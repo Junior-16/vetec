@@ -21,8 +21,7 @@ public class AnamneseGeral implements Serializable{
 	private String antecedentesMorbidos;
 	private String medidasSanitarias;
 	
-	@OneToOne
-	private Animal animal;
+	private Long animalId;
 	
 	public Long getId() {
 		return id;
@@ -36,11 +35,11 @@ public class AnamneseGeral implements Serializable{
 	public void setMotivoConsulta(String motivoConsulta) {
 		this.motivoConsulta = motivoConsulta;
 	}
-	public Animal getAnimal() {
-		return animal;
+	public Long getAnimal() {
+		return animalId;
 	}
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public void setAnimal(Long animal) {
+		this.animalId = animal;
 	}
 	public String getAntecedentesMorbidos() {
 		return antecedentesMorbidos;

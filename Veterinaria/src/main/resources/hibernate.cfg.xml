@@ -46,5 +46,8 @@
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.ExameFisico"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.ExamesComplementares"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Resultados"/>
 	</session-factory>
 </hibernate-configuration>

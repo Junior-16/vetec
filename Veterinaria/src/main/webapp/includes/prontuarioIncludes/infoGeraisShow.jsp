@@ -63,5 +63,5 @@
 			<div class="well well-sm telefone">${InfoGerais.animal.proprietario.telefone}</div> 
 		</div>
 	</c:if>
-		<a href = "#tab1" id ="ver" data-toggle="tab" data-placement="top" title="Editar Informações"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></a>
+		<a href = "#tab1" id ="edit" data-toggle="tab" data-placement="top" title="Editar Informações"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></a>
 </div>

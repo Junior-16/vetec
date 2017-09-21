@@ -30,20 +30,25 @@
 						<c:if test="${not empty found}">
 							<c:forEach items="${found}" var="found">
 								<li>
-									<span class="glyphicon glyphicon-chevron-down" id="${found.id}"></span>
-									<span id = "item">
+									<span class="glyphicon glyphicon-chevron-down owner"></span>
+									<span>
 										<a href = "<c:url value="proprietario/${found.nome}"/>" style="text-decoration:none; padding-right: 40%;">
 										${found.nome}
 										</a>
-										<a href="<c:url value="proprietarioRemover/${found.id}"/>">
-        									<span class="glyphicon glyphicon-remove"></span>
-   										</a>
 									</span>
-									<c:if test="${not empty found.animais}">
-										<c:forEach items="${found.animais}" var="animais">
-											<a class = "${found.id}" href="<c:url value="/prontuario/${animais.id}"/>" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
-										</c:forEach>
-									</c:if>
+									<ul class = "lista">
+										<c:if test="${not empty found.animais}">
+												<c:forEach items="${found.animais}" var="animais">
+													<span class="glyphicon glyphicon-chevron-down animal" style="padding-left:20px;"></span>
+													<a class = "${found.id}" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
+													<li>
+														<a href="<c:url value="/prontuario/${animais.id}"/>" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Prontuario</a>
+														<a href="#" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Cirurgia</a>
+													</li>
+													<i></i>
+												</c:forEach>
+										</c:if>
+									</ul>
 								</li>
 							</c:forEach>
 						</c:if>

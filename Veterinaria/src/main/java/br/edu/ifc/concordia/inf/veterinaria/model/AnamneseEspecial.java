@@ -17,14 +17,13 @@ public class AnamneseEspecial implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	private Animal animal;
+	private Long animalId;
 	
-	public Animal getAnimal() {
-		return animal;
+	public Long getAnimal() {
+		return animalId;
 	}
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public void setAnimal(Long animal) {
+		this.animalId = animal;
 	}
 	private String sistemaVisual;
 	private String sistemaDigestivo;
