@@ -173,10 +173,10 @@ public class ProntuarioController extends AbstractController{
 		if(resultado == null) {
 			this.fail("Deu pau");
 		}
-	
-		this.success(resultado);
+		else {
+			this.success(resultado);
+		}
 		
-			
 	}
 	
 }

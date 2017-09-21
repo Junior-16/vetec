@@ -136,7 +136,16 @@ $(document).ready(function(){
 				linfonodos:$("#linfondos").val(),
 				observacoes:$("#observacoes").val(),
 				suspeita:$("#suspeira").val(),
-				animalId:$("#animalId").val()
+				animalId:$("#animalId").val(),
+				animal:{
+    				id:$("#animalId").val(),
+    				idade:$("#idade").val(),
+    				sexo:$("#sexo").val(),
+    				peso:$("#peso").val(),
+    				especie:$("#especie").val(),
+    				raca:$("#raca").val(),
+    				nome:$("#nome").val()
+    			}
 				
 		};
 		$.ajax({
@@ -159,6 +168,10 @@ $(document).ready(function(){
 				citopatologico:($("#citopatologico").is(":checked") == true).toString(),
 				urina:($("#urina").is(":checked") == true).toString(),
 				histopatologico:($("#histopatologico").is(":checked") == true).toString(),
+				bioquímicos:($("#bioquimicos").is(":checked") == true).toString(),
+				citopatológico:($("#citopatologico").is(":checked") == true).toString(),
+				urina:($("#urina").is(":checked") == true).toString(),
+				histopatológico:($("#histopatologico").is(":checked") == true).toString(),
 				ECG:($("#ecg").is(":checked") == true).toString(), 
 				ultrassonografia:($("#ultrassonografia").is(":checked") == true).toString(), 
 				swab:($("#swab").is(":checked") == true).toString(),  
@@ -167,7 +180,20 @@ $(document).ready(function(){
 				coproparasitologico:($("#copro").is(":checked") == true).toString(),
 				outros:$("#others").val(),
 				hemograma:($("#hemograma").is(":checked") == true).toString(),
-				animalId:$("#animalId").val()
+				animalId:$("#animalId").val(),
+				líquidos:($("#liquidos").is(":checked") == true).toString(),  
+				coproparasitológico:($("#copro").is(":checked") == true).toString(),
+				outros:$("#others").val(),
+				hemograma:($("#hemograma").is(":checked") == true).toString(),
+				animal:{
+		    		id:$("#animalId").val(),
+		    		idade:$("#idade").val(),
+		    		sexo:$("#sexo").val(),
+		    		peso:$("#peso").val(),
+		    		especie:$("#especie").val(),
+		    		raca:$("#raca").val(),
+		    		nome:$("#nome").val()
+		    	}
 			};
 			$.ajax({
 				method:"POST",
@@ -194,6 +220,7 @@ $(document).ready(function(){
 				regiao:$("#regiao").val(), 
 				data:$("#data").val(),
 				laudo:$("#laudo").val(),
+				resultadoExames:$("#resultadoExames").val(), 
 				diagnostico:$("#diagnostico").val(), 
 				tratamento:$("#tratamento").val(),
 				tratamentoDomiciliar:$("#tratamentoDomiciliar").val(), 
@@ -203,7 +230,17 @@ $(document).ready(function(){
 				obito:$("#obito").val(), 
 				eutanasia:$("#eutanasia").val(), 
 				responsavel:$("#responsavel").val(),
-				animalId:$("#animalId").val()
+				animalId:$("#animalId").val(),
+				animal:{
+		    		id:$("#animalId").val(),
+		    		idade:$("#idade").val(),
+		    		sexo:$("#sexo").val(),
+		    		peso:$("#peso").val(),
+		    		especie:$("#especie").val(),
+		    		raca:$("#raca").val(),
+		    		nome:$("#nome").val()
+		    	}
+
 			};
 			$.ajax({
 				method:"POST",
@@ -226,6 +263,7 @@ $(document).ready(function(){
 			url:"http://localhost:8080/Veterinaria/examescomplementares",
 			data:{id:$("#animalId").val()},
 			contentType:"application/json",
+
 			success(response){
 				console.log(response.data);
 				if(response.data.raspado == "true"){
@@ -313,6 +351,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+
 	
 	$("#resultado").click(function(){
 		$.ajax({
@@ -349,11 +388,22 @@ $(document).ready(function(){
 		}
 	});
 	
+
+		
+	$("#outros").click(function(){
+		if($(this).is(":checked") == true){
+			$('#others').removeAttr('disabled');
+		}else{
+			 $('#others').attr('disabled', 'disabled');
+		}
+	});
+
 	$("#exame").click(function(){
 		optionRemove = $("#conciencia")[0].firstElementChild.text;
 		index = 0;
 		$("#conciencia option").each(function(){
 			var test = this;
+			console.log(test);
 			if(optionRemove == this.text && index != 0){
 				this.remove();
 			}index++;

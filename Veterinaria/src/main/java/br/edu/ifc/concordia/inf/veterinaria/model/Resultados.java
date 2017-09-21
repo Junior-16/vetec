@@ -60,6 +60,12 @@ public class Resultados implements Serializable{
 	public void setLaudo(String laudo) {
 		this.laudo = laudo;
 	}
+	public String getResultadoExames() {
+		return resultadoExames;
+	}
+	public void setResultadoExames(String resultadoExames) {
+		this.resultadoExames = resultadoExames;
+	}
 	public String getDiagnostico() {
 		return diagnostico;
 	}
@@ -120,6 +126,7 @@ public class Resultados implements Serializable{
 	private String regiao; 
 	private String data;
 	private String laudo;
+	private String resultadoExames; 
 	private String diagnostico; 
 	private String tratamento;
 	private String tratamentoDomiciliar; 

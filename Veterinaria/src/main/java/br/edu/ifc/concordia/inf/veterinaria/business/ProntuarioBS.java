@@ -118,12 +118,11 @@ public class ProntuarioBS extends HibernateBusiness{
 		if(this.anamneseGeral(anamnese.getAnimal()) == null) {
 			this.dao.persist(anamnese);
 		}else {
-			AnamneseGeral anamnesegeral = this.anamneseGeral(anamnese.getAnimal());
-			anamnesegeral.setAntecedentesMorbidos(anamnese.getAntecedentesMorbidos());
-			anamnesegeral.setMedidasSanitarias(anamnese.getMedidasSanitarias());
-			anamnesegeral.setMotivoConsulta(anamnese.getMotivoConsulta());
-			anamnesegeral.setAnimal(anamnese.getAnimal());
-			dao.update(anamnesegeral);
+			AnamneseGeral anamesegeral = this.anamneseGeral(anamnese.getAnimal());
+			anamesegeral.setAntecedentesMorbidos(anamnese.getAntecedentesMorbidos());
+			anamesegeral.setMedidasSanitarias(anamnese.getMedidasSanitarias());
+			anamesegeral.setMotivoConsulta(anamnese.getMotivoConsulta());
+			dao.update(anamesegeral);
 		}
 
 		this.validate();
@@ -179,15 +178,15 @@ public class ProntuarioBS extends HibernateBusiness{
 		this.validate();
 	}
 	public void examesComplementares(ExamesComplementares exames) {
-		if(examesComplementares(exames.getAnimalId()) == null) {
+		if(examesComplementares(exames.getAnimal().getId()) == null) {
 			dao.persist(exames);
 		}else {
-			ExamesComplementares exame = this.examesComplementares(exames.getAnimalId());
-			exame.setBioquimicos(exames.getBioquimicos());
-			exame.setCitopatologico(exames.getCitopatologico());
+			ExamesComplementares exame = this.examesComplementares(exames.getAnimal().getId());
+			exame.setBioquímicos(exames.getBioquímicos());
+			exame.setCitopatológico(exames.getCitopatológico());
 			exame.setECG(exames.getECG());
-			exame.setHistopatologico(exames.getHistopatologico());
-			exame.setLiquidos(exames.getLiquidos());
+			exame.setHistopatológico(exames.getHistopatológico());
+			exame.setLíquidos(exames.getLíquidos());
 			exame.setRadiografia(exames.getRadiografia());
 			exame.setRaspado(exames.getRaspado());
 			exame.setSwab(exames.getSwab());
@@ -217,6 +216,7 @@ public class ProntuarioBS extends HibernateBusiness{
 			result.setRaio(resultados.getRaio());
 			result.setRegiao(resultados.getRegiao());
 			result.setResponsável(resultados.getResponsavel());
+			result.setResultadoExames(resultados.getResultadoExames());
 			result.setRetorno(resultados.getRetorno());
 			result.setTratamento(resultados.getTratamento());
 			result.setTratamentoDomiciliar(resultados.getTratamentoDomiciliar());

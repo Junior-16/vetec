@@ -14,7 +14,11 @@
 					<li><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
 					<li><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
 					<li><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
+<<<<<<< HEAD
 					<li><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
+=======
+					<li><a href="#tab6" data-toggle="tab">Resultados</a></li>
+>>>>>>> 295ac4c1c7c76d7f477b406a232385159eaed60a
 					<li><a href="#tab8" data-toggle="tab">Retorno</a></li>
 				</ul>
 				<!-- Tabs content -->
@@ -52,9 +56,12 @@
 						<div class="tab-pane fade" id="exameFisico">
 							<c:import url="/includes/prontuarioIncludes/ExameFisicoShow.jsp"/>
 						</div>
+<<<<<<< HEAD
 						<div class="tab-pane fade" id="resultados">
 							<c:import url="/includes/prontuarioIncludes/resultadosShow.jsp"/>
 						</div>
+=======
+>>>>>>> 295ac4c1c7c76d7f477b406a232385159eaed60a
 				</div>
 		</div>
 	</div>

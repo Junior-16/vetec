@@ -33,6 +33,7 @@ $(document).ready(function(){
 	$("#ok4").tooltip();
 	$("#ok5").tooltip();
 	$("#see5").tooltip();
+
 	
 	/*Efeito da barra de pesquisa*/
 	$(".owner").on("click", function(){
@@ -46,10 +47,16 @@ $(document).ready(function(){
 		$($(this)[0].nextElementSibling.nextElementSibling).toggle("slow");
 	});
 	
-	$(".animal").on("click", function(){
-		if($(this)[0].className == "glyphicon glyphicon-chevron-right animal"){
-			$(this).removeClass();
-			$(this).addClass("glyphicon glyphicon-chevron-down animal")
+	//Efeito da barra de pesquisa
+	$(".glyphicon-chevron-down").click(function(){
+		var x = $(this)[0].nextElementSibling.nextElementSibling.className;
+		var classe = $(this)[0].className;
+		var y = "#"+$(this)[0].id;
+		$("."+x).toggle("slow");
+		if( classe == "glyphicon glyphicon-chevron-right"){
+			$(y).removeClass();
+			$(y).addClass("glyphicon glyphicon-chevron-down");
+
 		}else{
 			$(this).removeClass();
 			$(this).addClass("glyphicon glyphicon-chevron-right animal")
