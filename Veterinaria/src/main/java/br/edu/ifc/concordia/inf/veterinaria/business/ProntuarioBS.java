@@ -178,15 +178,15 @@ public class ProntuarioBS extends HibernateBusiness{
 		this.validate();
 	}
 	public void examesComplementares(ExamesComplementares exames) {
-		if(examesComplementares(exames.getAnimal().getId()) == null) {
+		if(examesComplementares(exames.getAnimalId()) == null) {
 			dao.persist(exames);
 		}else {
-			ExamesComplementares exame = this.examesComplementares(exames.getAnimal().getId());
-			exame.setBioquímicos(exames.getBioquímicos());
-			exame.setCitopatológico(exames.getCitopatológico());
+			ExamesComplementares exame = this.examesComplementares(exames.getAnimalId());
+			exame.setBioquimicos(exames.getBioquimicos());
+			exame.setCitopatologico(exames.getCitopatologico());
 			exame.setECG(exames.getECG());
-			exame.setHistopatológico(exames.getHistopatológico());
-			exame.setLíquidos(exames.getLíquidos());
+			exame.setHistopatologico(exames.getHistopatologico());
+			exame.setLiquidos(exames.getLiquidos());
 			exame.setRadiografia(exames.getRadiografia());
 			exame.setRaspado(exames.getRaspado());
 			exame.setSwab(exames.getSwab());
@@ -216,7 +216,6 @@ public class ProntuarioBS extends HibernateBusiness{
 			result.setRaio(resultados.getRaio());
 			result.setRegiao(resultados.getRegiao());
 			result.setResponsável(resultados.getResponsavel());
-			result.setResultadoExames(resultados.getResultadoExames());
 			result.setRetorno(resultados.getRetorno());
 			result.setTratamento(resultados.getTratamento());
 			result.setTratamentoDomiciliar(resultados.getTratamentoDomiciliar());

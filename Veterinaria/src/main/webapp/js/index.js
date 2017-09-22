@@ -136,16 +136,7 @@ $(document).ready(function(){
 				linfonodos:$("#linfondos").val(),
 				observacoes:$("#observacoes").val(),
 				suspeita:$("#suspeira").val(),
-				animalId:$("#animalId").val(),
-				animal:{
-    				id:$("#animalId").val(),
-    				idade:$("#idade").val(),
-    				sexo:$("#sexo").val(),
-    				peso:$("#peso").val(),
-    				especie:$("#especie").val(),
-    				raca:$("#raca").val(),
-    				nome:$("#nome").val()
-    			}
+				animalId:$("#animalId").val()
 				
 		};
 		$.ajax({
@@ -185,15 +176,7 @@ $(document).ready(function(){
 				coproparasitológico:($("#copro").is(":checked") == true).toString(),
 				outros:$("#others").val(),
 				hemograma:($("#hemograma").is(":checked") == true).toString(),
-				animal:{
-		    		id:$("#animalId").val(),
-		    		idade:$("#idade").val(),
-		    		sexo:$("#sexo").val(),
-		    		peso:$("#peso").val(),
-		    		especie:$("#especie").val(),
-		    		raca:$("#raca").val(),
-		    		nome:$("#nome").val()
-		    	}
+				animalId:$("#animalId").val()
 			};
 			$.ajax({
 				method:"POST",
@@ -212,7 +195,7 @@ $(document).ready(function(){
 		$("#ok5").click(function(){
 			var arrayClass = [".nExame",".regiao",".data",".laudo",".diagnostico",".tratamento",".tratamentoDomiciliar",".retorno",".internado",".alta",".obito",".eutanasia",".responsavel"];
 			var arrayID = ["#nExame","#regiao","#data","#laudo","#diagnostico","#tratamento","#tratamentoDomiciliar","#retorno","#internado","#alta","#obito","#eutanasia","#responsavel"];
-			inserir(ArrayID, arrayClass);
+			inserir(arrayID, arrayClass);
 			var resultados = {
 				raio:($("#raio").is(":checked") == true).toString(),
 				ultrasson:($("#ultrasson").is(":checked") == true).toString(),
@@ -220,7 +203,6 @@ $(document).ready(function(){
 				regiao:$("#regiao").val(), 
 				data:$("#data").val(),
 				laudo:$("#laudo").val(),
-				resultadoExames:$("#resultadoExames").val(), 
 				diagnostico:$("#diagnostico").val(), 
 				tratamento:$("#tratamento").val(),
 				tratamentoDomiciliar:$("#tratamentoDomiciliar").val(), 
@@ -230,16 +212,7 @@ $(document).ready(function(){
 				obito:$("#obito").val(), 
 				eutanasia:$("#eutanasia").val(), 
 				responsavel:$("#responsavel").val(),
-				animalId:$("#animalId").val(),
-				animal:{
-		    		id:$("#animalId").val(),
-		    		idade:$("#idade").val(),
-		    		sexo:$("#sexo").val(),
-		    		peso:$("#peso").val(),
-		    		especie:$("#especie").val(),
-		    		raca:$("#raca").val(),
-		    		nome:$("#nome").val()
-		    	}
+				animalId:$("#animalId").val()
 
 			};
 			$.ajax({

@@ -48,18 +48,16 @@ $(document).ready(function(){
 	});
 	
 	//Efeito da barra de pesquisa
-	$(".glyphicon-chevron-down").click(function(){
+	$(".animal").click(function(){
 		var x = $(this)[0].nextElementSibling.nextElementSibling.className;
 		var classe = $(this)[0].className;
-		var y = "#"+$(this)[0].id;
-		$("."+x).toggle("slow");
-		if( classe == "glyphicon glyphicon-chevron-right"){
-			$(y).removeClass();
-			$(y).addClass("glyphicon glyphicon-chevron-down");
+		if( classe == "glyphicon glyphicon-chevron-down animal"){
+			$(this).removeClass();
+			$(this).addClass("glyphicon glyphicon-chevron-right animal");
 
 		}else{
 			$(this).removeClass();
-			$(this).addClass("glyphicon glyphicon-chevron-right animal")
+			$(this).addClass("glyphicon glyphicon-chevron-down animal")
 		}
 		$($(this)[0].nextElementSibling.nextElementSibling).toggle("slow");
 	});
