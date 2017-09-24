@@ -7,14 +7,14 @@
 		</div>
 		<div class="col-md-6">
 			<label class="custom-control custom-checkbox"> <input
-				type="checkbox" class="custom-control-input" id = "raio"> <span
+				type="checkbox" class="custom-control-input raio"> <span
 				class="custom-control-indicator"></span> <span
 				class="custom-control-description">Raio-X</span>
 			</label>
 		</div>
 		<div class="col-md-6">
 			<label class="custom-control custom-checkbox"> <input
-				type="checkbox" class="custom-control-input" id = "ultrasson"> <span
+				type="checkbox" class="custom-control-input ultrasson"> <span
 				class="custom-control-indicator"></span> <span
 				class="custom-control-description">Ultrassom</span>
 			</label>
@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-md-4">
 			<label>Região</label> 
-			<div class="well well-sm regiao">${ExameFisico.escoreCorporal}</div>
+			<div class="well well-sm regiao"></div>
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
@@ -51,7 +51,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>Tratamento</label>
-				<div class="well well-sm tratamento">${ExameFisico.escoreCorporal}</div>
+				<div class="well well-sm tratamento"></div>
 			</div>
 		</div>
 		</div>
@@ -81,16 +81,16 @@
 					</div>
 					<div class="form-group">
 						<label>Eutanásia</label> 
-						<div class="well well-sm eutanasia">${ExameFisico.escoreCorporal}</div>
+						<div class="well well-sm eutanasia"></div>
 					</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Responsável</label>
-					<div class="well well-sm responsavel">${ExameFisico.escoreCorporal}</div>
+					<div class="well well-sm responsavel"></div>
 				</div>
 			</div>
 	</div>
-	<a href = "#resultado" id ="edit5" data-toggle="tab" data-placement="top" title="Editar Informações"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></a>
+	<a href = "#tab6" id ="edit5" data-toggle="tab" data-placement="top" title="Editar Informações"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></a>
 	
 </div>

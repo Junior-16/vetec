@@ -38,7 +38,7 @@
 							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="tab8">
-							<h5>Ainda não decidi o que vou por aqui</h5>
+							<c:import url="/includes/prontuarioIncludes/retorno.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="infoGerais">
 							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>

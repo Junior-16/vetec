@@ -159,8 +159,6 @@ $(document).ready(function(){
 				citopatologico:($("#citopatologico").is(":checked") == true).toString(),
 				urina:($("#urina").is(":checked") == true).toString(),
 				histopatologico:($("#histopatologico").is(":checked") == true).toString(),
-				bioquímicos:($("#bioquimicos").is(":checked") == true).toString(),
-				citopatológico:($("#citopatologico").is(":checked") == true).toString(),
 				urina:($("#urina").is(":checked") == true).toString(),
 				histopatológico:($("#histopatologico").is(":checked") == true).toString(),
 				ECG:($("#ecg").is(":checked") == true).toString(), 
@@ -172,10 +170,7 @@ $(document).ready(function(){
 				outros:$("#others").val(),
 				hemograma:($("#hemograma").is(":checked") == true).toString(),
 				animalId:$("#animalId").val(),
-				líquidos:($("#liquidos").is(":checked") == true).toString(),  
-				coproparasitológico:($("#copro").is(":checked") == true).toString(),
 				outros:$("#others").val(),
-				hemograma:($("#hemograma").is(":checked") == true).toString(),
 				animalId:$("#animalId").val()
 			};
 			$.ajax({
@@ -193,9 +188,6 @@ $(document).ready(function(){
 		});
 		
 		$("#ok5").click(function(){
-			var arrayClass = [".nExame",".regiao",".data",".laudo",".diagnostico",".tratamento",".tratamentoDomiciliar",".retorno",".internado",".alta",".obito",".eutanasia",".responsavel"];
-			var arrayID = ["#nExame","#regiao","#data","#laudo","#diagnostico","#tratamento","#tratamentoDomiciliar","#retorno","#internado","#alta","#obito","#eutanasia","#responsavel"];
-			inserir(arrayID, arrayClass);
 			var resultados = {
 				raio:($("#raio").is(":checked") == true).toString(),
 				ultrasson:($("#ultrasson").is(":checked") == true).toString(),
@@ -228,15 +220,24 @@ $(document).ready(function(){
 				}
 			});
 		});
-		
-	//Essa requisição tá retornando muitos objetos - ñ tá funcionando
+	$("#see5").click(function(){
+		var arrayClass = [".nExame",".regiao",".data",".laudo",".diagnostico",".tratamento",".tratamentoDomiciliar",".retorno",".internado",".alta",".obito",".eutanasia",".responsavel"];
+		var arrayID = ["#nExame","#regiao","#dataresult","#laudo","#diagnostico","#tratamento","#tratamentoDomiciliar","#retorno","#internado","#alta","#obito","#eutanasia","#responsavel"];
+		if($("#raio").is(":checked") == true){
+			$(".raio").attr("checked",true);
+		}
+		if($("#ultrasson").is(":checked") == true){
+			$(".ultrasson").attr("checked",true);
+		}
+		inserir(arrayID, arrayClass);
+	});
+
 	$("#complementares").click(function(){
 		$.ajax({
 			method:"GET",
 			url:"http://localhost:8080/Veterinaria/examescomplementares",
 			data:{id:$("#animalId").val()},
 			contentType:"application/json",
-
 			success(response){
 				console.log(response.data);
 				if(response.data.raspado == "true"){
@@ -335,7 +336,7 @@ $(document).ready(function(){
 			success(response){
 					$("#nExame").val(response.data.nExame);
 					$("#regiao").val(response.data.regiao);
-					$("#data").val(response.data.data);
+					$("#dataresult").val(response.data.data);
 					$("#laudo").val(response.data.laudo);
 					$("#diagnostico").val(response.data.diagnostico);
 					$("#tratamento").val(response.data.tratamento);
@@ -346,11 +347,102 @@ $(document).ready(function(){
 					$("#obito").val(response.data.obito);
 					$("#eutanasia").val(response.data.eutanasia);
 					$("#responsavel").val(response.data.responsavel);
+					if(response.data.ultrasson == "true"){
+						$("#ultrasson").attr("checked",true);
+					}else{
+						$("#ultrasson").attr("checked",false);
+					}
+					if(response.data.raio == "true"){
+						$(".raio").attr("checked",true);
+					}else{
+						$(".raio").attr("checked",false);
+					}
 			},
 			fail(response){
 				console.log(response);
 			}
 		});
+	});
+	
+	//Envia os dados do retorno
+	$("#ok6").click(function(){
+		var day = new Date();
+		$.ajax({
+			method:"POST",
+			url:"http://localhost:8080/Veterinaria/retorno",
+			contentType:"application/json",
+			data:JSON.stringify({		
+				resultados : {
+				raio:($("#raioRetorno").is(":checked") == true).toString(),
+				ultrasson:($("#ultrassonRetorno").is(":checked") == true).toString(),
+				nExame:$("#nExameRetorno").val(), 
+				regiao:$("#regiaoRetorno").val(), 
+				data:$("#dataRetorno").val(),
+				laudo:$("#laudoRetorno").val(),
+				diagnostico:$("#diagnosticoRetorno").val(), 
+				tratamento:$("#tratamentoRetorno").val(),
+				tratamentoDomiciliar:$("#tratamentoDomiciliarRetorno").val(), 
+				retorno:$("#retornoRetorno").val(), 
+				internado:$("#internadoRetorno").val(), 
+				alta:$("#altaRetorno").val(), 
+				obito:$("#obitoRetorno").val(), 
+				eutanasia:$("#eutanasiaRetorno").val(), 
+				responsavel:$("#responsavelRetorno").val(),
+				animalId:$("#animalId").val()
+
+		},
+		exameFisico : {
+				conciencia:$("#concienciaRetorno").val(),
+				tempoPreenchimento:$("#tempoPreencimentoRetorno").val(),
+				temperatura:$("#tempCorporeaRetorno").val(),
+				escoreCorporal:$("#escoreRetorno").val(),
+				freqCardiaca:$("#freqCardiacaRetorno").val(),
+				medResidente:$("#medResidenteRetorno").val(),
+				micropapulas:$("#micropapulasRetorno").val(),
+				freqRespiratoria:$("#freqRespiratoriaRetorno").val(),
+				postura:$("#posturaRetorno").val(),
+				coloracao:$("#mucosasRetorno").val(),
+				hidratacao:$("#hidratacaoRetorno").val(),
+				pulso:$("#pulsoRetorno").val(),
+				auscCardiaca:$("#auscuRespiratoriaRetorno").val(),
+				auscRespiratoria:$("auscuRespiratoriaRetorno").val(),
+				palpacao:$("#palpacaoRetorno").val(),
+				percussao:$("#percussaoRetorno").val(),
+				linfonodos:$("#linfondosRetorno").val(),
+				observacoes:$("#observacoes").val(),
+				suspeita:$("#suspeira").val(),
+				animalId:$("#animalId").val()
+		},	
+		examesComplementares : {
+				raspado:($("#raspadoRetorno").is(":checked") == true).toString(),
+				bioquimicos:($("#bioquimicosRetorno").is(":checked") == true).toString(),
+				citopatologico:($("#citopatologicoRetorno").is(":checked") == true).toString(),
+				urina:($("#urinaRetorno").is(":checked") == true).toString(),
+				histopatologico:($("#histopatologicoRetorno").is(":checked") == true).toString(),
+				urina:($("#urinaRetorno").is(":checked") == true).toString(),
+				ECG:($("#ecgRetorno").is(":checked") == true).toString(), 
+				ultrassonografia:($("#ultrassonografiaRetorno").is(":checked") == true).toString(), 
+				swab:($("#swabRetorno").is(":checked") == true).toString(),  
+				radiografia:($("#radioRetorno").is(":checked") == true).toString(),  
+				liquidos:($("#liquidosRetorno").is(":checked") == true).toString(),  
+				coproparasitologico:($("#coproRetorno").is(":checked") == true).toString(),
+				outros:$("#othersRetorno").val(),
+				animalId:$("#animalId").val(),
+				outros:$("#othersRetorno").val(),
+				hemograma:($("#hemogramaRetorno").is(":checked") == true).toString(),
+				animalId:$("#animalId").val()
+			},
+			date: (day.getDate()+"-"+(day.getMonth()+1)+"-"+day.getFullYear()),
+			anamnese:$("#anamneseRetorno").val()
+			}),
+			success(response){
+				console.log(response);
+			},
+			fail(response){
+				console.log(response);
+			}
+		});
+		
 	});
 	
 	$("#outros").click(function(){
@@ -368,6 +460,13 @@ $(document).ready(function(){
 			$('#others').removeAttr('disabled');
 		}else{
 			 $('#others').attr('disabled', 'disabled');
+		}
+	});
+	$("#outrosRetorno").click(function(){
+		if($(this).is(":checked") == true){
+			$('#othersRetorno').removeAttr('disabled');
+		}else{
+			 $('#othersRetorno').attr('disabled', 'disabled');
 		}
 	});
 

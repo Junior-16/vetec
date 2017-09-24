@@ -25,6 +25,7 @@ import br.edu.ifc.concordia.inf.veterinaria.model.ExamesComplementares;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.Resultados;
+import br.edu.ifc.concordia.inf.veterinaria.model.Retorno;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 
 @Controller
@@ -177,6 +178,13 @@ public class ProntuarioController extends AbstractController{
 			this.success(resultado);
 		}
 		
+	}
+	
+	@Post("/retorno")
+	@Consumes({"application/json"})
+	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese) {
+		this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese);
+		this.success("Os dados foram salvos");
 	}
 	
 }

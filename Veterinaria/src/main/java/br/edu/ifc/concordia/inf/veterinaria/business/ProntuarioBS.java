@@ -22,6 +22,7 @@ import br.edu.ifc.concordia.inf.veterinaria.model.ExamesComplementares;
 import br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.Resultados;
+import br.edu.ifc.concordia.inf.veterinaria.model.Retorno;
 @RequestScoped
 public class ProntuarioBS extends HibernateBusiness{
 	@Inject UserBS bs;
@@ -113,6 +114,11 @@ public class ProntuarioBS extends HibernateBusiness{
 		return (Resultados) criteria.uniqueResult();
 	}
 	
+	public Retorno retorno(String data) {
+		Criteria criteria = this.dao.newCriteria(Retorno.class);
+		criteria.add(Restrictions.eq("date", data));
+		return (Retorno) criteria.uniqueResult();
+	}
 	//Setar informações e salvar no banco de dados
 	public void anamneseGeral(AnamneseGeral anamnese) {
 		if(this.anamneseGeral(anamnese.getAnimal()) == null) {
@@ -225,6 +231,21 @@ public class ProntuarioBS extends HibernateBusiness{
 		}
 		this.validate();
 	}
+	
+	public void retorno(Resultados result, ExameFisico exame1, ExamesComplementares exame2, String date, String anamnese) {
+		Retorno retorno = new Retorno();
+		retorno.setAnamnese(anamnese);
+		retorno.setDate(date);
+		retorno.setExameFisico(exame1);
+		retorno.setExamesComplementares(exame2);
+		retorno.setResultados(result);
+		dao.persist(result);
+		dao.persist(exame1);
+		dao.persist(exame2);
+		dao.persist(retorno);
+		this.validate();
+	}
+	
 	public void validate() {
 		try {
 			SSLContext ctx = SSLContext.getInstance("TLS");

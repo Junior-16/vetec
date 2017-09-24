@@ -33,7 +33,7 @@ $(document).ready(function(){
 	$("#ok4").tooltip();
 	$("#ok5").tooltip();
 	$("#see5").tooltip();
-
+	$("#edit5").tooltip();
 	
 	/*Efeito da barra de pesquisa*/
 	$(".owner").on("click", function(){

@@ -27,9 +27,9 @@
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
-					<label for="example-date-input">Data</label> <input
-						class="form-control" type="date" value="xxxx-xx-xx"
-						id="data" >
+				<label for="example-date-input">Data</label> <input
+							class="form-control" type="date" value="xxxx-xx-xx"
+							id="dataresult">
 				</div>
 		</div>
 		<div class="col-md-12">

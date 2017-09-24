@@ -10,10 +10,6 @@
        <span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
        	Cadastrar Proprietário
       </a>
-      <a class="navbar-brand" href="<c:url value = "/ficha_internacao"/>" style="color:white;">
-      <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
-       	Cirurgia
-      </a>
       <a class="navbar-brand" href="#" style="color:white;">
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
        Agenda
@@ -24,7 +20,7 @@
       </a>
       <a class="navbar-brand" href="<c:url value="/listUsers"/>" style="color:white;">
 		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
-      Listar Usuário
+      Listar Usuários
       </a>
       <a class="navbar-brand" href="<c:url value = "/buscar"/>" style="color:white;" id="buscar">
        <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
