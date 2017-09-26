@@ -15,7 +15,16 @@
 					<li><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
 					<li><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
 					<li><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
-					<li><a href="#tab8" data-toggle="tab">Retorno</a></li>
+					<li class="dropdown"><a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle" id="teste1">Retorno<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="teste1">
+							<li role="presentation">
+							    <a role="menuitem" href="#">JavaScript</a>
+							    <a role="menuitem" href="#">Python</a>
+							    <a role="menuitem" href="#">Java</a>
+							    <a role="menuitem" href="#">Delphi</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">

@@ -145,7 +145,7 @@
 			class="custom-control-description">ECG</span>
 		</label>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-md-3">
 		<label class="custom-control custom-checkbox"> <input
 			type="checkbox" class="custom-control-input" id = "ultrassonografiaRetorno"> <span
 			class="custom-control-indicator"></span> <span

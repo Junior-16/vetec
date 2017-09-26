@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row">
 	<form class="infoGerais" action="<c:url value="/infoGerais"/>" >
-		<c:if test="${not empty InfoGerais}">
+		<c:if test="${not empty InfoGerais || empty InfoGerais}">
 			<div class="col-md-4">
 				<label>Ficha Clínica</label> <input class="form-control" id = "fichaClinica" name="ficha" value = "${InfoGerais.ficha_clinica}">
 			</div>
