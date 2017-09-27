@@ -17,7 +17,7 @@
 									<div class="cols-sm-10">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-											<input type="text" class="form-control" name="email" id="name"  placeholder="Enter your Name"/>
+											<input type="text" class="form-control" name="email" id="name"  placeholder="Digite seu e-mail"/>
 										</div>
 									</div>
 								</div>
@@ -27,7 +27,7 @@
 									<div class="cols-sm-10">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-											<input type="password" class="form-control" name="username" id="password"  placeholder="Enter your Password"/>
+											<input type = "text" class="form-control" name="username"  placeholder="Digite seu nome de usuário"/>
 										</div>
 									</div>
 								</div>

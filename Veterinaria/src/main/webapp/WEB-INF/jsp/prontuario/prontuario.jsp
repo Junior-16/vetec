@@ -9,22 +9,33 @@
 	        <!-- Tabs -->
 	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
-					<li class = "active"><a href="#tab1" data-toggle="tab" >Informações Gerais</a></li>
-					<li><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
-					<li><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
-					<li><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
-					<li><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
-					<li><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
-					<li class="dropdown"><a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle" id="teste1">Retorno<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="teste1">
-							<li role="presentation">
-							    <a role="menuitem" href="#">JavaScript</a>
-							    <a role="menuitem" href="#">Python</a>
-							    <a role="menuitem" href="#">Java</a>
-							    <a role="menuitem" href="#">Delphi</a>
+					<li role="presentation" class = "active"><a href="#tab1" data-toggle="tab" >Informações Gerais</a></li>
+					<li role="presentation"><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
+					<li role="presentation"><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
+					<li role="presentation"><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
+					<li role="presentation"><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
+					<li role="presentation"><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
+					<li class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu 1
+					    <span class="caret"></span></a>
+					    <ul class="dropdown-menu">
+					      <li><a href="#">Submenu 1-1</a></li>
+					      <li><a href="#">Submenu 1-2</a></li>
+					      <li><a href="#">Submenu 1-3</a></li> 
+					    </ul>
+  					</li>
+					<li role="presentation" class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					      Dropdown <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+					      	<li role="presentation">
+							    <a  href="#exameFisicoRetorno" data-toggle="tab" class="Linkretorno">Exame Físico</a>
+							    <a  href="#examComplRetorno" data-toggle="tab" class="Linkretorno">Exames Complementares</a>
+							    <a  href="#resultadosRetorno" data-toggle="tab" class="Linkretorno">Resultados</a>
 							</li>
-						</ul>
-					</li>
+					    </ul>
+  					</li>
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">
@@ -64,7 +75,15 @@
 						<div class="tab-pane fade" id="resultados">
 							<c:import url="/includes/prontuarioIncludes/resultadosShow.jsp"/>
 						</div>
-
+						<div class="tab-pane fade" id="exameFisicoRetorno">
+							<c:import url="/includes/prontuarioIncludes/exameFisicoRetorno.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="examComplRetorno">
+							<c:import url="/includes/prontuarioIncludes/examComplRetorno.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="resultadosRetorno">
+							<c:import url="/includes/prontuarioIncludes/resultadosRetorno.jsp"/>
+						</div>
 				</div>
 		</div>
 	</div>
