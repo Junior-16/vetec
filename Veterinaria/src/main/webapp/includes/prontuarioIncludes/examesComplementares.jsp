@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="row">
 	<div class="col-md-2">
 		<label class="custom-control custom-checkbox"> <input
 			type="checkbox" class="custom-control-input" id = "hemograma"> <span
@@ -97,4 +96,4 @@
 	</div>
 	<div id ="ok4" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
 	
-</div>
+

@@ -4,7 +4,7 @@
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
 	<c:import url="/includes/navigation.jsp" />
-	<div class="container-fluid row">
+	<div class="container-fluid row conteudo">
 		<!-- Barra de Pesquisa-->
 	        <!-- Tabs -->
 	        <div class="col-md-12 col-sm-12">
@@ -15,26 +15,19 @@
 					<li role="presentation"><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
 					<li role="presentation"><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
 					<li role="presentation"><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
-					<li class="dropdown">
-					    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu 1
-					    <span class="caret"></span></a>
-					    <ul class="dropdown-menu">
-					      <li><a href="#">Submenu 1-1</a></li>
-					      <li><a href="#">Submenu 1-2</a></li>
-					      <li><a href="#">Submenu 1-3</a></li> 
-					    </ul>
-  					</li>
 					<li role="presentation" class="dropdown">
 					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-					      Dropdown <span class="caret"></span>
+					      Retorno <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu">
-					      	<li role="presentation">
-							    <a  href="#exameFisicoRetorno" data-toggle="tab" class="Linkretorno">Exame Físico</a>
-							    <a  href="#examComplRetorno" data-toggle="tab" class="Linkretorno">Exames Complementares</a>
-							    <a  href="#resultadosRetorno" data-toggle="tab" class="Linkretorno">Resultados</a>
-							</li>
-					    </ul>
+						<li><a href="#exameFisicoRetorno" data-toggle="tab"
+							class="Linkretorno" id = "anamneseRetorno">Exame Físico / Anamnese</a></li>
+						<li><a href="#examComplRetorno" data-toggle="tab"
+							class="Linkretorno">Exames Complementares</a></li>
+						<li><a href="#resultadosRetorno" data-toggle="tab"
+							class="Linkretorno">Resultados</a></li>
+
+					</ul>
   					</li>
 				</ul>
 				<!-- Tabs content -->
@@ -56,9 +49,6 @@
 						</div>
 						<div class="tab-pane fade" id="tab6">
 							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
-						</div>
-						<div class="tab-pane fade" id="tab8">
-							<c:import url="/includes/prontuarioIncludes/retorno.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="infoGerais">
 							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>

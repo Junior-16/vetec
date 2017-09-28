@@ -2,6 +2,7 @@ package br.edu.ifc.concordia.inf.veterinaria.business;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -232,18 +233,25 @@ public class ProntuarioBS extends HibernateBusiness{
 		this.validate();
 	}
 	
-	public void retorno(Resultados result, ExameFisico exame1, ExamesComplementares exame2, String date, String anamnese) {
+	public void retorno(Resultados result, ExameFisico exame1, ExamesComplementares exame2, String date, String anamnese, Long animalId) {
 		Retorno retorno = new Retorno();
 		retorno.setAnamnese(anamnese);
 		retorno.setDate(date);
 		retorno.setExameFisico(exame1);
 		retorno.setExamesComplementares(exame2);
 		retorno.setResultados(result);
+		retorno.setAnimalId(animalId);
 		dao.persist(result);
 		dao.persist(exame1);
 		dao.persist(exame2);
 		dao.persist(retorno);
 		this.validate();
+	}
+	
+	public List<Retorno> dataRetorno(Long animalId) {
+		Criteria criteria = dao.newCriteria(Retorno.class);
+		criteria.add(Restrictions.eq("animalId", animalId));
+		return (List<Retorno>) dao.findByCriteria(criteria,Retorno.class);
 	}
 	
 	public void validate() {

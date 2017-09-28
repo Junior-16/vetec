@@ -16,7 +16,7 @@ public class Retorno implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	private Long animalId;
 	private String anamnese;
 	public String getAnamnese() {
 		return anamnese;
@@ -57,5 +57,11 @@ public class Retorno implements Serializable{
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public Long getAnimalId() {
+		return animalId;
+	}
+	public void setAnimalId(Long animalId) {
+		this.animalId = animalId;
 	}
 }

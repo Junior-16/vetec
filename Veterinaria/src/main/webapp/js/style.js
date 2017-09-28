@@ -31,9 +31,15 @@ $(document).ready(function(){
 	$("#see3").tooltip();
 	$("#edit3").tooltip();
 	$("#ok4").tooltip();
+	$("#ok6").tooltip();
 	$("#ok5").tooltip();
 	$("#see5").tooltip();
 	$("#edit5").tooltip();
+	
+	
+	$("Linkretorno").click(function(){
+		$("dropdown").removeClass()
+	});
 	
 	/*Efeito da barra de pesquisa*/
 	$(".owner").on("click", function(){

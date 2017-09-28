@@ -6,12 +6,15 @@ import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
 
+import com.google.gson.Gson;
+
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
+import br.com.caelum.vraptor.serialization.Serializer;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
@@ -182,9 +185,23 @@ public class ProntuarioController extends AbstractController{
 	
 	@Post("/retorno")
 	@Consumes({"application/json"})
-	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese) {
-		this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese);
+	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese, Long animalId) {
+		this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese,animalId);
 		this.success("Os dados foram salvos");
+	}
+	
+	@Get("/dataRetorno")
+	@Consumes
+	@NoCache
+	public void dataRetorno(Long animalId) {
+		List<Retorno> datas = this.Prontuariobs.dataRetorno(animalId);
+		if (datas != null) {
+			Gson json = new Gson();
+			this.success(json.toJson(datas));
+		}
+		else {
+			this.fail("Deu pau");
+		}
 	}
 	
 }

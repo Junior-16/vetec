@@ -68,7 +68,7 @@ h2{
 .header{
 	background-color:#eeeeee;
 }
-label{
+label, p{
     font-size:medium;
     margin-top: 15px;
     font-weight: 400;
@@ -199,6 +199,9 @@ a:hover{
 }
 .dropdown-menu{
 	background-color:
+}
+.list-group{
+	margin-top:40px;
 }
 
 

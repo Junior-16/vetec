@@ -366,7 +366,6 @@ $(document).ready(function(){
 	
 	//Envia os dados do retorno
 	$("#ok6").click(function(){
-		var day = new Date();
 		$.ajax({
 			method:"POST",
 			url:"http://localhost:8080/Veterinaria/retorno",
@@ -375,8 +374,8 @@ $(document).ready(function(){
 				resultados : {
 				raio:($("#raioRetorno").is(":checked") == true).toString(),
 				ultrasson:($("#ultrassonRetorno").is(":checked") == true).toString(),
-				nExame:$("#nExameRetorno").val(), 
-				regiao:$("#regiaoRetorno").val(), 
+				nExame:$("#numeroExameRetorno").val(), 
+				regiao:$("#regiaoReturn").val(), 
 				data:$("#dataRetorno").val(),
 				laudo:$("#laudoRetorno").val(),
 				diagnostico:$("#diagnosticoRetorno").val(), 
@@ -387,9 +386,7 @@ $(document).ready(function(){
 				alta:$("#altaRetorno").val(), 
 				obito:$("#obitoRetorno").val(), 
 				eutanasia:$("#eutanasiaRetorno").val(), 
-				responsavel:$("#responsavelRetorno").val(),
-				animalId:$("#animalId").val()
-
+				responsavel:$("#responsavelRetorno").val()
 		},
 		exameFisico : {
 				conciencia:$("#concienciaRetorno").val(),
@@ -410,8 +407,7 @@ $(document).ready(function(){
 				percussao:$("#percussaoRetorno").val(),
 				linfonodos:$("#linfondosRetorno").val(),
 				observacoes:$("#observacoes").val(),
-				suspeita:$("#suspeira").val(),
-				animalId:$("#animalId").val()
+				suspeita:$("#suspeira").val()
 		},	
 		examesComplementares : {
 				raspado:($("#raspadoRetorno").is(":checked") == true).toString(),
@@ -427,13 +423,12 @@ $(document).ready(function(){
 				liquidos:($("#liquidosRetorno").is(":checked") == true).toString(),  
 				coproparasitologico:($("#coproRetorno").is(":checked") == true).toString(),
 				outros:$("#othersRetorno").val(),
-				animalId:$("#animalId").val(),
 				outros:$("#othersRetorno").val(),
-				hemograma:($("#hemogramaRetorno").is(":checked") == true).toString(),
-				animalId:$("#animalId").val()
+				hemograma:($("#hemogramaRetorno").is(":checked") == true).toString()
 			},
-			date: (day.getDate()+"-"+(day.getMonth()+1)+"-"+day.getFullYear()),
-			anamnese:$("#anamneseRetorno").val()
+			date: $("#retornoRetorno").val(),
+			anamnese:$("#anamneseRetorno").val(),
+			animalId:$("#animalId").val(),
 			}),
 			success(response){
 				console.log(response);
@@ -443,6 +438,29 @@ $(document).ready(function(){
 			}
 		});
 		
+	});
+	
+	$("#anamneseRetorno").click(function(){
+		$.ajax({
+		method:"GET",
+		url:"http://localhost:8080/Veterinaria/dataRetorno",
+		dataType:"json",
+		data:{animalId:$("#animalId").val()
+		},
+		success(response){
+			data = JSON.parse(response.message);
+			console.log(data[0]);
+			index = 0;
+			while( index < data[1].length){
+				$(".list-group").append("<a href='#' class='list-group-item'>"+data[index].date+"</a>");
+				index++;
+			}
+		},
+		fail(response){
+			
+		}
+		});
+
 	});
 	
 	$("#outros").click(function(){
