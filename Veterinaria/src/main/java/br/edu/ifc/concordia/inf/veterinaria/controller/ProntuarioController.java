@@ -185,9 +185,15 @@ public class ProntuarioController extends AbstractController{
 	
 	@Post("/retorno")
 	@Consumes({"application/json"})
-	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese, Long animalId) {
-		this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese,animalId);
-		this.success("Os dados foram salvos");
+	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese, Long animalId, String idRetorno) {
+		if(idRetorno == "") {
+			this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese,animalId);
+			this.success("Os dados foram salvos");
+		}else {
+			this.Prontuariobs.updateRetorno(resultados,exameFisico,examesComplementares,date,anamnese,Long.parseLong(idRetorno));
+			this.success("Os dados foram atualizados");
+		}
+		
 	}
 	
 	@Get("/dataRetorno")
@@ -196,12 +202,22 @@ public class ProntuarioController extends AbstractController{
 	public void dataRetorno(Long animalId) {
 		List<Retorno> datas = this.Prontuariobs.dataRetorno(animalId);
 		if (datas != null) {
-			Gson json = new Gson();
-			this.success(json.toJson(datas));
+			this.success(datas, (long) datas.size());
 		}
 		else {
 			this.fail("Deu pau");
 		}
 	}
 	
+	@Get("/getReturn")
+	@Consumes
+	public void getReturn(Long id) {
+		Retorno retorno  = this.Prontuariobs.getReturn(id);
+		if(retorno != null) {
+			this.success(retorno);
+		}
+		else {
+			this.fail("Deu pau");
+		}
+	}
 }

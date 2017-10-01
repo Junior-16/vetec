@@ -1,8 +1,11 @@
 <div class="col-md-2">
 	<div class="list-group">
-	  <a href="#" class="list-group-item active">
-	    Retorno
+	  <a class="list-group-item active itemResultados">
+	  	Retorno
 	  </a>
+	  <div class="items">
+	   </div>
+	   <a class="list-group-item novaFicha">Criar Nova Ficha <span class = "glyphicon glyphicon-plus"></span></a> 
 	</div>
 </div>
 <div class="col-md-6">

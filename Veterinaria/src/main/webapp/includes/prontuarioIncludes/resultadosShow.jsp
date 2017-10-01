@@ -59,29 +59,29 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Tratamento Domiciliar</label>
-					<div class="well well-sm tratamentoDomiciliar"></div>
+					<div class="well well-sm tratamentoDomiciliar" type="date"></div>
 				</div>
 				<div class="form-group">
 					<label>Retorno</label>
-					<div class="well well-sm retorno"></div>
+					<div class="well well-sm retorno" type="date"></div>
 				</div>
 				<div class="form-group">
 					<label>Internado</label>
-					<div class="well well-sm internado"></div>
+					<div class="well well-sm internado" type="date"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 					<div class="form-group">
 						<label for="example-date-input">Alta</label> 
-						<div class="well well-sm alta"></div>
+						<div class="well well-sm alta" type="date"></div>
 					</div>
 					<div class="form-group">
 						<label>Obito</label> 
-						<div class="well well-sm obito"></div>
+						<div class="well well-sm obito" type="datetime-local"></div>
 					</div>
 					<div class="form-group">
 						<label>Eutanásia</label> 
-						<div class="well well-sm eutanasia"></div>
+						<div class="well well-sm eutanasia" type="datetime-local"></div>
 					</div>
 			</div>
 			<div class="col-md-6">

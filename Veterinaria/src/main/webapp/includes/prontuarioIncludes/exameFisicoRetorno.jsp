@@ -1,6 +1,9 @@
 <div class="col-md-2">
 	<div class="list-group">
-		<a class="list-group-item active"> Retorno </a>
+		<a class="list-group-item active itemFisico"> Retorno </a>
+		<div class="items">
+	   </div>
+	   <a class="list-group-item novaFicha">Criar Nova Ficha <span class = "glyphicon glyphicon-plus"></span></a> 
 	</div>
 </div>
 <div class="col-md-5">
@@ -114,4 +117,5 @@
 				style="margin: 0px -154.703px 0px 0px; width: 278px; height: 54px;">Teste</textarea>
 		</div>
 	</div>
+	<input type="hidden" id="idRetorno">
 </div>

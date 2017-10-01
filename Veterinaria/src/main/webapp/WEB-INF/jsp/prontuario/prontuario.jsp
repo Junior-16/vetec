@@ -9,19 +9,19 @@
 	        <!-- Tabs -->
 	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
-					<li role="presentation" class = "active"><a href="#tab1" data-toggle="tab" >Informações Gerais</a></li>
-					<li role="presentation"><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
-					<li role="presentation"><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
-					<li role="presentation"><a href="#tab4" data-toggle="tab" id = "exame">Exame Físico</a></li>
+					<li role="presentation" class = "active"><a href="#infoGerais" data-toggle="tab" >Informações Gerais</a></li>
+					<li role="presentation"><a href="#anamneseGeral" data-toggle="tab">Anamnese Geral</a></li>
+					<li role="presentation"><a href="#anamneseEspecial" data-toggle="tab">Anamnese Especial</a></li>
+					<li role="presentation"><a href="#exameFisico" data-toggle="tab" id = "exame">Exame Físico</a></li>
 					<li role="presentation"><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
-					<li role="presentation"><a href="#tab6" data-toggle="tab" id = "resultado">Resultados</a></li>
+					<li role="presentation"><a href="#resultados" data-toggle="tab" id = "resultado">Resultados</a></li>
 					<li role="presentation" class="dropdown">
 					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 					      Retorno <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu">
 						<li><a href="#exameFisicoRetorno" data-toggle="tab"
-							class="Linkretorno" id = "anamneseRetorno">Exame Físico / Anamnese</a></li>
+							class="Linkretorno" id = "anamneseLink">Exame Físico / Anamnese</a></li>
 						<li><a href="#examComplRetorno" data-toggle="tab"
 							class="Linkretorno">Exames Complementares</a></li>
 						<li><a href="#resultadosRetorno" data-toggle="tab"
@@ -32,7 +32,7 @@
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">
-						<div class="tab-pane fade active in" id="tab1">
+						<div class="tab-pane fade" id="tab1">
 							<c:import url="/includes/prontuarioIncludes/infoGerais.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="tab2">
@@ -50,7 +50,7 @@
 						<div class="tab-pane fade" id="tab6">
 							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
 						</div>
-						<div class="tab-pane fade" id="infoGerais">
+						<div class="tab-pane fade  active in" id="infoGerais">
 							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>
 						</div>
 						<div class="tab-pane fade" id="anamneseGeral">

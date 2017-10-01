@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row">
-	<c:if test="${not empty InfoGerais}">
+	<c:if test="${not empty InfoGerais || empty InfoGerais}">
 		<div class="col-md-2">
 			<label>Ficha Clínica</label>
 			<div class="well well-sm fichaClinica">${InfoGerais.ficha_clinica}</div> 

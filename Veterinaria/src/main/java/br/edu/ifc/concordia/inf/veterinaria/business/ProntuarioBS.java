@@ -253,6 +253,79 @@ public class ProntuarioBS extends HibernateBusiness{
 		criteria.add(Restrictions.eq("animalId", animalId));
 		return (List<Retorno>) dao.findByCriteria(criteria,Retorno.class);
 	}
+	public Retorno getReturn(Long id) {
+		Criteria criteria = dao.newCriteria(Retorno.class);
+		criteria.add(Restrictions.eq("id",id));
+		return (Retorno) criteria.uniqueResult();
+	}
+	public void updateRetorno(Resultados resultados, ExameFisico exame, ExamesComplementares examesCompl, String date, String anamnese, Long idRetorno) {
+		Retorno retorno = this.getReturn(idRetorno);
+		ExameFisico exameFisico = retorno.getExameFisico();
+		ExamesComplementares exameCom = retorno.getExamesComplementares();
+		retorno.setAnamnese(anamnese);
+		retorno.setDate(date);
+		//Set dos resultados da ficha de retorno
+		Resultados result = retorno.getResultados();
+		result.setAlta(resultados.getAlta());
+		result.setData(resultados.getData());
+		result.setDiagnóstico(resultados.getDiagnostico());
+		result.setEutanasia(resultados.getEutanasia());
+		result.setInternado(resultados.getInternado());
+		result.setLaudo(resultados.getLaudo());
+		result.setnExame(resultados.getnExame());
+		result.setObito(resultados.getObito());
+		result.setRaio(resultados.getRaio());
+		result.setRegiao(resultados.getRegiao());
+		result.setResponsável(resultados.getResponsavel());
+		result.setRetorno(resultados.getRetorno());
+		result.setTratamento(resultados.getTratamento());
+		result.setTratamentoDomiciliar(resultados.getTratamentoDomiciliar());
+		result.setUltrasson(resultados.getUltrasson());
+		result.setAnimal(resultados.getAnimal());
+		
+		//Set do exame fisico da ficha de retorno
+		exameFisico.setAuscCardiaca(exame.getAuscCardiaca());
+		exameFisico.setAuscRespiratoria(exame.getAuscRespiratoria());
+		exameFisico.setColoracao(exame.getColoracao());
+		exameFisico.setConciencia(exame.getConciencia());
+		exameFisico.setEscoreCorporal(exame.getEscoreCorporal());
+		exameFisico.setFreqCardiaca(exame.getFreqCardiaca());
+		exameFisico.setFreqRespiratoria(exame.getFreqRespiratoria());
+		exameFisico.setHidratacao(exame.getHidratacao());
+		exameFisico.setLinfonodos(exame.getLinfonodos());
+		exameFisico.setMedResidente(exame.getMedResidente());
+		exameFisico.setMicropapulas(exame.getMicropapulas());
+		exameFisico.setObservacoes(exame.getObservacoes());
+		exameFisico.setPalpacao(exame.getPalpacao());
+		exameFisico.setPercussao(exame.getPercussao());
+		exameFisico.setPostura(exame.getPostura());
+		exameFisico.setPulso(exame.getPulso());
+		exameFisico.setSuspeita(exame.getSuspeita());
+		exameFisico.setTemperatura(exame.getTemperatura());
+		exameFisico.setTempoPreenchimento(exame.getTempoPreenchimento());
+		exameFisico.setAnimal(exame.getAnimal());
+		
+		//Set dos exames complementares - ainda da ficha de retorno
+		exameCom.setBioquimicos(examesCompl.getBioquimicos());
+		exameCom.setCitopatologico(examesCompl.getCitopatologico());
+		exameCom.setECG(examesCompl.getECG());
+		exameCom.setHistopatologico(examesCompl.getHistopatologico());
+		exameCom.setLiquidos(examesCompl.getLiquidos());
+		exameCom.setRadiografia(examesCompl.getRadiografia());
+		exameCom.setRaspado(examesCompl.getRaspado());
+		exameCom.setSwab(examesCompl.getSwab());
+		exameCom.setUltrassonografia(examesCompl.getUltrassonografia());
+		exameCom.setUrina(examesCompl.getUrina());
+		exameCom.setHemograma(examesCompl.getHemograma());
+		exameCom.setOutros(examesCompl.getOutros());
+		exameCom.setAnimalId(examesCompl.getAnimalId());
+		
+		retorno.setExameFisico(exameFisico);
+		retorno.setResultados(result);
+		retorno.setExamesComplementares(exameCom);
+		dao.update(retorno);
+		this.validate();
+	}
 	
 	public void validate() {
 		try {

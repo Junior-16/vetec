@@ -220,18 +220,6 @@ $(document).ready(function(){
 				}
 			});
 		});
-	$("#see5").click(function(){
-		var arrayClass = [".nExame",".regiao",".data",".laudo",".diagnostico",".tratamento",".tratamentoDomiciliar",".retorno",".internado",".alta",".obito",".eutanasia",".responsavel"];
-		var arrayID = ["#nExame","#regiao","#dataresult","#laudo","#diagnostico","#tratamento","#tratamentoDomiciliar","#retorno","#internado","#alta","#obito","#eutanasia","#responsavel"];
-		if($("#raio").is(":checked") == true){
-			$(".raio").attr("checked",true);
-		}
-		if($("#ultrasson").is(":checked") == true){
-			$(".ultrasson").attr("checked",true);
-		}
-		inserir(arrayID, arrayClass);
-	});
-
 	$("#complementares").click(function(){
 		$.ajax({
 			method:"GET",
@@ -299,7 +287,7 @@ $(document).ready(function(){
 				else{
 					$("#liquidos").attr("checked",false);
 				}
-				if(response.data.coproparasitológico == "true"){
+				if(response.data.coproparasitologico == "true"){
 					$("#copro").attr("checked",true);
 				}
 				else{
@@ -314,7 +302,7 @@ $(document).ready(function(){
 					$('#others').removeAttr('disabled');
 				}
 				if(response.data.hemograma == "true"){
-					$("#hemograma").val("checked",true);
+					$("#hemograma").attr("checked",true);
 				}
 				else{
 					$("#hemograma").attr("checked",false);
@@ -357,6 +345,17 @@ $(document).ready(function(){
 					}else{
 						$(".raio").attr("checked",false);
 					}
+					var arrayClass = [".nExame",".regiao",".laudo",".diagnostico",".tratamento",".responsavel"];
+					var arrayID = ["#nExame","#regiao","#laudo","#diagnostico","#tratamento","#responsavel"];
+					if($("#raio").is(":checked") == true){
+						$(".raio").attr("checked",true);
+					}
+					if($("#ultrasson").is(":checked") == true){
+						$(".ultrasson").attr("checked",true);
+					}
+					inserir(arrayID, arrayClass);
+					formatarDatas([".data",".tratamentoDomiciliar",".retorno",".internado",".alta",".obito",".eutanasia"],
+							["#dataresult","#tratamentoDomiciliar","#retorno","#internado","#alta","#obito","#eutanasia"]);
 			},
 			fail(response){
 				console.log(response);
@@ -429,6 +428,7 @@ $(document).ready(function(){
 			date: $("#retornoRetorno").val(),
 			anamnese:$("#anamneseRetorno").val(),
 			animalId:$("#animalId").val(),
+			idRetorno:$("#idRetorno").val()
 			}),
 			success(response){
 				console.log(response);
@@ -440,38 +440,189 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#anamneseRetorno").click(function(){
+	$("#anamneseLink").click(function(){
 		$.ajax({
-		method:"GET",
-		url:"http://localhost:8080/Veterinaria/dataRetorno",
-		dataType:"json",
-		data:{animalId:$("#animalId").val()
-		},
-		success(response){
-			data = JSON.parse(response.message);
-			console.log(data[0]);
-			index = 0;
-			while( index < data[1].length){
-				$(".list-group").append("<a href='#' class='list-group-item'>"+data[index].date+"</a>");
-				index++;
+			method:"GET",
+			url:"http://localhost:8080/Veterinaria/dataRetorno",
+			dataType:"json",
+			data:{animalId:$("#animalId").val()
+			},
+			success(response){
+				$(".items").empty();
+				console.log(response);
+				console.log(response.data);
+				x = response.data;
+				index = 0;
+				while( index < x.length){
+					$(".items").append("<li href = '#' value="+x[index].id+" class='list-group-item datas'>"+x[index].date[8]+x[index].date[9]+"/"+x[index].date[5]+x[index].date[6]+"/"+x[index].date[0]+x[index].date[1]+x[index].date[2]+x[index].date[3]+"</li>");
+					index++;
+				}
+			},
+			fail(response){
+				
 			}
-		},
-		fail(response){
-			
-		}
 		});
 
 	});
 	
-	$("#outros").click(function(){
-		if($(this).is(":checked") == true){
-			$('#others').removeAttr('disabled');
-		}else{
-			 $('#others').attr('disabled', 'disabled');
-		}
-	});
-	
+	$('.items').on('click', '.datas', function() {
+		classe = $(this)[0].parentElement.previousElementSibling.className;
+		$.ajax({
+			method:"GET",
+			url:"http://localhost:8080/Veterinaria/getReturn",
+			dataType:"json",
+			contentType: "application/json",
+			data:{id:$(this).val()
+			},
+			success(response){
+				$("#idRetorno").val(response.data.id);
+				$("#concienciaRetorno").val(response.data.exameFisico.conciencia),
+				$("#tempoPreencimentoRetorno").val(response.data.exameFisico.tempoPreenchimento),
+				$("#tempCorporeaRetorno").val(response.data.exameFisico.temperatura),
+				$("#escoreRetorno").val(response.data.exameFisico.escoreCorporal),
+				$("#freqCardiacaRetorno").val(response.data.exameFisico.freqCardiaca),
+				$("#medResidenteRetorno").val(response.data.exameFisico.medResidente),
+				$("#micropapulasRetorno").val(response.data.exameFisico.micropapulas),
+				$("#freqRespiratoriaRetorno").val(response.data.exameFisico.freqRespiratoria),
+				$("#posturaRetorno").val(response.data.exameFisico.postura),
+				$("#mucosasRetorno").val(response.data.exameFisico.coloracao),
+				$("#hidratacaoRetorno").val(response.data.exameFisico.hidratacao),
+				$("#pulsoRetorno").val(response.data.exameFisico.pulso),
+				$("#auscuRespiratoriaRetorno").val(response.data.exameFisico.auscCardiaca),
+				$("#palpacaoRetorno").val(response.data.exameFisico.palpacao),
+				$("#percussaoRetorno").val(response.data.exameFisico.percussao),
+				$("#linfondosRetorno").val(response.data.exameFisico.linfonodos),
+				$("#observacoesRetorno").val(response.data.exameFisico.observacoes),
+				$("#suspeiraRetorno").val(response.data.exameFisico.suspeita),
+				$("#anamneseRetorno").val(response.data.anamnese)
+				optionRemove = $("#concienciaRetorno")[0].firstElementChild.text;
+				index = 0;
+				$("#concienciaRetorno option").each(function(){
+					var test = this;
+					if(optionRemove == this.text && index != 0){
+						this.remove();
+					}index++;
+				});
+				index = 0;
+				optionRemove = $("#escoreRetorno")[0].firstElementChild.text;
+				$("#escoreRetorno option").each(function(){
+					if(optionRemove == this.text && index != 0){
+						this.remove();
+					}index++;
+				});
+				
+				if(response.data.resultados.raio == "true"){
+					$("#raioRetorno").attr("checked",true);
+				}else{
+					$("#raioRetorno").attr("checked",false);
+				}
+				if(response.data.resultados.ultrasson == "true"){
+					$("#ultrassonRetorno").attr("checked",true);
+				}else{
+					$("#ultrassonRetorno").attr("checked",false);
+				}
+				$("#numeroExameRetorno").val(response.data.resultados.nExame), 
+				$("#regiaoReturn").val(response.data.resultados.regiao), 
+				$("#dataRetorno").val(response.data.resultados.data),
+				$("#laudoRetorno").val(response.data.resultados.laudo),
+				$("#diagnosticoRetorno").val(response.data.resultados.diagnostico), 
+				$("#tratamentoRetorno").val(response.data.resultados.tratamento),
+				$("#tratamentoDomiciliarRetorno").val(response.data.resultados.tratamentoDomiciliar), 
+				$("#retornoRetorno").val(response.data.resultados.retorno), 
+				$("#internadoRetorno").val(response.data.resultados.internado), 
+				$("#altaRetorno").val(response.data.resultados.alta), 
+				$("#obitoRetorno").val(response.data.resultados.obito), 
+				$("#eutanasiaRetorno").val(response.data.resultados.eutanasia), 
+				$("#responsavelRetorno").val(response.data.resultados.responsavel)
 
+				if(response.data.examesComplementares.raspado == "true"){
+					$("#raspadoRetorno").attr("checked",true);
+				}else{
+					$("#raspadoRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.bioquimicos == "true"){
+					$("#bioquimicosRetorno").attr("checked",true);
+				}
+				else{
+					$("#bioquimicosRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.citopatologico == "true"){
+					$("#citopatologicoRetorno").attr("checked",true);
+				}
+				else{
+					$("#citopatologicoRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.urina == "true"){
+					$("#urinaRetorno").attr("checked",true);
+				}
+				else{
+					$("#urinaRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.histopatologico == "true"){
+					$("#histopatologicoRetorno").attr("checked",true);
+				}
+				else{
+					$("#histopatologicoRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.ECG == "true"){
+					$("#ecgRetorno").attr("checked",true);
+				}
+				else{
+					$("#ecgRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.ultrassonografia == "true"){
+					$("#ultrassonografiaRetorno").attr("checked",true);
+				}
+				else{
+					$("#ultrassonografiaRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.swab == "true"){
+					$("#swabRetorno").attr("checked",true);
+				}
+				else{
+					$("#swabRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.radio == "true"){
+					$("#radioRetorno").attr("checked",true);
+				}
+				else{
+					$("#radioRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.liquidos == "true"){
+					$("#liquidosRetorno").attr("checked",true);
+				}
+				else{
+					$("#liquidosRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.coproparasitologico == "true"){
+					$("#coproRetorno").attr("checked",true);
+				}
+				else{
+					$("#coproRetorno").attr("checked",false);
+				}
+				if(response.data.examesComplementares.outros == ""){
+					$("#outrosRetorno").attr("checked",false);
+					$("#othersRetorno").val(" ");
+					$('#othersRetorno').attr('disabled', 'disabled');
+				}
+				else{
+					$("#outrosRetorno").attr("checked",true);
+					$("#othersRetorno").val(response.data.examesComplementares.outros);
+					$('#othersRetorno').removeAttr('disabled');
+				}
+				if(response.data.examesComplementares.hemograma == "true"){
+					$("#hemogramaRetorno").attr("checked",true);
+				}
+				else{
+					$("#hemogramaRetorno").attr("checked",false);
+				}
+				y = response.data;
+			},
+			fail(response){
+				
+			}
+		});
+	});
 		
 	$("#outros").click(function(){
 		if($(this).is(":checked") == true){
@@ -493,7 +644,6 @@ $(document).ready(function(){
 		index = 0;
 		$("#conciencia option").each(function(){
 			var test = this;
-			console.log(test);
 			if(optionRemove == this.text && index != 0){
 				this.remove();
 			}index++;
@@ -506,12 +656,57 @@ $(document).ready(function(){
 			}index++;
 		});
 	});
+	$(".novaFicha").click(function(){
+		$("#outrosRetorno").attr("checked",false);
+		$("#othersRetorno").val(" ");
+		$('#othersRetorno').attr('disabled', 'disabled');
+		$("#idRetorno").val("");
+		var idClass = [
+			"#concienciaRetorno","#tempoPreencimentoRetorno","#tempCorporeaRetorno",
+			"#escoreRetorno","#freqCardiacaRetorno","#medResidenteRetorno",
+			"#micropapulasRetorno","#freqRespiratoriaRetorno","#posturaRetorno",
+			"#mucosasRetorno","#hidratacaoRetorno","#pulsoRetorno","#auscuRespiratoriaRetorno",
+			"#palpacaoRetorno","#percussaoRetorno","#linfondosRetorno","#observacoesRetorno",
+			"#suspeiraRetorno","#anamneseRetorno","#numeroExameRetorno","#regiaoReturn",
+			"#dataRetorno","#laudoRetorno","#diagnosticoRetorno","#tratamentoRetorno",
+			"#tratamentoDomiciliarRetorno","#retornoRetorno","#internadoRetorno",
+			"#altaRetorno","#obitoRetorno","#eutanasiaRetorno","#responsavelRetorno" ];
+		index = 0;
+		while(index < idClass.length){
+			$(idClass[index]).val(" ");
+			index++;
+		}
+		checkId = ["#raspadoRetorno","#bioquimicosRetorno","#citopatologicoRetorno","#urinaRetorno",
+					"#histopatologicoRetorno","#ecgRetorno","#ultrassonografiaRetorno",
+					"#swabRetorno","#radioRetorno","#liquidosRetorno","#coproRetorno"];
+		index = 0;
+		while(index < checkId.length){
+			$(checkId[index]).attr("checked",false);
+			index++;
+		}
+	});
+	
 	//Inserir informações atualizadas na aba de visualização
 	function inserir(ArrayId, ArrayClass){
 		var index = 0;
 		while (index <ArrayId.length){
 			$(ArrayClass[index]).html($(ArrayId[index]).val());
 			index++;
+		}
+	}
+	
+	function formatarDatas(classes, ids){
+		index = 0;
+		while(index < classes.length){
+			data = $(ids[index]).val();
+			if (ids[index] == "#obito" || ids[index] == "#eutanasia"){
+				$(classes[index]).html(data[8]+data[9]+"/"+data[5]+data[6]+"/"+data.substr(0,4)+""+data.substr(10,12));
+				index++;
+			}
+			else{
+				$(classes[index]).html(data[8]+data[9]+"/"+data[5]+data[6]+"/"+data.substr(0,4));
+				index++;
+			}
 		}
 	}
 });

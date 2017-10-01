@@ -1,6 +1,9 @@
 <div class="col-md-2">
 	<div class="list-group">
-		<a class="list-group-item active"> Retorno </a> 	  
+		<a class="list-group-item active itemComplementares"> Retorno </a> 
+		<div class="items">
+	   </div>
+	   <a class="list-group-item novaFicha">Criar Nova Ficha <span class = "glyphicon glyphicon-plus"></span></a> 	  
 	</div>
 </div>
 <div class="col-md-10">
@@ -97,7 +100,7 @@
 	<div class="col-md-4">
 		<label class="custom-control custom-checkbox"> <input
 			type="checkbox" class="custom-control-input"
-			id="outrosRetornoRetorno"> <span
+			id="outrosRetorno"> <span
 			class="custom-control-indicator"></span> <span
 			class="custom-control-description">Outros</span>
 		</label>
