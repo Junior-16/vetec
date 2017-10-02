@@ -21,7 +21,7 @@
 					    </a>
 					    <ul class="dropdown-menu">
 						<li><a href="#exameFisicoRetorno" data-toggle="tab"
-							class="Linkretorno" id = "anamneseLink">Exame Físico / Anamnese</a></li>
+							class="Linkretorno">Exame Físico / Anamnese</a></li>
 						<li><a href="#examComplRetorno" data-toggle="tab"
 							class="Linkretorno">Exames Complementares</a></li>
 						<li><a href="#resultadosRetorno" data-toggle="tab"

@@ -46,6 +46,7 @@ public class ProntuarioController extends AbstractController{
 		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
 		this.result.include("ExameFisico",this.Prontuariobs.exameFisico(id));
 	}
+
 	@Permition
 	@Get(value="/cadastrarAnimal")
 	@NoCache
@@ -186,7 +187,7 @@ public class ProntuarioController extends AbstractController{
 	@Post("/retorno")
 	@Consumes({"application/json"})
 	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese, Long animalId, String idRetorno) {
-		if(idRetorno == "") {
+		if(idRetorno.equals("") == true) {
 			this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese,animalId);
 			this.success("Os dados foram salvos");
 		}else {

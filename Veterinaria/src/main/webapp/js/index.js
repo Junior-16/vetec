@@ -440,7 +440,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#anamneseLink").click(function(){
+	$(".Linkretorno").click(function(){
 		$.ajax({
 			method:"GET",
 			url:"http://localhost:8080/Veterinaria/dataRetorno",
@@ -676,7 +676,7 @@ $(document).ready(function(){
 			$(idClass[index]).val(" ");
 			index++;
 		}
-		checkId = ["#raspadoRetorno","#bioquimicosRetorno","#citopatologicoRetorno","#urinaRetorno",
+		checkId = ["#hemogramaRetorno","#raspadoRetorno","#bioquimicosRetorno","#citopatologicoRetorno","#urinaRetorno",
 					"#histopatologicoRetorno","#ecgRetorno","#ultrassonografiaRetorno",
 					"#swabRetorno","#radioRetorno","#liquidosRetorno","#coproRetorno"];
 		index = 0;
