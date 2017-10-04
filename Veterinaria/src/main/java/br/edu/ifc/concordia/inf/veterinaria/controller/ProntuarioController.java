@@ -101,7 +101,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.updateInfoGerais(ficha);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -112,7 +112,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.anamneseGeral(anamnese);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -123,7 +123,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.anamneseEspecial(anamnese);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -134,7 +134,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.exameFisico(exame);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -145,7 +145,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.examesComplementares(exames);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -156,7 +156,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.resultados(resultados);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
