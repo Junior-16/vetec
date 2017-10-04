@@ -6,15 +6,12 @@ import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
 
-import com.google.gson.Gson;
-
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
-import br.com.caelum.vraptor.serialization.Serializer;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
@@ -30,7 +27,7 @@ import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.Resultados;
 import br.edu.ifc.concordia.inf.veterinaria.model.Retorno;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
-
+/*Essa é a classe de controladores das páginas(get, post) -- Junior Vitor Vamisch que fez essa merda*/
 @Controller
 public class ProntuarioController extends AbstractController{
 	@Inject private ProntuarioBS Prontuariobs;
