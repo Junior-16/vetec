@@ -422,7 +422,6 @@ $(document).ready(function(){
 				liquidos:($("#liquidosRetorno").is(":checked") == true).toString(),  
 				coproparasitologico:($("#coproRetorno").is(":checked") == true).toString(),
 				outros:$("#othersRetorno").val(),
-				outros:$("#othersRetorno").val(),
 				hemograma:($("#hemogramaRetorno").is(":checked") == true).toString()
 			},
 			date: $("#retornoRetorno").val(),
