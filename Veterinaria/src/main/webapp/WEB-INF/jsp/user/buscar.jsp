@@ -40,7 +40,7 @@
 										<c:if test="${not empty found.animais}">
 												<c:forEach items="${found.animais}" var="animais">
 													<span class="glyphicon glyphicon-chevron-down animal" style="padding-left:20px;"></span>
-													<a class = "${found.id}" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
+													<a class = "${animais.id}" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
 													<li>
 														<a href="<c:url value="/prontuario/${animais.id}"/>" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Prontuario</a>
 														<a href="#" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Cirurgia</a>

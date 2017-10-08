@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="<c:url value="/bootstrap/css/bootstrap.min.css"/>"/>
 	<link rel="stylesheet" href="<c:url value="/css/index.css"/>"/>
 	<link rel="shortcut icon" href="<c:url value="/imagens/favicon.ico"/>" >
+	<link rel="stylesheet" href="<c:url value="/css/toastr.css"/>">
 </head>
 <body>
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded row header">

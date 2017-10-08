@@ -6,15 +6,12 @@ import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
 
-import com.google.gson.Gson;
-
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
-import br.com.caelum.vraptor.serialization.Serializer;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
 import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
@@ -30,7 +27,7 @@ import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.Resultados;
 import br.edu.ifc.concordia.inf.veterinaria.model.Retorno;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
-
+/*Essa é a classe de controladores das páginas(get, post) -- Junior Vitor Vamisch que fez essa merda*/
 @Controller
 public class ProntuarioController extends AbstractController{
 	@Inject private ProntuarioBS Prontuariobs;
@@ -46,6 +43,7 @@ public class ProntuarioController extends AbstractController{
 		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
 		this.result.include("ExameFisico",this.Prontuariobs.exameFisico(id));
 	}
+
 	@Permition
 	@Get(value="/cadastrarAnimal")
 	@NoCache
@@ -100,7 +98,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.updateInfoGerais(ficha);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -111,7 +109,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.anamneseGeral(anamnese);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -122,7 +120,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.anamneseEspecial(anamnese);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -133,7 +131,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.exameFisico(exame);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -144,7 +142,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.examesComplementares(exames);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -155,7 +153,7 @@ public class ProntuarioController extends AbstractController{
 			this.Prontuariobs.resultados(resultados);
 			this.success("Os dados foram salvos");
 		}else {
-			this.fail("Deu pau");
+			this.fail("Os dados não foram salvos, repita o processo");
 		}
 	}
 	
@@ -186,7 +184,7 @@ public class ProntuarioController extends AbstractController{
 	@Post("/retorno")
 	@Consumes({"application/json"})
 	public void retorno(Resultados resultados, ExameFisico exameFisico, ExamesComplementares examesComplementares, String date, String anamnese, Long animalId, String idRetorno) {
-		if(idRetorno == "") {
+		if(idRetorno.equals("") == true) {
 			this.Prontuariobs.retorno(resultados,exameFisico,examesComplementares,date,anamnese,animalId);
 			this.success("Os dados foram salvos");
 		}else {

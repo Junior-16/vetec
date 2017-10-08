@@ -21,7 +21,7 @@
 						name="telefone"
 						value="<c:url value="${changeOwner.telefone}"/>">
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-4">
 					<label>Profissão</label> <input class="form-control" name="profissao"
 						value="<c:url value="${changeOwner.profissao}"/>">
 				</div>

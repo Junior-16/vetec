@@ -46,9 +46,10 @@ $(document).ready(function(){
 	            dataType: "json",
 	            contentType: "application/json",
 	            success(e){ 
-	            	console.log(e); 
+	            	toastr["success"](e.message);
 	            },
 	            fail(e){ 
+	            	toastr["error"](e.message);
 	            	console.log(e);
 	            }
 	           
@@ -72,10 +73,11 @@ $(document).ready(function(){
 			data:JSON.stringify(anamneseGeral),
 			contentType:"application/json",
 			success(e){
+				toastr["success"](e.message);
 				console.log(e);
 			},
 			fail(e){
-				console.log(e);
+				toastr["error"](e.message);
 			}
 		});
 	});
@@ -101,10 +103,10 @@ $(document).ready(function(){
 			data:JSON.stringify(anamneseEspecial),
 			contentType:"application/json",
 			success(e){
-				console.log(e);
+				toastr["success"](e.message);
 			},
 			fail(e){
-				console.log(e);
+				toastr["error"](e.message);
 			}
 		});
 	});
@@ -145,10 +147,10 @@ $(document).ready(function(){
 			data:JSON.stringify(exameFisico),
 			contentType:"application/json",
 			success(e){
-				console.log(e);
+				toastr["success"](e.message);
 			},
 			fail(e){
-				console.log(e);
+				toastr["error"](e.message);
 			}
 		});
 	});
@@ -179,10 +181,10 @@ $(document).ready(function(){
 				data:JSON.stringify(Examescomplementares),
 				contentType:"application/json",
 				success(e){
-					console.log(e);
+					toastr["success"](e.message);
 				},
 				fail(e){
-					console.log(e);
+					toastr["error"](e.message);
 				}
 			});
 		});
@@ -213,10 +215,10 @@ $(document).ready(function(){
 				data:JSON.stringify(resultados),
 				contentType:"application/json",
 				success(e){
-					console.log(e.message);
+					toastr["success"](e.message);
 				},
 				fail(e){
-					console.log(e);
+					toastr["error"](e.message);
 				}
 			});
 		});
@@ -429,17 +431,17 @@ $(document).ready(function(){
 			animalId:$("#animalId").val(),
 			idRetorno:$("#idRetorno").val()
 			}),
-			success(response){
-				console.log(response);
+			success(e){
+				toastr["success"](e.message);
 			},
 			fail(response){
-				console.log(response);
+				toastr["error"](e.message);
 			}
 		});
 		
 	});
 	
-	$("#anamneseLink").click(function(){
+	$(".Linkretorno").click(function(){
 		$.ajax({
 			method:"GET",
 			url:"http://localhost:8080/Veterinaria/dataRetorno",
@@ -675,13 +677,13 @@ $(document).ready(function(){
 			$(idClass[index]).val(" ");
 			index++;
 		}
-		checkId = ["#raspadoRetorno","#bioquimicosRetorno","#citopatologicoRetorno","#urinaRetorno",
-					"#histopatologicoRetorno","#ecgRetorno","#ultrassonografiaRetorno",
+		checkId = ["#hemogramaRetorno","#raspadoRetorno","#bioquimicosRetorno","#citopatologicoRetorno","#urinaRetorno",
+					"#histopatologicoRetorno","#ecgRetorno","#ultrassonografiaRetorno","#raioRetorno","#ultrassonRetorno",
 					"#swabRetorno","#radioRetorno","#liquidosRetorno","#coproRetorno"];
 		index = 0;
 		while(index < checkId.length){
 			$(checkId[index]).attr("checked",false);
-			index++;
+			index+=1;
 		}
 	});
 	

@@ -30,6 +30,9 @@ p{
     color: white;
     font-size: 25px;
 }
+.datas{
+	cursor:pointer;
+}
 #username, #password{
 	margin-top: 10%;
 }
@@ -143,9 +146,7 @@ img{
 	border-radius:100%;
 	background-color:#b94a48;
 }
-.salvarProprietario{
-	margin-top:10%;
-}
+
 #save:hover, #editar:hover{
 	box-shadow: 0 4px 18px #5f5f5f;
 }
