@@ -13,6 +13,7 @@ $(document).ready(function(){
 	//Aplica o tooltip
 	$('#save').tooltip();
 	$('.change').tooltip();
+	$('.change1').tooltip();
 	$(".salvarProprietario").tooltip();
 	$(".changeOwner").tooltip();
 	$(".saveAnimal").tooltip();

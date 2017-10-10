@@ -22,7 +22,7 @@ h1.title {
 }
 
 hr{body, html{
-     height: 100%;
+    height: 100%;
  	background-repeat: no-repeat;
  	background-color: #d3d3d3;
  	font-family: 'Oxygen', sans-serif;
@@ -156,5 +156,5 @@ p{
 	margin-top:10px;
 }
 .panel-heading{
-	padding-top:10%; 
+	padding-top:5%; 
 }

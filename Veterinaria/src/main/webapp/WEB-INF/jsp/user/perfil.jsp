@@ -4,7 +4,14 @@
 <c:import url="/includes/headers.jsp" />
 
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:otherwise>
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:otherwise>
+	</c:if>
 	<form id="changeProfile" method="GET" action="<c:url value="/modificarPerfil"/>">
 		<div class="jumbotron profile">
 			<div class="row">
@@ -48,7 +55,7 @@
 						</div>
 					</c:if>
 				</div>	
-				<div class ="change" data-toggle="tooltip" data-placement="top" title="Editar"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></div>
+				<div class ="change1" data-toggle="tooltip" data-placement="top" title="Editar"><span id = "icon-save" class="glyphicon glyphicon-edit"></span></div>
 			</div>
 			
 		</div>

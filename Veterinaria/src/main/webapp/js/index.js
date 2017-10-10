@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	//Envia os formularios
-	$(".change").click(function(){
+	$(".change1").click(function(){
 		$("#changeProfile").submit();
 	});
 	$(".changeOwner").click(function(){
@@ -14,9 +14,6 @@ $(document).ready(function(){
 	});
 	$(".cadastrarProprietario").click(function(){
 		$("#cadastrarProprietario").submit();
-	});
-	$(".cadastrarUser").click(function(){
-		$("#cadastrarUser").submit();
 	});
 	//Enviar informações gerais
 	$("#ok").click(function(){

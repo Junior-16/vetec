@@ -5,7 +5,14 @@
 
 	<div class="container-fluid conteudo">
 	<!--nav navigation-->
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:otherwise>
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:otherwise>
+	</c:if>
 	<form id = "cadastrarUser" method="POST" action="<c:url value="/createacount"/>">
 		<div class="row container-fluid">
 			<div class="formulario">
@@ -61,7 +68,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="cadastrarUser" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cadastar"><span id="icon-save" class="glyphicon glyphicon-ok"></span></div>
+		<button type = "submit" class="cadastrarUser" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cadastar"><span id="icon-save" class="glyphicon glyphicon-ok"></span></button>
 	</form>
 </div>
 <c:import url="/includes/footer.jsp"/>

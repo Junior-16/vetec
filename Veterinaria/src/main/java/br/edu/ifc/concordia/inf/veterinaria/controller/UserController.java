@@ -35,7 +35,7 @@ public class UserController extends AbstractController {
 		if (x == 1) {
 			this.result.include("samePassword", "Senha já existente");
 		}else {
-			
+			this.result.include("permition",this.userSession.getLoggedUser());
 		}
 	}
 	

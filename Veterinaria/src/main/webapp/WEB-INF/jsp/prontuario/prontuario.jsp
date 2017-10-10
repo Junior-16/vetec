@@ -3,7 +3,14 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:otherwise>
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:otherwise>
+	</c:if>
 	<div class="container-fluid row conteudo">
 		<!-- Barra de Pesquisa-->
 	        <!-- Tabs -->
