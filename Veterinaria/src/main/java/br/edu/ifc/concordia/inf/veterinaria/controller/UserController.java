@@ -4,6 +4,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import org.hibernate.JDBCException;
+
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -52,15 +54,26 @@ public class UserController extends AbstractController {
 	}
 	
 	@Post(value="/createacount")
+	@Consumes
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
-		this.result.include("permition",this.userSession.getLoggedUser());
-		if(this.bs.cadastrar(nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
-			this.result.redirectTo(UserController.class).createacount(1);
+		try {
+			if( nome.equals("") || especialidade.equals("") || estudo.equals("") ||  telefone.equals("") ||  endereco.equals("") ||  crmv.equals("") ||  cep.equals("") ||  cpf.equals("") ||  email.equals("") ||  password.equals("") ||  username.equals("")) {
+				this.fail("Campos Incompletos");
+			}
+			if(password.length() < 5) {
+				this.fail("A senha deve conter mais que 4 dígitos");
+			}
+			if(this.bs.cadastrar(nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
+				this.fail("Senha já existente");
+			}
+			else {
+				this.success("Cadastro realizado com sucesso");
+			}
+		}catch(JDBCException e) {
+			this.fail("Nome de usuário já existente");
 		}
-		else {
-			this.result.redirectTo(IndexController.class).index();
-		}
+		
 		
 	}
 	
@@ -188,7 +201,7 @@ public class UserController extends AbstractController {
 			this.result.include("admin",this.userSession.getLoggedUser());
 		}
 		
-		List<User> user = this.bs.listUser(this.userSession.getLoggedUser().getNome());
+		List<User> user = this.bs.listUser(this.userSession.getLoggedUser().getUsername());
 		this.result.include("userList", user);
 	}
 	

@@ -7,7 +7,7 @@
 				<div class="col-md-12">
 					<div class="panel-heading">
 		               <div class="panel-title text-center">
-		               		<h1 class="title">Clínica Veterinaria IFC - Concórdia</h1>
+		               		<h1 class="title">Clínica Veterinária IFC - Concórdia</h1>
 		               	</div>
 		             
 						<div class="main-login main-center">

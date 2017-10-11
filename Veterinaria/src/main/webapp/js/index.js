@@ -476,9 +476,9 @@ $(document).ready(function(){
 				endereco:$("#endereco").val(), 
 				referencias:$("#referencias").val()
 			}),
-			fail(e){
-            	toastr["error"](e.message);
+			error(e){
             	console.log(e);
+            	toastr["error"](JSON.parse(e.responseText).message);
 			},
 			success(e){
             	toastr["success"](e.message);
@@ -486,6 +486,36 @@ $(document).ready(function(){
 			}
 		});
 
+	});
+	
+	$(".cadastrarUser").click(function(){
+		$.ajax({
+			method:"POST",
+			url:"http://localhost:8080/Veterinaria/createacount",
+			dataType: "json",
+			contentType: "application/json",
+			data:JSON.stringify({
+				 nome:$("#nome").val(), 
+				 especialidade:$("#especialidade").val(),
+				 estudo:$("#estudo").val(), 
+				 telefone:$("#telefone").val(), 
+				 endereco:$("#endereco").val(), 
+				 crmv:$("#crmv").val(), 
+				 cep:$("#cep").val(), 
+				 cpf:$("#cpf").val(), 
+				 email:$("#email").val(), 
+				 password:$("#password").val(), 
+				 username:$("#username").val()
+			}),
+			error(e){
+            	console.log(e);
+            	toastr["error"](JSON.parse(e.responseText).message);
+			},
+			success(e){
+            	toastr["success"](e.message);
+            	console.log(e);
+			}
+		})
 	});
 	
 	$('.items').on('click', '.datas', function() {
