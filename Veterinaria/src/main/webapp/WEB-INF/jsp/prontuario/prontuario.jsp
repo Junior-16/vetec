@@ -7,9 +7,9 @@
 		<c:if test="${permition.acesso == 2}">
 			<c:import url="/includes/navigation.jsp" />
 		</c:if>
-		<c:otherwise>
+		<c:if test="${permition.acesso == 1}">
 			<c:import url="/includes/navigationNormal.jsp" />
-		</c:otherwise>
+		</c:if>
 	</c:if>
 	<div class="container-fluid row conteudo">
 		<!-- Barra de Pesquisa-->

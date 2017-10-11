@@ -9,9 +9,9 @@
 		<c:if test="${permition.acesso == 2}">
 			<c:import url="/includes/navigation.jsp" />
 		</c:if>
-		<c:otherwise>
+		<c:if test="${permition.acesso == 1}">
 			<c:import url="/includes/navigationNormal.jsp" />
-		</c:otherwise>
+		</c:if>
 	</c:if>
 	<form id = "cadastrarUser" method="POST" action="<c:url value="/createacount"/>">
 		<div class="row container-fluid">

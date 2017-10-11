@@ -3,7 +3,14 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
 	<form id = "changeProfile" method="POST" action="<c:url value="/modificarPerfil"/>">
 		<c:if test="${not empty modificarperfil}">
 			<div class="row container-fluid">

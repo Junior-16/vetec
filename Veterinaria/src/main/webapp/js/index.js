@@ -12,9 +12,6 @@ $(document).ready(function(){
 	$(".salvarProprietario").click(function(){
 		$("#salvarProprietario").submit()
 	});
-	$(".cadastrarProprietario").click(function(){
-		$("#cadastrarProprietario").submit();
-	});
 	//Enviar informações gerais
 	$("#ok").click(function(){
 		ArrayId = ['#fichaClinica',"#data","#setor","#nome","#aptidao","#cidade","#endereco","#idade","#sexo","#peso","#raca"];
@@ -432,7 +429,7 @@ $(document).ready(function(){
 			success(e){
 				toastr["success"](e.message);
 			},
-			fail(response){
+			fail(e){
 				toastr["error"](e.message);
 			}
 		});
@@ -459,6 +456,33 @@ $(document).ready(function(){
 			},
 			fail(response){
 				
+			}
+		});
+
+	});
+	
+	$(".cadastrarProprietario").click(function(){
+		$.ajax({
+			method:"POST",
+			url:"http://localhost:8080/Veterinaria/cadastrar",
+			dataType: "json",
+			contentType: "application/json",
+			data:JSON.stringify({
+				nome:$("#nome").val(), 
+				cep:$("#cep").val(), 
+				profissao:$("#profissao").val(), 
+				cpf:$("#cpf").val(), 
+				telefone:$("#telefone").val(), 
+				endereco:$("#endereco").val(), 
+				referencias:$("#referencias").val()
+			}),
+			fail(e){
+            	toastr["error"](e.message);
+            	console.log(e);
+			},
+			success(e){
+            	toastr["success"](e.message);
+            	console.log(e);
 			}
 		});
 
@@ -599,7 +623,7 @@ $(document).ready(function(){
 				else{
 					$("#coproRetorno").attr("checked",false);
 				}
-				if(response.data.examesComplementares.outros == ""){
+				if(response.data.examesComplementares.outros == "" || response.data.examesComplementares.outros == " " || response.data.examesComplementares.outros == "  "){
 					$("#outrosRetorno").attr("checked",false);
 					$("#othersRetorno").val(" ");
 					$('#othersRetorno').attr('disabled', 'disabled');
@@ -630,6 +654,9 @@ $(document).ready(function(){
 			 $('#others').attr('disabled', 'disabled');
 		}
 	});
+	
+
+	
 	$("#outrosRetorno").click(function(){
 		if($(this).is(":checked") == true){
 			$('#othersRetorno').removeAttr('disabled');

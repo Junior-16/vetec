@@ -3,7 +3,14 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
 	<div class="container-fluid">
 		<table class="table table-striped">
 			<thead>
@@ -36,9 +43,11 @@
 							<td>${userList.especialidade}</td>
 							<td>${userList.estudo}</td>
 							<td>
-								<a href="<c:url value="removerUser/${userList.id}"/>">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
+								<c:if test="${not empty admin}">
+									<a href="<c:url value="removerUser/${userList.id}"/>">
+										<span class="glyphicon glyphicon-remove"></span>
+									</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

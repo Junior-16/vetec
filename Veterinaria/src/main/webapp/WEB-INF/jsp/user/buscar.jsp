@@ -4,7 +4,14 @@
 <c:import url="/includes/headers.jsp" />
 
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
 	<div class="container-fluid row">
 		<div class="col-md-3">
 			<nav class="nav-sidebar">

@@ -42,6 +42,10 @@ $(document).ready(function(){
 		$("dropdown").removeClass()
 	});
 	
+	$(".salvarProprietario").click(function(){
+		toastr["success"]("Os dados atualizados");
+	});
+	
 	/*Efeito da barra de pesquisa*/
 	$(".owner").on("click", function(){
 		if($(this)[0].className == "glyphicon glyphicon-chevron-right owner"){

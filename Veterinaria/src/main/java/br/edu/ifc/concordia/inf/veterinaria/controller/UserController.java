@@ -1,22 +1,19 @@
 package br.edu.ifc.concordia.inf.veterinaria.controller;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
-import br.com.caelum.vraptor.boilerplate.factory.SessionFactoryProducer;
 import br.com.caelum.vraptor.boilerplate.util.CryptManager;
 import br.com.caelum.vraptor.boilerplate.util.GeneralUtils;
 import br.edu.ifc.concordia.inf.veterinaria.IndexController;
 import br.edu.ifc.concordia.inf.veterinaria.abstractions.AbstractController;
-import br.edu.ifc.concordia.inf.veterinaria.business.ProntuarioBS;
 import br.edu.ifc.concordia.inf.veterinaria.business.UserBS;
-import br.edu.ifc.concordia.inf.veterinaria.model.Animal;
 import br.edu.ifc.concordia.inf.veterinaria.model.Proprietario;
 import br.edu.ifc.concordia.inf.veterinaria.model.User;
 import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
@@ -57,6 +54,7 @@ public class UserController extends AbstractController {
 	@Post(value="/createacount")
 	@NoCache
 	public void cadastrar(String nome, String especialidade, String estudo, String telefone, String endereco, String crmv, String cep, String cpf, String email, String password, String username){
+		this.result.include("permition",this.userSession.getLoggedUser());
 		if(this.bs.cadastrar(nome, especialidade, estudo, telefone, endereco, crmv, cep, cpf, email,password, username) == true){
 			this.result.redirectTo(UserController.class).createacount(1);
 		}
@@ -98,30 +96,38 @@ public class UserController extends AbstractController {
 	@NoCache
 	public void cadastrarProprietario() {
 		if(this.userSession.isLogged() == true) {
-			
+			this.result.include("permition",this.userSession.getLoggedUser());
 		}else {
 			this.result.redirectTo(this).login(0,null);
 		}
 	}
 	
-	@Post(value="/cadastrarproprietario")
+	@Post(value="/cadastrar")
+	@Consumes({"application/json"})
 	@NoCache
 	public void cadastrar(String nome, String cep, String profissao, String cpf, String telefone, String endereco, String referencias) {
-		this.bs.cadastrarProprietario( nome,  cpf,  cep,  telefone,  profissao,  endereco,  referencias);
-		this.result.redirectTo(this).cadastrarProprietario();
+		if (nome.equals("") == true ||  cep.equals("") == true || profissao.equals("") == true || cpf.equals("") == true || telefone.equals("") == true || endereco.equals("") == true || referencias.equals("") == true) {
+			this.fail("Preencha todos os campos");
+		}
+		else {
+			this.bs.cadastrarProprietario( nome,  cpf,  cep,  telefone,  profissao,  endereco,  referencias);
+			this.success("O cadastro foi realizado com sucesso");
+		}
+		
 	}
 	
 	@Permition
 	@Get(value="/buscar")
 	@NoCache
 	public void buscar() {
-		
+		this.result.include("permition",this.userSession.getLoggedUser());
 	}
 	
 	@Post("/search")
 	@NoCache
 	@Permition
 	public void buscar(String proprietario) {
+		this.result.include("permition",this.userSession.getLoggedUser());
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
@@ -139,6 +145,7 @@ public class UserController extends AbstractController {
 	@NoCache
 	public void perfil() {
 		this.result.include("perfil", this.userSession.getLoggedUser());
+		this.result.include("permition",this.userSession.getLoggedUser());
 	}
 	
 	@Permition
@@ -146,6 +153,7 @@ public class UserController extends AbstractController {
 	@NoCache
 	public void modificarPerfil() {
 		this.result.include("modificarperfil",this.userSession.getLoggedUser());
+		this.result.include("permition",this.userSession.getLoggedUser());
 	}
 	
 	@Post(value="/modificarPerfil")
@@ -175,6 +183,11 @@ public class UserController extends AbstractController {
 	@NoCache
 	@Permition
 	public void listarUsuarios() {
+		this.result.include("permition",this.userSession.getLoggedUser());
+		if (this.userSession.getLoggedUser().getAcesso() == 2) {
+			this.result.include("admin",this.userSession.getLoggedUser());
+		}
+		
 		List<User> user = this.bs.listUser(this.userSession.getLoggedUser().getNome());
 		this.result.include("userList", user);
 	}
