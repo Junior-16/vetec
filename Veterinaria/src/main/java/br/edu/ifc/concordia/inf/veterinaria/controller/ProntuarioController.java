@@ -38,6 +38,7 @@ public class ProntuarioController extends AbstractController{
 	@Get(value="/prontuario/{id}")
 	@NoCache
 	public void prontuario(Long id) {
+		this.result.include("permition",this.userSession.getLoggedUser());
 		this.result.include("InfoGerais",this.Prontuariobs.infoGerais(id));
 		this.result.include("AnamneseGeral", this.Prontuariobs.anamneseGeral(id));
 		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
@@ -48,6 +49,7 @@ public class ProntuarioController extends AbstractController{
 	@Get(value="/cadastrarAnimal")
 	@NoCache
 	public void cadastrarAnimal(String error) {
+		this.result.include("permition",this.userSession.getLoggedUser());
 		if(GeneralUtils.isEmpty(error) == false) {
 			this.result.include("NotFoundOwner",error);
 		}else {
@@ -70,6 +72,7 @@ public class ProntuarioController extends AbstractController{
 	@Get("/proprietario/{nome}")
 	@NoCache
 	public void proprietario(String nome) {
+		this.result.include("permition",this.userSession.getLoggedUser());
 		List<Proprietario> proprietario = this.bs.busca(nome);
 		this.result.include("proprietarioInfo", proprietario.get(0));
 	}
@@ -78,6 +81,7 @@ public class ProntuarioController extends AbstractController{
 	@Get(value="/modificarProprietario")
 	@NoCache
 	public void modificarProprietario(String nome) {
+		this.result.include("permition",this.userSession.getLoggedUser());
 		List<Proprietario> proprietario = this.bs.busca( nome);
 		this.result.include("changeOwner", proprietario.get(0));
 	}
@@ -173,7 +177,7 @@ public class ProntuarioController extends AbstractController{
 	public void resultados(Long id) {
 		Resultados resultado = this.Prontuariobs.resultados(id);
 		if(resultado == null) {
-			this.fail("Deu pau");
+			this.fail("Houve um Problema");
 		}
 		else {
 			this.success(resultado);

@@ -3,7 +3,14 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
 	<form id = "changeProfile" method="POST" action="<c:url value="/modificarPerfil"/>">
 		<c:if test="${not empty modificarperfil}">
 			<div class="row container-fluid">
@@ -47,7 +54,7 @@
 				</div>
 				<div class="col-md-2">
 					<label>Senha Antiga</label>
-		            <input class="form-control" name="old" type="password" minlength="5" maxlength="10">
+		            <input class="form-control" name="old" type="password">
 		            <c:if test="${not empty mudar}">
 			            <div class="alert alert-danger" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -61,7 +68,7 @@
 		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
 				</div>
 			</div>
-			<div class ="change" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></div>
+			<button type = "submit" class ="change" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></button>
 		</c:if>
 	</form>
 </div>

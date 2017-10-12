@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	//Envia os formularios
-	$(".change").click(function(){
+	$(".change1").click(function(){
 		$("#changeProfile").submit();
 	});
 	$(".changeOwner").click(function(){
@@ -11,12 +11,6 @@ $(document).ready(function(){
 	});
 	$(".salvarProprietario").click(function(){
 		$("#salvarProprietario").submit()
-	});
-	$(".cadastrarProprietario").click(function(){
-		$("#cadastrarProprietario").submit();
-	});
-	$(".cadastrarUser").click(function(){
-		$("#cadastrarUser").submit();
 	});
 	//Enviar informações gerais
 	$("#ok").click(function(){
@@ -434,7 +428,7 @@ $(document).ready(function(){
 			success(e){
 				toastr["success"](e.message);
 			},
-			fail(response){
+			fail(e){
 				toastr["error"](e.message);
 			}
 		});
@@ -464,6 +458,63 @@ $(document).ready(function(){
 			}
 		});
 
+	});
+	
+	$(".cadastrarProprietario").click(function(){
+		$.ajax({
+			method:"POST",
+			url:"http://localhost:8080/Veterinaria/cadastrar",
+			dataType: "json",
+			contentType: "application/json",
+			data:JSON.stringify({
+				nome:$("#nome").val(), 
+				cep:$("#cep").val(), 
+				profissao:$("#profissao").val(), 
+				cpf:$("#cpf").val(), 
+				telefone:$("#telefone").val(), 
+				endereco:$("#endereco").val(), 
+				referencias:$("#referencias").val()
+			}),
+			error(e){
+            	console.log(e);
+            	toastr["error"](JSON.parse(e.responseText).message);
+			},
+			success(e){
+            	toastr["success"](e.message);
+            	console.log(e);
+			}
+		});
+
+	});
+	
+	$(".cadastrarUser").click(function(){
+		$.ajax({
+			method:"POST",
+			url:"http://localhost:8080/Veterinaria/createacount",
+			dataType: "json",
+			contentType: "application/json",
+			data:JSON.stringify({
+				 nome:$("#nome").val(), 
+				 especialidade:$("#especialidade").val(),
+				 estudo:$("#estudo").val(), 
+				 telefone:$("#telefone").val(), 
+				 endereco:$("#endereco").val(), 
+				 crmv:$("#crmv").val(), 
+				 cep:$("#cep").val(), 
+				 cpf:$("#cpf").val(), 
+				 email:$("#email").val(), 
+				 password:$("#password").val(), 
+				 username:$("#username").val()
+			}),
+			error(e){
+            	console.log(e);
+            	toastr["error"](JSON.parse(e.responseText).message);
+			},
+			success(e){
+            	toastr["success"](e.message);
+            	console.log(e);
+			}
+		})
 	});
 	
 	$('.items').on('click', '.datas', function() {
@@ -601,7 +652,7 @@ $(document).ready(function(){
 				else{
 					$("#coproRetorno").attr("checked",false);
 				}
-				if(response.data.examesComplementares.outros == ""){
+				if(response.data.examesComplementares.outros == "" || response.data.examesComplementares.outros == " " || response.data.examesComplementares.outros == "  "){
 					$("#outrosRetorno").attr("checked",false);
 					$("#othersRetorno").val(" ");
 					$('#othersRetorno').attr('disabled', 'disabled');
@@ -632,6 +683,9 @@ $(document).ready(function(){
 			 $('#others').attr('disabled', 'disabled');
 		}
 	});
+	
+
+	
 	$("#outrosRetorno").click(function(){
 		if($(this).is(":checked") == true){
 			$('#othersRetorno').removeAttr('disabled');

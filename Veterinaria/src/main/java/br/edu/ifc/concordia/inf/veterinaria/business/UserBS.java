@@ -65,7 +65,7 @@ public class UserBS extends HibernateBusiness{
 		users = new ArrayList<User>();
 		List <User> found;
 		Criteria criteria = this.dao.newCriteria(User.class);
-		criteria.add(Restrictions.ilike("nome", "", MatchMode.ANYWHERE));
+		criteria.add(Restrictions.ilike("nome", " ", MatchMode.ANYWHERE));
 		found = this.dao.findByCriteria(criteria, User.class);
 		int index = 0;
 		while(index < found.size()) {

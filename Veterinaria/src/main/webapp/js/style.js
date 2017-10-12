@@ -13,6 +13,7 @@ $(document).ready(function(){
 	//Aplica o tooltip
 	$('#save').tooltip();
 	$('.change').tooltip();
+	$('.change1').tooltip();
 	$(".salvarProprietario").tooltip();
 	$(".changeOwner").tooltip();
 	$(".saveAnimal").tooltip();
@@ -39,6 +40,10 @@ $(document).ready(function(){
 	
 	$("Linkretorno").click(function(){
 		$("dropdown").removeClass()
+	});
+	
+	$(".salvarProprietario").click(function(){
+		toastr["success"]("Os dados atualizados");
 	});
 	
 	/*Efeito da barra de pesquisa*/
