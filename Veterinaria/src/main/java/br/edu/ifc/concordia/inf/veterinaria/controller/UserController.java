@@ -132,7 +132,10 @@ public class UserController extends AbstractController {
 	@Permition
 	@Get(value="/buscar")
 	@NoCache
-	public void buscar() {
+	public void buscar(int x) {
+		if (x == 1) {
+			this.result.include("success","Animal cadastrado com sucesso");
+		}
 		this.result.include("permition",this.userSession.getLoggedUser());
 	}
 	
@@ -210,7 +213,7 @@ public class UserController extends AbstractController {
 	@Permition(UserRoles.ADMIN)
 	public void remove(Long id){
 		this.bs.removeUser(id);
-		this.result.redirectTo(IndexController.class).index();
+		this.result.redirectTo(this).listarUsuarios();
 	}
 	
 	@Get(value = "/recuperarSenha")
@@ -219,10 +222,23 @@ public class UserController extends AbstractController {
 		
 	}
 	
-	@Post(value = "/recuperarSenha")
+	@Post("/recuperar")
 	@NoCache
-	public void mudarSenha(String username, String email) throws MessagingException {
-		this.bs.recoverPassword(username, email);
-		this.result.redirectTo(this).login(10, null);
+	public void recuperarSenha(String username, String email) { 
+		try {
+			if(username == null || email == null) {
+				this.result.include("Empty","Campos incompletos");
+			}
+			else if(this.bs.recoverPassword(username, email) == false) {
+				this.result.include("Empty", "Username não existe");
+			}
+			else {
+				this.bs.recoverPassword(username, email);
+				this.result.redirectTo(this).login(10, null);
+			}
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

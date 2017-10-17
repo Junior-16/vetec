@@ -61,7 +61,7 @@ public class ProntuarioController extends AbstractController{
 	@NoCache
 	public void cadastrar(String nome, String especie, String idade, String peso, String sexo, String raca, String info,String nomeProprietario) {
 		if (this.Prontuariobs.cadastrarAnimal(nome, especie, idade, peso, sexo, raca, info, nomeProprietario) == true) {
-			this.result.redirectTo(UserController.class).buscar();
+			this.result.redirectTo(UserController.class).buscar(1);
 		}else {
 			this.result.redirectTo(this).cadastrarAnimal("Proprietario não encontrado");
 		}
@@ -91,7 +91,6 @@ public class ProntuarioController extends AbstractController{
 	@NoCache
 	public void salvarProprietario(String nome, String cpf, String telefone, String profissao, String endereco, String cep, String referencias) {
 		this.bs.proprietarioUpdate( nome, cpf, telefone, profissao, endereco, cep, referencias);
-		this.result.redirectTo(IndexController.class).index();
 	}
 	//Controllers das informações do prontuario
 	

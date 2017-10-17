@@ -169,55 +169,66 @@ public class UserBS extends HibernateBusiness{
 
 	}
 	
-	public void recoverPassword(String username, String email) throws MessagingException {
+	public boolean recoverPassword(String username, String email) throws MessagingException {
 		// Recupera o usuário que esqueceu a senha
 		CryptManager.updateKey(SystemConfigs.getConfig("crypt.key"));
 		CryptManager.updateSalt("@2o!A", "70Px$");
 		Criteria criteria = this.dao.newCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		User usuario = (User) criteria.uniqueResult();
-		String to = email;
-		try {
-			Properties properties = System.getProperties();
-			properties.put("mail.smtp.starttls.enable", "true");
-			properties.put("mail.smtp.host", "smtp.gmail.com");
-			properties.put("mail.smtp.user", "veterinaria Concordia");
-			properties.put("mail.smtp.password", "veterinariaIFC");
-			properties.put("mail.smtp.port", "587");
-			properties.put("mail.smtp.auth", "true");
-
-			// Get the default Session object.
-			Session session = Session.getDefaultInstance(properties);
-			// Create a default MimeMessage object.
-			MimeMessage message = new MimeMessage(session);
-
-			// Set From: header field of the header.
-			message.setFrom(new InternetAddress("veterinaria.ifc@gmail.com"));
-
-			// Set To: header field of the header.
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-			// Set Subject: header field
-			message.setSubject("Nova Senha");
-
-			Random aleatorio = new Random();
-			String senha = "";
-			while (senha.length() <= 5) {
-				senha += aleatorio.nextInt(10);
-			}
-			// Define a nova senha e atualiza o banco de dados
-			usuario.setPassword(CryptManager.passwordHash(senha));
-			this.dao.update(usuario);
-			message.setText(
-					"Sistema Gerenciador - Clícica Veterinaria IFC Concórdia notifica: Sua nova senha é -->" + senha);
-
-			Transport t = session.getTransport("smtp");
-			t.connect("smtp.gmail.com", "veterinaria.ifc@gmail.com", "veterinariaIFC");
-			t.sendMessage(message, message.getAllRecipients());
-			t.close();
-		} catch (AddressException mex) {
-			mex.printStackTrace();
+		if(usuario == null) {
+			return false;
 		}
+		else {
+			String to = email;
+			try {
+				Properties properties = System.getProperties();
+				properties.put("mail.smtp.starttls.enable", "true");
+				properties.put("mail.smtp.host", "smtp.gmail.com");
+				properties.put("mail.smtp.user", "veterinaria Concordia");
+				properties.put("mail.smtp.password", "veterinariaIFC");
+				properties.put("mail.smtp.port", "587");
+				properties.put("mail.smtp.auth", "true");
+	
+				// Get the default Session object.
+				Session session = Session.getDefaultInstance(properties);
+				// Create a default MimeMessage object.
+				MimeMessage message = new MimeMessage(session);
+	
+				// Set From: header field of the header.
+				message.setFrom(new InternetAddress("veterinaria.ifc@gmail.com"));
+	
+				// Set To: header field of the header.
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	
+				// Set Subject: header field
+				message.setSubject("Nova Senha");
+	
+				Random aleatorio = new Random();
+				String senha = "";
+				while (senha.length() <= 5) {
+					senha += aleatorio.nextInt(10);
+				}
+				// Define a nova senha e atualiza o banco de dados
+				usuario.setPassword(CryptManager.passwordHash(senha));
+				this.dao.update(usuario);
+				message.setText(
+						"Sistema Gerenciador - Clícica Veterinaria IFC Concórdia notifica: Sua nova senha é -->" + senha);
+	
+				Transport t = session.getTransport("smtp");
+				t.connect("smtp.gmail.com", "veterinaria.ifc@gmail.com", "veterinariaIFC");
+				t.sendMessage(message, message.getAllRecipients());
+				t.close();
+				return true;
+			} 
+			catch (AddressException mex) {
+				mex.printStackTrace();
+				return false;
+			}
+		}
+			
+	}
+
 
 	}
-}
+

@@ -24,6 +24,14 @@
 							${notfound}
 						</div>
 					</c:if>
+					<c:if test="${not empty success}">
+						<div class="alert alert-success" role="alert"
+							style="padding: 5px; margin-bottom: 10px;">
+							<span class="glyphicon glyphicon-ok"
+								aria-hidden="true"></span> <span class="sr-only"></span>
+							${success}
+						</div>
+					</c:if>
 					<li class="active">
 						<form method="post" action="<c:url value="/search"/>">
 							<input class="form-control" name="proprietario"
