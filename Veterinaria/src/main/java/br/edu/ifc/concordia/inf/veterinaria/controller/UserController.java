@@ -31,6 +31,7 @@ public class UserController extends AbstractController {
 	@Get(value="/createacount")
 	@NoCache
 	public void createacount(int x){
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		if (x == 1) {
 			this.result.include("samePassword", "Senha já existente");
 		}else {
@@ -108,6 +109,7 @@ public class UserController extends AbstractController {
 	@Get(value="/cadastrarProprietario")
 	@NoCache
 	public void cadastrarProprietario() {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		if(this.userSession.isLogged() == true) {
 			this.result.include("permition",this.userSession.getLoggedUser());
 		}else {
@@ -133,6 +135,7 @@ public class UserController extends AbstractController {
 	@Get(value="/buscar")
 	@NoCache
 	public void buscar(int x) {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		if (x == 1) {
 			this.result.include("success","Animal cadastrado com sucesso");
 		}
@@ -144,6 +147,7 @@ public class UserController extends AbstractController {
 	@Permition
 	public void buscar(String proprietario) {
 		this.result.include("permition",this.userSession.getLoggedUser());
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		if(GeneralUtils.isEmpty(proprietario)) {
 			this.result.include("notfound","Proprietario não encontrado");
 		}else {
@@ -160,6 +164,7 @@ public class UserController extends AbstractController {
 	@Get(value="/perfil")
 	@NoCache
 	public void perfil() {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		this.result.include("perfil", this.userSession.getLoggedUser());
 		this.result.include("permition",this.userSession.getLoggedUser());
 	}
@@ -168,6 +173,7 @@ public class UserController extends AbstractController {
 	@Get(value="/modificarPerfil")
 	@NoCache
 	public void modificarPerfil() {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		this.result.include("modificarperfil",this.userSession.getLoggedUser());
 		this.result.include("permition",this.userSession.getLoggedUser());
 	}
@@ -199,6 +205,7 @@ public class UserController extends AbstractController {
 	@NoCache
 	@Permition
 	public void listarUsuarios() {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		this.result.include("permition",this.userSession.getLoggedUser());
 		if (this.userSession.getLoggedUser().getAcesso() == 2) {
 			this.result.include("admin",this.userSession.getLoggedUser());

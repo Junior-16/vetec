@@ -43,6 +43,7 @@ public class ProntuarioController extends AbstractController{
 		this.result.include("AnamneseGeral", this.Prontuariobs.anamneseGeral(id));
 		this.result.include("AnamneseEspecial",this.Prontuariobs.anamneseEspecial(id));
 		this.result.include("ExameFisico",this.Prontuariobs.exameFisico(id));
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 	}
 
 	@Permition
@@ -50,6 +51,7 @@ public class ProntuarioController extends AbstractController{
 	@NoCache
 	public void cadastrarAnimal(String error) {
 		this.result.include("permition",this.userSession.getLoggedUser());
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		if(GeneralUtils.isEmpty(error) == false) {
 			this.result.include("NotFoundOwner",error);
 		}else {
@@ -72,6 +74,7 @@ public class ProntuarioController extends AbstractController{
 	@Get("/proprietario/{nome}")
 	@NoCache
 	public void proprietario(String nome) {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		this.result.include("permition",this.userSession.getLoggedUser());
 		List<Proprietario> proprietario = this.bs.busca(nome);
 		this.result.include("proprietarioInfo", proprietario.get(0));
@@ -81,6 +84,7 @@ public class ProntuarioController extends AbstractController{
 	@Get(value="/modificarProprietario")
 	@NoCache
 	public void modificarProprietario(String nome) {
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		this.result.include("permition",this.userSession.getLoggedUser());
 		List<Proprietario> proprietario = this.bs.busca( nome);
 		this.result.include("changeOwner", proprietario.get(0));
@@ -91,6 +95,13 @@ public class ProntuarioController extends AbstractController{
 	@NoCache
 	public void salvarProprietario(String nome, String cpf, String telefone, String profissao, String endereco, String cep, String referencias) {
 		this.bs.proprietarioUpdate( nome, cpf, telefone, profissao, endereco, cep, referencias);
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.result.redirectTo(IndexController.class).index();
 	}
 	//Controllers das informações do prontuario
 	

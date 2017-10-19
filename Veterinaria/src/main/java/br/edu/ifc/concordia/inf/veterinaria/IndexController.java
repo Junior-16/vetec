@@ -17,6 +17,7 @@ public class IndexController extends AbstractController {
 	public void index() {
 		if(this.userSession.isLogged() == true) {
 			this.result.include("permition",this.userSession.getLoggedUser());
+			this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
 		}else {
 			this.result.redirectTo(UserController.class).login(0,null);
 		}
