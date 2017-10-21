@@ -11,7 +11,7 @@
 		               	</div>
 		             
 						<div class="main-login main-center">
-							<form class="form-horizontal" method="post" action="<c:url value="/recuperarSenha" />">
+							<form class="form-horizontal" method="post" action="<c:url value="/recuperar" />">
 								<div class="form-group">
 									<label for="name" class="cols-sm-2 control-label">Email</label>
 									<div class="cols-sm-10">
@@ -35,6 +35,14 @@
 								<div class="form-group ">
 									<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Recuperar</button>
 								</div>
+								<c:if test="${not empty Empty}">
+									<div class="alert alert-danger" role="alert"
+										style="padding: 5px; margin-bottom: 10px;">
+										<span class="glyphicon glyphicon-ok"
+											aria-hidden="true"></span> <span class="sr-only"></span>
+										${Empty}
+									</div>
+								</c:if>
 							</form>
 						</div>
 					</div>

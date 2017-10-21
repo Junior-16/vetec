@@ -26,6 +26,20 @@
        <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
        	Buscar
       </a>
+      <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false">
+			<span style="color: #FFFFFF;"><spa class="glyphicon glyphicon-user"></span> 
+			<c:if test="${not empty loggedUser }">
+				<span id="userLogged">${loggedUser}</span>
+			</c:if> 
+			<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<c:url value="/perfil"/>"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+					<li><a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-remove"></span> Sair</a></li>
+				</ul>
+			</li>
+		</ul>
     </div>
   </div>
  </form>

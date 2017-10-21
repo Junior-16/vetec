@@ -204,4 +204,11 @@ a:hover{
 .list-group{
 	margin-top:40px;
 }
+#userLogged{
+	color:white;
+	font-size:18px;
+}
+.glyphicon-user{
+	font-size:15px;
+}
 
