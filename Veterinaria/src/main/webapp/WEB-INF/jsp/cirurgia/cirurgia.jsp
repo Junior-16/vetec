@@ -3,7 +3,15 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
+	<!-- Eu coloquei essa verificação pra ver qual navbar ele inclui por causa no usernormal e admin -->
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
 	
 	<div class="container-fluid row">
 		<div class="col-md-3">
@@ -72,7 +80,7 @@
 						<c:import url="/includes/cirurgia/altaMedica.jsp"/>
 					</div>
 				</div>
-				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span class="glyphicon glyphicon-ok"></span></div>
+				<div id = "save" data-toggle="tooltip" data-placement="top" title="Salvar"><span class="glyphicon glyphicon-ok" id="icon-save"></span></div>
 		</div>
 	</div>
 

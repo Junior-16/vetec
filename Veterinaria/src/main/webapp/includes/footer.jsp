@@ -22,7 +22,6 @@
 	<script src="<c:url value="/js/jquery.toaster.js"/>"></script>
 	<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script src="<c:url value="/js/index.js" />"></script>
-<<<<<<< HEAD
 	<script src="<c:url value="/js/printThis.js" />"></script>
 	<script>
 		$(document).ready(function() {
@@ -31,13 +30,11 @@
 			});	
 		});
 	</script>
-=======
 	<script src="<c:url value="/js/style.js" />"></script>
 	<script src="<c:url value="/js/toastr.js" />"></script>
 <!--
 
 //-->
 
->>>>>>> ca2ebe173b56baffc029a8f30ed2673a0e69f410
 </body>
 </html>

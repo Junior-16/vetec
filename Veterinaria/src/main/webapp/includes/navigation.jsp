@@ -14,21 +14,17 @@
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
        Agenda
       </a>
-<<<<<<< HEAD
-       <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="<c:url value = "/cirurgia"/>" style="color:white;">
-       	Cirurgia
-      <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
-=======
+      
       <a class="navbar-brand" href="<c:url value="/createacount"/>" style="color:white;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
-      Cadastrar Novo Usuário
->>>>>>> ca2ebe173b56baffc029a8f30ed2673a0e69f410
+      Novo Usuário
       </a>
+      
       <a class="navbar-brand" href="<c:url value="/listUsers"/>" style="color:white;">
 		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
       Listar Usuários
       </a>
+      
       <a class="navbar-brand" href="<c:url value = "/buscar"/>" style="color:white;" id="buscar">
        <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
        	Buscar

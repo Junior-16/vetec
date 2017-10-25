@@ -20,5 +20,9 @@ public class CirurgiaController extends AbstractController {
 	
 	@Get(value="/cirurgia")
 	@NoCache
-	public void cirurgia() {}
+	@Permition
+	public void cirurgia() {
+		this.result.include("permition",this.userSession.getLoggedUser());
+		this.result.include("loggedUser",this.userSession.getLoggedUser().getUsername());
+	}
 }
