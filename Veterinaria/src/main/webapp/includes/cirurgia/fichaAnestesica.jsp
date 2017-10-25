@@ -1,13 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/includes/headers.jsp"/>
-
-<div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp"/>
-	<c:import url="/includes/navDocsCirurgia.jsp"/>
-
-	<form method="POST" action="<c:url value="/ficha_anestesica" />" >
+		<div class="row">
+			<h1>Ficha Anestésica</h1>
+		</div>
 		<div class="row">
 			<div class="col-md-9">
 				<label>Procedimento</label>
@@ -105,34 +101,66 @@
 		<div class="row">
 			<div class="col-md-2">
 				<label>Fármaco</label>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
 				<input class="form-control" name="farmaco">
 			</div>
 			<div class="col-md-2">
 				<label>Dose</label>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
 				<input class="form-control" name="dose">
 			</div>
 			<div class="col-md-1">
 				<label>Via</label>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
 				<input class="form-control" name="via">
 			</div>
 			<div class="col-md-1">
 				<label>Tempo</label>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
 				<input class="form-control" name="tempo">
 			</div>
 			<div class="col-md-2">
 				<label>Fármaco</label>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
 				<input class="form-control" name="farmaco">
 			</div>
 			<div class="col-md-2">
 				<label>Dose</label>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
 				<input class="form-control" name="dose">
 			</div>
 			<div class="col-md-1">
 				<label>Via</label>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
 				<input class="form-control" name="via">
 			</div>
 			<div class="col-md-1">
 				<label>Tempo</label>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
 				<input class="form-control" name="tempo">
 			</div>
 		</div>
@@ -147,30 +175,58 @@
 		<div class="row">
 			<div class="col-md-2">
 				<label>Medicamento</label>
+				<input class="form-control" name="medicamento"><br>
+				<input class="form-control" name="medicamento"><br>
+				<input class="form-control" name="medicamento"><br>
+				<input class="form-control" name="medicamento"><br>
 				<input class="form-control" name="medicamento">
 			</div>
 			<div class="col-md-2">
 				<label>Dose</label>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
 				<input class="form-control" name="dose">
 			</div>
 			<div class="col-md-2">
 				<label>Via</label>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
 				<input class="form-control" name="via">
 			</div>
 			<div class="col-md-2">
 				<label>Fármaco</label>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
+				<input class="form-control" name="farmaco"><br>
 				<input class="form-control" name="farmaco">
 			</div>
 			<div class="col-md-2">
 				<label>Dose</label>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
+				<input class="form-control" name="dose"><br>
 				<input class="form-control" name="dose">
 			</div>
 			<div class="col-md-1">
 				<label>Via</label>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
+				<input class="form-control" name="via"><br>
 				<input class="form-control" name="via">
 			</div>
 			<div class="col-md-1">
 				<label>Tempo</label>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
+				<input class="form-control" name="tempo"><br>
 				<input class="form-control" name="tempo">
 			</div>
 		</div>
@@ -201,10 +257,18 @@
 		<div class="row">
 			<div class="col-md-4">
 				<label>Materiais</label>
+				<input class="form-control" name="materiais"><br>
+				<input class="form-control" name="materiais"><br>
+				<input class="form-control" name="materiais"><br>
+				<input class="form-control" name="materiais"><br>
 				<input class="form-control" name="materiais">
 			</div>
 			<div class="col-md-2">
 				<label>Quantidade</label>
+				<input class="form-control" name="quantidade"><br>
+				<input class="form-control" name="quantidade"><br>
+				<input class="form-control" name="quantidade"><br>
+				<input class="form-control" name="quantidade"><br>
 				<input class="form-control" name="quantidade">
 			</div>
 			
@@ -214,7 +278,3 @@
 		</div>
 		<br>
 		<br>
-	</form>
-</div>
-
-<c:import url="/includes/footer.jsp"/>

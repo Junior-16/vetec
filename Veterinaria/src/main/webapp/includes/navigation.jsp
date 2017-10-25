@@ -20,7 +20,7 @@
       	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </a>
        <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="<c:url value = "/ficha_internacao"/>" style="color:white;">
+      <a class="navbar-brand" href="<c:url value = "/cirurgia"/>" style="color:white;">
        	Cirurgia
       <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
       </a>

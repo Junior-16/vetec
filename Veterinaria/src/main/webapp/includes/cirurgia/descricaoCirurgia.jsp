@@ -1,13 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/includes/headers.jsp"/>
-
-<div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp"/>
-	<c:import url="/includes/navDocsCirurgia.jsp"/>
-
-	<form method="POST" action="<c:url value="/ficha_anestesica" />" >
+		<div class="row">
+			<div class="col-me-12">
+				<h1>Ficha de Descrição do Procedimento Cirúrgico</h1>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<h3>Identificação do Proprietário</h3>
@@ -134,9 +132,5 @@
 				<textarea class="form-control" rows="15"></textarea>
 			</div>
 		</div>
-	</form>
 	<br>
 	<br>
-</div>
-
-<c:import url="/includes/footer.jsp"/>

@@ -21,5 +21,13 @@
 	<script src="<c:url value="/js/jquery.toaster.js"/>"></script>
 	<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script src="<c:url value="/js/index.js" />"></script>
+	<script src="<c:url value="/js/printThis.js" />"></script>
+	<script>
+		$(document).ready(function() {
+			$(".botao-printar").click(function() {
+				$(".row").thisPrint();
+			});	
+		});
+	</script>
 </body>
 </html>

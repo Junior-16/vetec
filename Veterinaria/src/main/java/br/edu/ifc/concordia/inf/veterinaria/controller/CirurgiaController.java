@@ -16,15 +16,9 @@ import br.edu.ifc.concordia.inf.veterinaria.permision.Permition;
 import br.edu.ifc.concordia.inf.veterinaria.permision.UserRoles;
 
 @Controller
-
 public class CirurgiaController extends AbstractController {
 	
-	@Get("/ficha_anestesica")
-	public void fichaAnestesica() {}
-	
-	@Get("/ficha_internacao")
-	public void fichaInternacao() {}
-	
-	@Get("/descricao_cirurgia")
-	public void descricaoCirurgia() {}
+	@Get(value="/cirurgia")
+	@NoCache
+	public void cirurgia() {}
 }

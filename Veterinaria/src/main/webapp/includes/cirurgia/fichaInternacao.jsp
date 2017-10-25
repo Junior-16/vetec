@@ -1,13 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/includes/headers.jsp"/>
-
-<div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp"/>
-	<c:import url="/includes/navDocsCirurgia.jsp"/>
-	
-	<form method="POST" action="<c:url value="/ficha_internacao" />" >	
+		
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Ficha de Internação</h1>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<label>Identificação</label>
@@ -42,7 +40,4 @@
 				<input class="form-control" name="proprietario">
 			</div>
 		</div>
-	</form>
-</div>
-
-<c:import url="/includes/footer.jsp"/>
+		<c:import url="/includes/BotaoPrintar.jsp"/>
