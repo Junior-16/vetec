@@ -3,10 +3,9 @@
 <hibernate-configuration>
 	<session-factory>
   		<property name="org.hibernate">true</property>
-		
-		<property name="connection.url">jdbc:mysql://localhost/veterinaria?autoReconnect=true&amp;useSSL=false</property>		
-		<property name="connection.username">root</property>
-		<property name="connection.password"></property>
+		<property name="connection.url">jdbc:mysql://localhost/${db.name}?autoReconnect=true&amp;useSSL=false</property>		
+		<property name="connection.username">${db.username}</property>
+		<property name="connection.password">${db.password}</property>   
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
@@ -15,10 +14,10 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">false</property>
-		<!--
+	
 		<property name="hibernate.c3p0.debugUnreturnedConnectionStackTraces">true</property>
 		<property name="hibernate.c3p0.unreturnedConnectionTimeout">300</property>
-		-->
+	
 		
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.order_updates">true</property>
@@ -43,6 +42,14 @@
 
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.User"/>
   		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Proprietario"/>
-  		
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Animal"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.InfoGerais"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseGeral"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.AnamneseEspecial"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.ExameFisico"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.ExamesComplementares"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Resultados"/>
+  		<mapping class="br.edu.ifc.concordia.inf.veterinaria.model.Retorno"/>
+
 	</session-factory>
 </hibernate-configuration>

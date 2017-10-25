@@ -6,34 +6,47 @@
 <form method="get">
   <div class="container-fluid navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-       	<span class= "glyphicon glyphicon-home" aria-hidden="true"></span>
-      </a>
-      <a class="navbar-brand"></a>
       <a class="navbar-brand" href="<c:url value = "/cadastrarProprietario"/>" style="color:white;" id="proprietario">
-       	Cadastrar 
-      	<span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
+       <span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
+       	Cadastrar Proprietário
       </a>
-       <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="<c:url value = "/prontuario"/>" style="color:white;" id="prontuario">
-      	Prontuário 
-      	<span class= "glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+      <a class="navbar-brand" href="#" style="color:white;">
+       <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+       Agenda
       </a>
+<<<<<<< HEAD
        <a class="navbar-brand"></a>
       <a class="navbar-brand" href="<c:url value = "/cirurgia"/>" style="color:white;">
        	Cirurgia
       <span class= "glyphicon glyphicon-th-list" aria-hidden="true"></span>
+=======
+      <a class="navbar-brand" href="<c:url value="/createacount"/>" style="color:white;">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+      Cadastrar Novo Usuário
+>>>>>>> ca2ebe173b56baffc029a8f30ed2673a0e69f410
       </a>
-      <a class="navbar-brand"></a>
-      <a class="navbar-brand" href="#" style="color:white;">
-      Agenda
-      <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+      <a class="navbar-brand" href="<c:url value="/listUsers"/>" style="color:white;">
+		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
+      Listar Usuários
       </a>
-      <a class="navbar-brand"></a>
       <a class="navbar-brand" href="<c:url value = "/buscar"/>" style="color:white;" id="buscar">
+       <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
        	Buscar
-      <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>
+      <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false">
+			<span style="color: #FFFFFF;"><spa class="glyphicon glyphicon-user"></span> 
+			<c:if test="${not empty loggedUser }">
+				<span id="userLogged">${loggedUser}</span>
+			</c:if> 
+			<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<c:url value="/perfil"/>"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+					<li><a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-remove"></span> Sair</a></li>
+				</ul>
+			</li>
+		</ul>
     </div>
   </div>
  </form>

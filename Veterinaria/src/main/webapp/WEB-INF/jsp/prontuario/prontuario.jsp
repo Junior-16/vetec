@@ -3,82 +3,85 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
-	
-	<div class="container-fluid row">
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
+	<div class="container-fluid row conteudo">
 		<!-- Barra de Pesquisa-->
-		<div class="col-md-3">
-	            <nav class="nav-sidebar">
-	                <ul class="nav">
-	                	<c:if test="${not empty notfound}">
-							<div class="alert alert-danger" role="alert" style="padding:5px; margin-bottom:10px;">
-								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-								<span class="sr-only"></span>
-								${notfound}
-							</div>
-						</c:if>
-	                    <li class="active">
-	                    	<form method="post" action="<c:url value="/search"/>">
-		                    	<input class="form-control" name = "proprietario" placeholder = "Pesquisar proprietario/animal" style="display:inline; width:85%;">
-		                    	<button type="submit" class="btn btn-default btn-md" id="buscar">
-		                        <span class="glyphicon glyphicon-search"></span>
-		                        </button>
-	                        </form>
-	                    </li>
-	                    <c:if test="${not empty found}">
-		                    <c:forEach items="${found}" var="found">
-		                    	<li>
-		                    		<a class = "proprietario" href="#">${found.nome}</a>
-		                    		<a href="#" class="<c:url value="${found.id}"/>">Nome do Cachorro</a>
-				                    <a href="#" class="<c:url value="${found.id}"/>">Mintsie</a>
-		                    	</li>
-		                    </c:forEach>
-						</c:if>			
-	                    <li class="nav-divider"></li>
-	                </ul>
-	            </nav>
-	        </div>
 	        <!-- Tabs -->
-	        <div class="col-md-9 col-sm-9">
+	        <div class="col-md-12 col-sm-12">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">Informações
-							Gerais</a></li>
-					<li><a href="#tab2" data-toggle="tab">Anamnese Geral</a></li>
-					<li><a href="#tab3" data-toggle="tab">Anamnese Especial</a></li>
-					<li><a href="#tab4" data-toggle="tab">Exame Físico</a></li>
-					<li><a href="#tab5" data-toggle="tab">Exames Complementares</a></li>
-					<li><a href="#tab6" data-toggle="tab">Resultados</a></li>
-					<li><a href="#tab7" data-toggle="tab">Tratamento</a></li>
-					<li><a href="#tab8" data-toggle="tab">Retorno</a></li>
+					<li role="presentation" class = "active"><a href="#infoGerais" data-toggle="tab" >Informações Gerais</a></li>
+					<li role="presentation"><a href="#anamneseGeral" data-toggle="tab">Anamnese Geral</a></li>
+					<li role="presentation"><a href="#anamneseEspecial" data-toggle="tab">Anamnese Especial</a></li>
+					<li role="presentation"><a href="#exameFisico" data-toggle="tab" id = "exame">Exame Físico</a></li>
+					<li role="presentation"><a href="#tab5" data-toggle="tab" id = "complementares">Exames Complementares</a></li>
+					<li role="presentation"><a href="#resultados" data-toggle="tab" id = "resultado">Resultados</a></li>
+					<li role="presentation" class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					      Retorno <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+						<li><a href="#exameFisicoRetorno" data-toggle="tab"
+							class="Linkretorno">Exame Físico / Anamnese</a></li>
+						<li><a href="#examComplRetorno" data-toggle="tab"
+							class="Linkretorno">Exames Complementares</a></li>
+						<li><a href="#resultadosRetorno" data-toggle="tab"
+							class="Linkretorno">Resultados</a></li>
+
+					</ul>
+  					</li>
 				</ul>
 				<!-- Tabs content -->
 				<div class="tab-content">
-					<div class="tab-pane active in" id="tab1">
-						<c:import url="/includes/prontuario/infoGerais.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab2">
-						<c:import url="/includes/prontuario/anamneseGeral.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab3">
-						<c:import url="/includes/prontuario/anamneseEspecial.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab4">
-						<c:import url="/includes/prontuario/exameFisico.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab5">
-						<c:import url="/includes/prontuario/examesComplementares.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab6">
-						<c:import url="/includes/prontuario/resultados.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab7">
-						<c:import url="/includes/prontuario/tratamento.jsp"/>
-					</div>
-					<div class="tab-pane fade" id="tab8">
-						<h5>Ainda não decidi o que vou por aqui</h5>
-					</div>
+						<div class="tab-pane fade" id="tab1">
+							<c:import url="/includes/prontuarioIncludes/infoGerais.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab2">
+							<c:import url="/includes/prontuarioIncludes/anamneseGeral.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab3">
+							<c:import url="/includes/prontuarioIncludes/anamneseEspecial.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab4">
+							<c:import url="/includes/prontuarioIncludes/exameFisico.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab5">
+							<c:import url="/includes/prontuarioIncludes/examesComplementares.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="tab6">
+							<c:import url="/includes/prontuarioIncludes/resultados.jsp"/>
+						</div>
+						<div class="tab-pane fade  active in" id="infoGerais">
+							<c:import url="/includes/prontuarioIncludes/infoGeraisShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="anamneseGeral">
+							<c:import url="/includes/prontuarioIncludes/anamneseGeralShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="anamneseEspecial">
+							<c:import url="/includes/prontuarioIncludes/anamneseEspecialShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="exameFisico">
+							<c:import url="/includes/prontuarioIncludes/ExameFisicoShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="resultados">
+							<c:import url="/includes/prontuarioIncludes/resultadosShow.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="exameFisicoRetorno">
+							<c:import url="/includes/prontuarioIncludes/exameFisicoRetorno.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="examComplRetorno">
+							<c:import url="/includes/prontuarioIncludes/examComplRetorno.jsp"/>
+						</div>
+						<div class="tab-pane fade" id="resultadosRetorno">
+							<c:import url="/includes/prontuarioIncludes/resultadosRetorno.jsp"/>
+						</div>
 				</div>
-				<div id ="save" data-toggle="tooltip" data-placement="top" title="Salvar"><span class="glyphicon glyphicon-ok"></span></div>
 		</div>
 	</div>
 

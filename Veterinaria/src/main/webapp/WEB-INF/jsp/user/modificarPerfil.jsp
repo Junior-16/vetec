@@ -3,8 +3,15 @@
 
 <c:import url="/includes/headers.jsp" />
 <div class="container-fluid conteudo">
-	<c:import url="/includes/navigation.jsp" />
-	<form method="POST" action="<c:url value="/modificarPerfil"/>">
+	<c:if test="${not empty permition}">
+		<c:if test="${permition.acesso == 2}">
+			<c:import url="/includes/navigation.jsp" />
+		</c:if>
+		<c:if test="${permition.acesso == 1}">
+			<c:import url="/includes/navigationNormal.jsp" />
+		</c:if>
+	</c:if>
+	<form id = "changeProfile" method="POST" action="<c:url value="/modificarPerfil"/>">
 		<c:if test="${not empty modificarperfil}">
 			<div class="row container-fluid">
 				<div class=col-md-3>
@@ -45,15 +52,23 @@
 					<label>Email</label><input class="form-control" name="email"
 						value="<c:url value="${modificarperfil.email}"/>">
 				</div>
-				<!--  
-					<div class="col-md-3">
-						<label>Senha (mínimo 5 caracteres)</label>
-		                <input class="form-control" name = "password" type="password" minlength="5" maxlength="10">
-					</div> -->
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-success">Modificar</button>
+				<div class="col-md-2">
+					<label>Senha Antiga</label>
+		            <input class="form-control" name="old" type="password">
+		            <c:if test="${not empty mudar}">
+			            <div class="alert alert-danger" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only"></span>
+							${mudar}
+						</div>
+		            </c:if>
+				</div>
+				<div class="col-md-2">
+					<label>Nova Senha</label>
+		            <input class="form-control" name = "senha" type="password" minlength="5" maxlength="10">
 				</div>
 			</div>
+			<button type = "submit" class ="change" data-toggle="tooltip" data-placement="top" title="Salvar"><span id = "icon-save" class="glyphicon glyphicon-ok"></span></button>
 		</c:if>
 	</form>
 </div>
