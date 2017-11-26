@@ -12,7 +12,7 @@
 			<c:import url="/includes/navigationNormal.jsp" />
 		</c:if>
 	</c:if>
-		<table>
+		<table class="tabela">
 			<thead>
 				<th>Dom</th>
 				<th>Seg</th>

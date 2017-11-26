@@ -4,7 +4,7 @@ $(document).ready(function(){
 		line = 0;
 		while(index <= 41){
 			if(index == 0 || index == 7 || index == 14 || index == 21 || index == 28 || index == 35){
-				$("table").append("<tr class = "+String(index) +">"+" "+"</tr>");
+				$(".tabela").append("<tr class = "+String(index) +">"+" "+"</tr>");
 				line = index;
 			}
 			$("."+String(line)).append("<td>"+"<p id = "+String(index)+">"+" "+"</p>"+"</td>");
