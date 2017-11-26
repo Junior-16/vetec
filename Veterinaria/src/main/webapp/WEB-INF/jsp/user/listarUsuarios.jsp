@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/includes/headers.jsp" />
-<div class="conteudo">
+<div class="container-fluid conteudo">
 	<c:if test="${not empty permition}">
 		<c:if test="${permition.acesso == 2}">
 			<c:import url="/includes/navigation.jsp" />

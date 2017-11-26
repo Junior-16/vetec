@@ -1,0 +1,21 @@
+tr{
+	display:block;
+}
+td,th{
+	width:80px;
+	height:65px;
+}
+td:hover{
+	background-color:#eeeeee;
+}
+p{
+	margin-top:-30px;
+	margin-left:4px
+}
+.rodape{
+	margin-top:20px;
+}
+table{
+	position:center;
+	margin:50px;
+}

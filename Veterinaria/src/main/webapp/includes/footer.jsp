@@ -5,7 +5,7 @@
   <div class="row">
      <div class = "col-md-9">
          <address class = "text-center">
-            <p>Instituto Federal de Educação, Ciência e Tecnologia Catarinense - Câmpus Concórdia
+            <p class="rodape">Instituto Federal de Educação, Ciência e Tecnologia Catarinense - Câmpus Concórdia
             <br class = "white-space">
             Rodovia SC 283 - km 08 - CEP 89703-720 - Concórdia - SC - Fone (49) 3441-4800</p>
             </address>
@@ -18,12 +18,12 @@
 	<script src="<c:url value="/js/jquery-3.2.1.min.js" />"></script>
 	<script src="<c:url value="/js/tether.min.js" />"></script>
 	<script src="<c:url value="/bootstrap/js/bootstrap.js"/>"></script>
-	<script src="<c:url value="/aui/aui/aui-min.js" />"></script>
 	<script src="<c:url value="/js/jquery.toaster.js"/>"></script>
 	<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script src="<c:url value="/js/index.js" />"></script>
 	<script src="<c:url value="/js/style.js" />"></script>
 	<script src="<c:url value="/js/toastr.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/js/agenda.js"/>"></script>
 <!--
 
 //-->

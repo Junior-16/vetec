@@ -12,7 +12,7 @@
 	<!-- Website Font style -->
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="<c:url value="/aui/aui-css/css/bootstrap.min.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/css/bootstrap.min.css"/>">
 	<link rel="stylesheet" href="<c:url value="/css/tether.min.css"/>"/>
 	
 	

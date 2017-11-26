@@ -23,9 +23,7 @@ body > .container{
     margin-top:3%;
     margin-left:20%;
 }
-p{
-    margin-top: 25px;
-}
+
 .glyphicon-home{
     color: white;
     font-size: 25px;
@@ -211,4 +209,5 @@ a:hover{
 .glyphicon-user{
 	font-size:15px;
 }
+
 

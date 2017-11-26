@@ -10,7 +10,7 @@
        <span class= "glyphicon glyphicon-plus" aria-hidden="true"></span>
        	Cadastrar Proprietário
       </a>
-      <a class="navbar-brand" href="#" style="color:white;">
+      <a class="navbar-brand" href="<c:url value="/agenda"/>" style="color:white;">
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
        Agenda
       </a>
@@ -29,7 +29,7 @@
       <ul class="nav navbar-nav navbar-right">
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false">
-			<span style="color: #FFFFFF;"><spa class="glyphicon glyphicon-user"></span> 
+			<span class="glyphicon glyphicon-user" style="color: #FFFFFF;"></span> 
 			<c:if test="${not empty loggedUser }">
 				<span id="userLogged">${loggedUser}</span>
 			</c:if> 
