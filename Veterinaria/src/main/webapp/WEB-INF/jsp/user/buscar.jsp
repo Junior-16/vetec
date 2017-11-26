@@ -58,7 +58,7 @@
 													<a class = "${animais.id}" style="margin-left: 10px; padding-top:5px; padding-bottom: 5px;">${animais.nome}</a>
 													<li>
 														<a href="<c:url value="/prontuario/${animais.id}"/>" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Prontuário</a>
-														<a href="#" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Cirurgia</a>
+														<a href="<c:url value = "/cirurgia"/>" style="display:block;padding-left: 47px; padding-top:5px; padding-bottom: 5px;">Cirurgia</a>
 													</li>
 													<i></i>
 												</c:forEach>

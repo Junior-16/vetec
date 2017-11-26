@@ -14,14 +14,17 @@
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
        Agenda
       </a>
+      
       <a class="navbar-brand" href="<c:url value="/createacount"/>" style="color:white;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
-      Cadastrar Novo Usuário
+      Novo Usuário
       </a>
+      
       <a class="navbar-brand" href="<c:url value="/listUsers"/>" style="color:white;">
 		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
       Listar Usuários
       </a>
+      
       <a class="navbar-brand" href="<c:url value = "/buscar"/>" style="color:white;" id="buscar">
        <span class= "glyphicon glyphicon-search" aria-hidden="true"></span>
        	Buscar
