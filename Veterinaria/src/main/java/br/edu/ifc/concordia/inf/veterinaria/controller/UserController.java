@@ -4,6 +4,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import org.hibernate.AssertionFailure;
 import org.hibernate.JDBCException;
 
 import br.com.caelum.vraptor.Consumes;
@@ -73,6 +74,10 @@ public class UserController extends AbstractController {
 			}
 		}catch(JDBCException e) {
 			this.fail("Nome de usuário já existente");
+			
+		}
+		catch(AssertionFailure f) {
+			this.fail("Nome de usuário e senha já existentes");
 		}
 		
 		
