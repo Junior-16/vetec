@@ -1,11 +1,4 @@
 $(document).ready(function(){
-	$(".cell").on("click",function(){
-		alert();
-		$('#modal').modal('true');
-	});
-	$("#newTask").click(function(){
-		$(".modal-body").append("<div class='input-group'> <span class='input-group-addon' id='sizing-addon2'>@</span><input type='text' class='form-control' placeholder='Username' aria-describedby='sizing-addon2'></div>");
-	});
 	function print(){
 		index = 0;
 		line = 0;
@@ -14,10 +7,9 @@ $(document).ready(function(){
 				$(".tabela").append("<tr class = "+String(index) +">"+" "+"</tr>");
 				line = index;
 			}
-			$("."+String(line)).append("<td class = 'cell'>"+"<p id = "+String(index)+">"+" "+"</p>"+"</td>");
+			$("."+String(line)).append("<td>"+"<p id = "+String(index)+">"+" "+"</p>"+"</td>");
 			index++;
 		}
-		
 	}
 	function divider(){
 		x = new Date();
@@ -112,5 +104,11 @@ $(document).ready(function(){
 	print();
 	divider();
 	removeWrongDay(x.getMonth());
+	$("td").on("click",function(){
+		$('#modal').modal('show');
+	});
+	$("#newTask").click(function(){
+		$(".modal-body .row").append("<div class = 'col-md-3'><div class='form-group'><input type='text' class='form-control data' placeholder='Data'></div></div><div class='col-md-9'><div class='form-group'><input type='text' class='form-control' placeholder='Tarefa'></div></div>");
+	});
 	
 });

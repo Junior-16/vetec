@@ -24,15 +24,17 @@
 				<th>Sab</th>
 			</thead>
 		</table>
-		<div class="modal fade bs-example-modal-sm" id = "modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-		  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal fade bs-example-modal-md" id = "modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		  <div class="modal-dialog modal-md" role="document">
 		    <div class="modal-content">
 		    	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title">Agendamento</h4>
 			    </div>
 		    	<div class="modal-body">
+		    		<div class="row">
 		    		
+		    		</div>
 		    	</div>
 		    	<div class="modal-footer">
 		    		<button type="button" id = "newTask" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
