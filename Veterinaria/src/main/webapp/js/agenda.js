@@ -1,4 +1,11 @@
 $(document).ready(function(){
+	$(".cell").on("click",function(){
+		alert();
+		$('#modal').modal('true');
+	});
+	$("#newTask").click(function(){
+		$(".modal-body").append("<div class='input-group'> <span class='input-group-addon' id='sizing-addon2'>@</span><input type='text' class='form-control' placeholder='Username' aria-describedby='sizing-addon2'></div>");
+	});
 	function print(){
 		index = 0;
 		line = 0;
@@ -7,7 +14,7 @@ $(document).ready(function(){
 				$(".tabela").append("<tr class = "+String(index) +">"+" "+"</tr>");
 				line = index;
 			}
-			$("."+String(line)).append("<td>"+"<p id = "+String(index)+">"+" "+"</p>"+"</td>");
+			$("."+String(line)).append("<td class = 'cell'>"+"<p id = "+String(index)+">"+" "+"</p>"+"</td>");
 			index++;
 		}
 		
@@ -16,6 +23,7 @@ $(document).ready(function(){
 		x = new Date();
 		day = x.getDate();
 		week = x.getDay();
+		$(".date").append(x.getMonth()+1+"/"+x.getFullYear());
 		pointer = 0;
 		if(day >= 1 && day <= 7){
 			i = 0;
