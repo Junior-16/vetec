@@ -29,6 +29,7 @@
 			});	
 		});
 	</script>
+	<script type="text/javascript" src="<c:url value="/js/lokijs.min.js"/>"> </script>
 	<script type="text/javascript" src="<c:url value="/js/agenda.js"/>"></script>
 	<script src="<c:url value="/js/style.js" />"></script>
 	<script src="<c:url value="/js/toastr.js" />"></script>

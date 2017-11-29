@@ -15,13 +15,14 @@ $(document).ready(function(){
 		x = new Date();
 		day = x.getDate();
 		week = x.getDay();
-		$(".date").append(x.getMonth()+1+"/"+x.getFullYear());
+		$("#date").append(defineDate(x)+x.getFullYear());// Aqui
 		pointer = 0;
 		if(day >= 1 && day <= 7){
 			i = 0;
 			while (i <= 6){
 				if(week == i){
 					$("#"+String(i+7)).append(day);
+					$("#"+String(i+7))[0].offsetParent.style.border = 'solid #9E9E9E';;
 					pointer = i+7;
 				}i++;
 			}
@@ -31,6 +32,7 @@ $(document).ready(function(){
 			while (i <= 6){
 				if(week == i){
 					$("#"+String(i+14)).append(day);
+					$("#"+String(i+14))[0].offsetParent.style.border = 'solid #9E9E9E';;
 					pointer = i + 14;
 				}i++;
 			}
@@ -40,6 +42,7 @@ $(document).ready(function(){
 			while (i <= 6){
 				if(week == i){
 					$("#"+String(i+21)).append(day);
+					$("#"+String(i+21))[0].offsetParent.style.border = 'solid #9E9E9E';;
 					pointer = i + 21;
 				}i++;
 			}
@@ -49,6 +52,7 @@ $(document).ready(function(){
 			while (i <= 6){
 				if(week == i){
 					$("#"+String(i+28)).append(day);
+					$("#"+String(i+28))[0].offsetParent.style.border = 'solid #9E9E9E';;
 					pointer = i + 28;
 				}i++;
 			}
@@ -58,6 +62,7 @@ $(document).ready(function(){
 			while (i <= 6){
 				if(week == i){
 					$("#"+String(i+35)).append(day);
+					$("#"+String(i+35))[0].offsetParent.style.border = 'solid #9E9E9E';//Parei Aqui
 					pointer = i + 35;
 				}i++;
 			}
@@ -87,6 +92,7 @@ $(document).ready(function(){
 		}
 
 	}
+	
 	function removeWrongDay(month){
 		if(month == 1 || month == 3 || month == 5 || month == 8 || month == 10){
 			remove = 41;
@@ -101,14 +107,86 @@ $(document).ready(function(){
 			}
 		}
 	}
+	
+	function defineDate(objectDate){
+		if(objectDate.getMonth() == 0){
+			return "Jan/";
+		}
+		if(objectDate.getMonth() == 1){
+			return "Fev/";
+		}
+		if(objectDate.getMonth() == 2){
+			return "Mar/";
+		}
+		if(objectDate.getMonth() == 3){
+			return "Abr/";
+		}
+		if(objectDate.getMonth() == 4){
+			return "Mai/";
+		}
+		if(objectDate.getMonth() == 5){
+			return ("Jun/");
+		}
+		if(objectDate.getMonth() == 6){
+			return "Jul/";
+		}
+		if(objectDate.getMonth() == 7){
+			return "Ago/";
+		}
+		if(objectDate.getMonth() == 8){
+			return "Set/";
+		}
+		if(objectDate.getMonth() == 9){
+			return "Out/";
+		}
+		if(objectDate.getMonth() == 10){
+			return "Nov/";
+		}
+		else{
+			return "Dez/";
+		}
+	}
+	
+	function removeCleanDay(){
+		index = 0;
+		verdade = 0;
+		while(index <= 6){
+			$("#"+String(index))[0].offsetParent.remove();
+			index++;
+		}
+	}
+	
 	print();
 	divider();
 	removeWrongDay(x.getMonth());
+	removeCleanDay();
+	
 	$("td").on("click",function(){
+		$(".modal-footer").empty();
 		$('#modal').modal('show');
+		$(".modal-footer").append("<button type='button' id = 'newTask' value ="+this.children[0].innerHTML+" class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></button>");
 	});
-	$("#newTask").click(function(){
-		$(".modal-body .row").append("<div class = 'col-md-3'><div class='form-group'><input type='text' class='form-control data' placeholder='Data'></div></div><div class='col-md-9'><div class='form-group'><input type='text' class='form-control' placeholder='Tarefa'></div></div>");
+
+	$("#newTask").on('click',function(){
+		$(".modal-body .row").append("<div class = 'col-md-4'><div class='form-group'><input type='text' class='form-control data' value="+this.value+"/"+(x.getMonth()+1)+"/"+x.getFullYear()+"></div></div><div class='col-md-8'><div class='form-group'><input type='text' class='form-control' placeholder='Tarefa'></div></div>");
+	});	
+		
+	
+	$("#salvar").click(function(){
+		db = new loki('Agenda.db',{
+			autosave:true,
+			autosaveInterval: 1000,
+			autoload:true
+		});
+		db.loadDatabase();
+		
+		var month = db.getCollection(defineDate(x)+x.getFullYear());
+		if(!month){
+			month = db.addCollection(defineDate(x)+x.getFullYear());
+		}
+		else{
+			
+		}
 	});
 	
 });
