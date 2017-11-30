@@ -37,7 +37,8 @@
 		    		</div>
 		    	</div>
 		    	<div class="modal-footer">
-		    		<!--  <button type="button" id = "salvar" class="btn btn-primary">Salvar Agendamento</button>-->
+		    		<button type='button' id = 'newTask' class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></button>
+		    		<button type="button" id = "salvar" class="btn btn-primary">Salvar</button>
 		    	</div>
 		    </div>
 		  </div>

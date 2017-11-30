@@ -1,4 +1,13 @@
 $(document).ready(function(){
+	
+	//Create Data bank
+	db = new loki('Agenda.db',{
+		autosave:true,
+		autosaveInterval: 1000,
+		autoload:true
+	});
+	db.loadDatabase();
+	
 	function print(){
 		index = 0;
 		line = 0;
@@ -162,31 +171,24 @@ $(document).ready(function(){
 	removeCleanDay();
 	
 	$("td").on("click",function(){
-		$(".modal-footer").empty();
 		$('#modal').modal('show');
-		$(".modal-footer").append("<button type='button' id = 'newTask' value ="+this.children[0].innerHTML+" class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></button>");
+		$("#newTask").attr("data-date",this.children[0].innerHTML);
+		
+	});
+	
+	$("#salvar").click(function(){
+		//console.log($(this).attr("data-date"));
 	});
 
 	$("#newTask").on('click',function(){
-		$(".modal-body .row").append("<div class = 'col-md-4'><div class='form-group'><input type='text' class='form-control data' value="+this.value+"/"+(x.getMonth()+1)+"/"+x.getFullYear()+"></div></div><div class='col-md-8'><div class='form-group'><input type='text' class='form-control' placeholder='Tarefa'></div></div>");
+		$(".modal-body .row").append("<div class = 'col-md-4'><div class='form-group'><input type='text' class='form-control data' value="+$(this).attr('data-date')+"/"+(x.getMonth()+1)+"/"+x.getFullYear()+"></div></div><div class='col-md-8'><div class='form-group'><input type='text' class='form-control' placeholder='Tarefa'></div></div>");
 	});	
 		
 	
 	$("#salvar").click(function(){
-		db = new loki('Agenda.db',{
-			autosave:true,
-			autosaveInterval: 1000,
-			autoload:true
-		});
-		db.loadDatabase();
+		meString = defineDate(x)+x.getFullYear();
+		var month = db.getCollection(meString);
 		
-		var month = db.getCollection(defineDate(x)+x.getFullYear());
-		if(!month){
-			month = db.addCollection(defineDate(x)+x.getFullYear());
-		}
-		else{
-			
-		}
 	});
 	
 });
